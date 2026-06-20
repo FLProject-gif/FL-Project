@@ -4,8 +4,8 @@ const RStyles = {
 };
 
 const TICKETS = [
-  { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Akses 7 hari ke Expo, Talkshow & Entertainment.", note: "Kuota terbatas" },
-  { id: "member", name: "Member TDA", price: "GRATIS", icon: "badge-check", desc: "Priority seating + akses lounge komunitas TDA.", note: "Khusus member" },
+  { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event" },
+  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login" },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 
@@ -73,7 +73,11 @@ function App() {
       body: new URLSearchParams(payload).toString(),
     }).catch(() => {});
   };
-  const handleNext = () => { if (step === 1) submitRegistration(); setStep(step + 1); };
+  const handleNext = () => {
+    if (step === 0 && selected.href) { window.location.href = selected.href; return; }
+    if (step === 1) submitRegistration();
+    setStep(step + 1);
+  };
 
   return (
     <div>
@@ -91,7 +95,7 @@ function App() {
           {step === 0 && (
             <div>
               <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 6px", color: "var(--text-heading)" }}>Pilih jenis tiket Anda</h2>
-              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Tiket masuk GRATIS, namun kuota sangat terbatas demi kualitas networking.</p>
+              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Pilih tiket sesuai kebutuhan Anda — datang menikmati acara, atau ikut belajar &amp; berkembang.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {TICKETS.map(t => {
                   const on = ticket === t.id;
@@ -165,7 +169,7 @@ function App() {
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 30 }}>
             {step > 0 && step < 2 ? <PWBButton variant="ghost" onClick={() => setStep(step - 1)} iconLeft={<PWBIcon name="arrow-left" size={18} />}>Kembali</PWBButton> : <span />}
             {step < 2
-              ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? "Terbitkan E-Ticket" : "Lanjut"}</PWBButton>
+              ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? "Terbitkan E-Ticket" : selected.href ? "Lanjut ke Pembayaran" : "Lanjut"}</PWBButton>
               : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "" }); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
           </div>
         </PWBCard>

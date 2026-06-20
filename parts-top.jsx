@@ -19,7 +19,7 @@ function Nav({ onRegister }) {
       boxShadow: scrolled ? "var(--shadow-sm)" : "none", transition: "box-shadow .3s",
     }}>
       <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <img src="assets/logo-tda-bekasi.png" alt="TDA Bekasi" style={{ height: 52, width: "auto", display: "block" }} />
+        <img src="assets/logo-tda-bekasi.png" alt="TDA Bekasi" style={{ height: 64, width: "auto", display: "block" }} />
       </a>
       <nav style={{ display: isMobile ? "none" : "flex", alignItems: "center", gap: 28 }}>
         {links.map(([h, t]) => (

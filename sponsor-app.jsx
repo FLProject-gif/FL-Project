@@ -15,20 +15,21 @@ const SPONSOR_TIERS = [
 ];
 
 function SStepper({ step, steps }) {
+  const isMobile = useIsMobile();
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 0, marginBottom: 26 }}>
+    <div style={{ display: "flex", alignItems: isMobile ? "flex-start" : "center", gap: 0, marginBottom: isMobile ? 22 : 26 }}>
       {steps.map((s, i) => (
         <React.Fragment key={s}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "center", gap: isMobile ? 6 : 10, flex: isMobile ? "0 0 auto" : undefined, width: isMobile ? 72 : undefined }}>
             <span style={{
-              width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+              width: 30, height: 30, flex: "0 0 auto", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
               fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: ".85rem",
               background: i <= step ? "var(--pwb-blue-azure)" : "var(--pwb-gray-100)",
               color: i <= step ? "#fff" : "var(--text-muted)", transition: "all .3s",
             }}>{i < step ? "✓" : i + 1}</span>
-            <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".9rem", color: i <= step ? "var(--text-heading)" : "var(--text-muted)" }}>{s}</span>
+            <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: isMobile ? ".72rem" : ".9rem", textAlign: isMobile ? "center" : "left", lineHeight: 1.15, color: i <= step ? "var(--text-heading)" : "var(--text-muted)" }}>{s}</span>
           </div>
-          {i < steps.length - 1 && <span style={{ flex: 1, height: 2, margin: "0 14px", background: i < step ? "var(--pwb-blue-azure)" : "var(--pwb-gray-200)" }} />}
+          {i < steps.length - 1 && <span style={{ flex: 1, height: 2, margin: isMobile ? "15px 4px 0" : "0 14px", background: i < step ? "var(--pwb-blue-azure)" : "var(--pwb-gray-200)" }} />}
         </React.Fragment>
       ))}
     </div>

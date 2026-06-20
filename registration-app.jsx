@@ -10,20 +10,21 @@ const TICKETS = [
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 
 function Stepper({ step, steps }) {
+  const isMobile = useIsMobile();
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 0, marginBottom: 26 }}>
+    <div style={{ display: "flex", alignItems: isMobile ? "flex-start" : "center", gap: 0, marginBottom: isMobile ? 22 : 26 }}>
       {steps.map((s, i) => (
         <React.Fragment key={s}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "center", gap: isMobile ? 6 : 10, flex: isMobile ? "0 0 auto" : undefined, width: isMobile ? 66 : undefined }}>
             <span style={{
-              width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+              width: 30, height: 30, flex: "0 0 auto", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
               fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: ".85rem",
               background: i <= step ? "var(--pwb-blue-azure)" : "var(--pwb-gray-100)",
               color: i <= step ? "#fff" : "var(--text-muted)", transition: "all .3s",
             }}>{i < step ? "✓" : i + 1}</span>
-            <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".9rem", color: i <= step ? "var(--text-heading)" : "var(--text-muted)" }}>{s}</span>
+            <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: isMobile ? ".72rem" : ".9rem", textAlign: isMobile ? "center" : "left", lineHeight: 1.15, color: i <= step ? "var(--text-heading)" : "var(--text-muted)" }}>{s}</span>
           </div>
-          {i < steps.length - 1 && <span style={{ flex: 1, height: 2, margin: "0 14px", background: i < step ? "var(--pwb-blue-azure)" : "var(--pwb-gray-200)" }} />}
+          {i < steps.length - 1 && <span style={{ flex: 1, height: 2, margin: isMobile ? "15px 4px 0" : "0 14px", background: i < step ? "var(--pwb-blue-azure)" : "var(--pwb-gray-200)" }} />}
         </React.Fragment>
       ))}
     </div>
@@ -83,15 +84,64 @@ function App() {
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
   const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(verifyUrl);
   const qrDownloadSrc = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=12&data=" + encodeURIComponent(verifyUrl);
+  const downloadBlob = (blob, name) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+  // Compose a full e-ticket image (template + peserta data + QR) and download it.
   const saveQr = async () => {
     try {
       const res = await fetch(qrDownloadSrc);
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url; a.download = "e-ticket-" + ticketCode + ".png";
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      const qrBlob = await res.blob();
+      const qrUrl = URL.createObjectURL(qrBlob);
+      const qrImg = await new Promise((resolve, reject) => {
+        const im = new Image(); im.onload = () => resolve(im); im.onerror = reject; im.src = qrUrl;
+      });
+
+      const scale = 2, W = 1000, H = 600;
+      const canvas = document.createElement("canvas");
+      canvas.width = W * scale; canvas.height = H * scale;
+      const ctx = canvas.getContext("2d");
+      ctx.scale(scale, scale);
+      ctx.textBaseline = "top";
+      const royal = "#005BFC", azure = "#0097FE", ink = "#0F1419", muted = "#6B7B91", hair = "#E2ECF7";
+      const rr = (x, y, w, h, r) => { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); };
+
+      ctx.fillStyle = royal; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = "#fff"; rr(36, 36, W - 72, H - 72, 32); ctx.fill();
+
+      ctx.fillStyle = royal; ctx.font = "700 24px sans-serif";
+      ctx.fillText("PESTA WIRAUSAHA PLANET BEKASI 2026", 72, 70);
+      ctx.fillStyle = hair; ctx.fillRect(72, 108, W - 144, 2);
+
+      const qrSize = 300, qx = 80, qy = 158;
+      ctx.fillStyle = ink; rr(qx - 10, qy - 10, qrSize + 20, qrSize + 20, 16); ctx.fill();
+      ctx.fillStyle = "#fff"; rr(qx - 2, qy - 2, qrSize + 4, qrSize + 4, 8); ctx.fill();
+      ctx.drawImage(qrImg, qx, qy, qrSize, qrSize);
+      URL.revokeObjectURL(qrUrl);
+
+      const tx = qx + qrSize + 56;
+      const maxW = (W - 72) - tx;
+      let ty = 166;
+      ctx.fillStyle = azure; ctx.font = "800 24px sans-serif";
+      ctx.fillText((selected.name || "").toUpperCase(), tx, ty); ty += 46;
+      const name = form.nama || "Peserta PWB";
+      let ns = 46; ctx.font = "800 " + ns + "px sans-serif";
+      while (ns > 26 && ctx.measureText(name).width > maxW) { ns -= 2; ctx.font = "800 " + ns + "px sans-serif"; }
+      ctx.fillStyle = ink; ctx.fillText(name, tx, ty); ty += ns + 22;
+      ctx.fillStyle = muted; ctx.font = "500 24px sans-serif";
+      ctx.fillText("27 Juli – 2 Agustus 2026", tx, ty); ty += 34;
+      ctx.fillText("Pakuwon Mall Bekasi · Lt.2", tx, ty); ty += 48;
+      ctx.fillStyle = royal; ctx.font = "800 34px sans-serif";
+      ctx.fillText("#" + ticketCode, tx, ty);
+
+      ctx.fillStyle = muted; ctx.font = "500 22px sans-serif";
+      ctx.fillText("Tunjukkan QR ini di pintu masuk acara.", 80, H - 92);
+
+      canvas.toBlob((b) => downloadBlob(b, "e-ticket-" + ticketCode + ".png"), "image/png");
     } catch (e) {
       window.open(qrDownloadSrc, "_blank", "noopener");
     }
@@ -169,8 +219,8 @@ function App() {
               <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 4px", color: "var(--text-heading)" }}>E-Ticket Anda siap! 🚀</h2>
               <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Tunjukkan QR ini di pintu masuk Pakuwon Mall Bekasi.</p>
               <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-xl)", padding: 4, maxWidth: 420, margin: "0 auto", boxShadow: "var(--shadow-pop)" }}>
-                <div style={{ background: "#fff", borderRadius: "calc(var(--radius-xl) - 4px)", padding: "22px 24px", display: "flex", gap: 18, alignItems: "center", textAlign: "left" }}>
-                  <img src={qrSrc} alt={"QR e-ticket " + ticketCode} width={92} height={92} style={{ width: 92, height: 92, borderRadius: "var(--radius-sm)", flex: "0 0 auto", background: "#fff", border: "4px solid #0F1419", boxSizing: "content-box" }} />
+                <div style={{ background: "#fff", borderRadius: "calc(var(--radius-xl) - 4px)", padding: "22px 24px", display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 14 : 18, alignItems: "center", textAlign: isMobile ? "center" : "left" }}>
+                  <img src={qrSrc} alt={"QR e-ticket " + ticketCode} width={isMobile ? 132 : 92} height={isMobile ? 132 : 92} style={{ width: isMobile ? 132 : 92, height: isMobile ? 132 : 92, borderRadius: "var(--radius-sm)", flex: "0 0 auto", background: "#fff", border: "4px solid #0F1419", boxSizing: "content-box" }} />
                   <div style={{ flex: 1 }}>
                     <div className="pwb-eyebrow" style={{ color: "var(--pwb-blue-azure)" }}>{selected.name}</div>
                     <div style={{ fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: "1.15rem", color: "var(--text-heading)", margin: "2px 0" }}>{form.nama || "Peserta PWB"}</div>

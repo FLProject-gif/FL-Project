@@ -1,0 +1,102 @@
+/* BASE — resets, helpers, signature surfaces — Pesta Wirausaha Bekasi */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  color: var(--text-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  font-weight: var(--fw-extra);
+  margin: 0 0 0.4em;
+  text-wrap: balance;
+}
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+a { color: var(--text-link); text-decoration: none; }
+
+/* ---- Eyebrow / running header ---- */
+.pwb-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-eyebrow);
+}
+
+/* "Let's Grow Together" running header rule used across slides/sections */
+.pwb-runhead {
+  display: flex; align-items: center; gap: var(--space-4);
+  color: var(--pwb-navy);
+}
+.pwb-runhead::before {
+  content: ""; flex: 1 1 auto; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--pwb-navy));
+  opacity: 0.5;
+}
+.pwb-runhead > span {
+  font-weight: var(--fw-bold); font-size: var(--fs-h4);
+  letter-spacing: var(--ls-tight); white-space: nowrap;
+}
+
+/* ---- Display headline (playful Fredoka) ---- */
+.pwb-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+}
+
+/* ---- Signature surfaces ---- */
+.pwb-sky {
+  background:
+    radial-gradient(120% 80% at 80% -10%, var(--pwb-blue-sky), transparent 60%),
+    linear-gradient(160deg, #1AA0EC 0%, var(--pwb-blue-royal) 90%);
+  color: var(--text-on-brand);
+}
+.pwb-surface-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Topographic line texture (echoes deck backgrounds) ----
+   Drop onto any container; lines hug the lower-right like the proposal slides. */
+.pwb-topo { position: relative; isolation: isolate; }
+.pwb-topo::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    repeating-radial-gradient(circle at 118% 122%,
+      transparent 0 22px, var(--pwb-line) 22px 23.6px);
+  -webkit-mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+  opacity: 1;
+}
+
+/* gold "Let's Grow Together" pill */
+.pwb-pill-gold {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--pwb-gold); color: #5A3A00;
+  font-family: var(--font-display); font-weight: var(--fw-semibold);
+  padding: 0.5em 1.2em; border-radius: var(--radius-pill);
+  white-space: nowrap;
+  box-shadow: var(--shadow-gold);
+}
+
+.pwb-container { max-width: var(--container-max); margin-inline: auto; padding-inline: var(--gutter); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

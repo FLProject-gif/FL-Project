@@ -1,0 +1,71 @@
+/* COLORS — Pesta Wirausaha Bekasi
+   Sampled from the official PWB 2026 proposal deck + rocket logo.
+   Base ramp first, semantic aliases below. */
+:root {
+  /* ---- Brand base ---- */
+  --pwb-blue-royal: #005BFC;   /* deep cobalt — logo field, dark sections */
+  --pwb-blue-azure: #0097FE;   /* bright action blue — cards, buttons, icon coins */
+  --pwb-blue-sky:   #0E84DC;   /* hero sky gradient */
+  --pwb-orange:     #FD6212;   /* "PESTA" orange — energy, warm accent */
+  --pwb-red:        #C80807;   /* "WIRAUSAHA" red — emphasis, alerts */
+  --pwb-gold:       #FFB11D;   /* sun + "Let's Grow Together" pill */
+  --pwb-navy:       #122547;   /* eyebrow / running header on light */
+  --pwb-ink:        #0F1419;   /* near-black headings */
+  --pwb-slate:      #334155;   /* body copy on light */
+  --pwb-cloud:      #F4F9FF;   /* page background, cool near-white */
+  --pwb-white:      #FFFFFF;
+
+  /* ---- Blue tints ---- */
+  --pwb-blue-50:  #EAF4FF;
+  --pwb-blue-100: #CFE7FF;
+  --pwb-blue-200: #A6D2FF;
+  --pwb-blue-700: #0061C4;
+  --pwb-blue-900: #062B66;
+
+  /* ---- Warm tints ---- */
+  --pwb-orange-50: #FFF0E6;
+  --pwb-gold-50:   #FFF4DC;
+  --pwb-gold-soft: #FFE08A;   /* sticky-note yellow (gamification cards) */
+  --pwb-red-50:    #FDEBEA;
+
+  /* ---- Neutrals ---- */
+  --pwb-gray-50:  #F6F8FB;
+  --pwb-gray-100: #EEF2F7;
+  --pwb-gray-200: #E2ECF7;   /* hairline borders */
+  --pwb-gray-300: #CBD6E4;
+  --pwb-gray-500: #6B7A90;
+  --pwb-gray-700: #3A4860;
+
+  /* ---- Topographic line texture color ---- */
+  --pwb-line: #C9DEF3;
+
+  /* ===== Semantic aliases ===== */
+  --color-bg: var(--pwb-cloud);
+  --color-bg-deep: var(--pwb-blue-royal);
+  --surface-card: var(--pwb-white);
+  --surface-muted: var(--pwb-gray-50);
+  --surface-brand: var(--pwb-blue-azure);
+  --surface-brand-deep: var(--pwb-blue-royal);
+  --surface-gold: var(--pwb-gold);
+
+  --text-heading: var(--pwb-ink);
+  --text-body: var(--pwb-slate);
+  --text-muted: var(--pwb-gray-500);
+  --text-eyebrow: var(--pwb-navy);
+  --text-on-brand: var(--pwb-white);
+  --text-link: var(--pwb-blue-azure);
+
+  --accent-primary: var(--pwb-blue-azure);
+  --accent-deep: var(--pwb-blue-royal);
+  --accent-warm: var(--pwb-orange);
+  --accent-danger: var(--pwb-red);
+  --accent-gold: var(--pwb-gold);
+
+  --border-subtle: var(--pwb-gray-200);
+  --border-strong: var(--pwb-gray-300);
+  --ring-focus: rgba(0, 151, 254, 0.40);
+
+  /* state success/danger for table ticks etc. */
+  --state-yes: #2BB24C;
+  --state-no:  var(--pwb-red);
+}

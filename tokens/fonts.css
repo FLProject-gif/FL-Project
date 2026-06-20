@@ -1,0 +1,12 @@
+/* FONTS — Pesta Wirausaha Bekasi
+   Fredoka  → playful, rounded display (echoes the rocket wordmark's bubble lettering)
+   Plus Jakarta Sans → clean UI + body (Indonesian-made grotesque; stands in for the deck's SF-Pro-like headings)
+   NOTE: these are Google Fonts substitutes — the event's logo wordmark is a bespoke comic face.
+   See readme.md → VISUAL FOUNDATIONS for the substitution flag. */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap");
+
+:root {
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: var(--font-sans);
+}

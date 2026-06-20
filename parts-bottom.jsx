@@ -114,7 +114,7 @@ function Venue() {
               </div>
             ))}
           </div>
-          <PWBButton variant="primary" iconLeft={<PWBIcon name="map-pin" size={18} />}>Buka di Google Maps</PWBButton>
+          <PWBButton variant="primary" onClick={() => window.open("https://maps.app.goo.gl/WQgvT9VExWCrE3DJ7?g_st=ic", "_blank", "noopener")} iconLeft={<PWBIcon name="map-pin" size={18} />}>Buka di Google Maps</PWBButton>
         </div>
         <div style={{ height: 380, borderRadius: "var(--radius-xl)", backgroundImage: "url(assets/photo-venue-pakuwon-night.jpg)", backgroundSize: "cover", backgroundPosition: "center", boxShadow: "var(--shadow-card)" }} />
       </div>

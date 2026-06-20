@@ -82,6 +82,20 @@ function App() {
   const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
   const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(verifyUrl);
+  const qrDownloadSrc = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=12&data=" + encodeURIComponent(verifyUrl);
+  const saveQr = async () => {
+    try {
+      const res = await fetch(qrDownloadSrc);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "e-ticket-" + ticketCode + ".png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) {
+      window.open(qrDownloadSrc, "_blank", "noopener");
+    }
+  };
 
   return (
     <div>
@@ -166,7 +180,10 @@ function App() {
                   </div>
                 </div>
               </div>
-              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Screenshot atau simpan e-ticket ini untuk ditunjukkan di pintu masuk. Pengiriman via email akan diaktifkan menyusul.</p>
+              <div style={{ marginTop: 18 }}>
+                <PWBButton variant="primary" onClick={saveQr} iconLeft={<PWBIcon name="download" size={18} />}>Simpan QR</PWBButton>
+              </div>
+              <p style={{ marginTop: 14, fontSize: ".82rem", color: "var(--text-muted)" }}>Screenshot atau simpan e-ticket ini untuk ditunjukkan di pintu masuk. Pengiriman via email akan diaktifkan menyusul.</p>
             </div>
           )}
 

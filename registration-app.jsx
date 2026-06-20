@@ -6,7 +6,6 @@ const RStyles = {
 const TICKETS = [
   { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Akses 7 hari ke Expo, Talkshow & Entertainment.", note: "Kuota terbatas" },
   { id: "member", name: "Member TDA", price: "GRATIS", icon: "badge-check", desc: "Priority seating + akses lounge komunitas TDA.", note: "Khusus member" },
-  { id: "exhibitor", name: "Exhibitor Booth", price: "Rp 10 jt", icon: "store", desc: "Booth standar 2×2 m, 7 hari — meja, kursi, listrik 2A.", note: "B2B / UMKM" },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 
@@ -31,11 +30,12 @@ function Stepper({ step, steps }) {
   );
 }
 
-function Field({ label, children }) {
+function Field({ label, error, children }) {
   return (
     <label style={{ display: "block", marginBottom: 16 }}>
       <span style={{ display: "block", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".82rem", color: "var(--text-heading)", marginBottom: 6 }}>{label}</span>
       {children}
+      {error && <span style={{ display: "block", marginTop: 5, fontSize: ".76rem", fontWeight: 600, color: "var(--pwb-red)" }}>{error}</span>}
     </label>
   );
 }
@@ -54,7 +54,12 @@ function App() {
   const selected = TICKETS.find(t => t.id === ticket);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const toggleSession = (s) => setSessions(a => a.includes(s) ? a.filter(x => x !== s) : [...a, s]);
-  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && form.email && form.wa : true;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+  const waDigits = form.wa.replace(/[\s\-+().]/g, "");
+  const waValid = /^\d{8,15}$/.test(waDigits);
+  const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
+  const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
+  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid : true;
 
   const submitRegistration = () => {
     const payload = {
@@ -117,8 +122,8 @@ function App() {
               <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 18px", color: "var(--text-heading)" }}>Lengkapi data diri</h2>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 18px" }}>
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
-                <Field label="Email *"><input style={inputStyle} value={form.email} onChange={e => set("email", e.target.value)} placeholder="email@contoh.com" /></Field>
-                <Field label="No. WhatsApp *"><input style={inputStyle} value={form.wa} onChange={e => set("wa", e.target.value)} placeholder="08xx xxxx xxxx" /></Field>
+                <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
+                <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Bidang Usaha / Profesi"><input style={inputStyle} value={form.usaha} onChange={e => set("usaha", e.target.value)} placeholder="F&B, Fashion, Mahasiswa…" /></Field></div>
               </div>
               <div style={{ marginTop: 8 }}>

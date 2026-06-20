@@ -165,8 +165,8 @@ function SponsorAppMain() {
           {step === 2 && (
             <div style={{ textAlign: "center" }}>
               <PWBIconCoin tone="gold" size={64} style={{ margin: "0 auto 14px" }}><PWBIcon name="handshake" size={32} /></PWBIconCoin>
-              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 4px", color: "var(--text-heading)" }}>Terima kasih, mitra! 🤝</h2>
-              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Permintaan paket <strong>{selected.tier}</strong> sudah kami terima. Tim sponsorship akan menghubungi Anda dalam 1×24 jam untuk proses penawaran &amp; invoice.</p>
+              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 4px", color: "var(--text-heading)" }}>Satu langkah lagi, mitra! 🤝</h2>
+              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Untuk <strong>menyelesaikan pendaftaran</strong> paket <strong>{selected.tier}</strong>, mohon konfirmasi data Anda ke admin kami via WhatsApp. Penawaran &amp; invoice diproses setelah konfirmasi.</p>
               <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-xl)", padding: 4, maxWidth: 440, margin: "0 auto", boxShadow: "var(--shadow-pop)" }}>
                 <div style={{ background: "#fff", borderRadius: "calc(var(--radius-xl) - 4px)", padding: "22px 24px", textAlign: "left" }}>
                   <div className="pwb-eyebrow" style={{ color: "var(--pwb-blue-azure)" }}>Paket {selected.tier}</div>

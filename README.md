@@ -11,6 +11,8 @@ Landing page statis berbasis React (UMD + Babel via CDN), di-deploy ke **Netlify
 - `ui.jsx` — komponen primitif (Button, Card, Badge, dll)
 - `parts-top.jsx` — section Nav, Hero, Marquee, Tantangan, Kenapa Hadir
 - `parts-bottom.jsx` — section Tema, Speaker, Sponsor, Galeri, Venue, CTA, Footer
+- `daftar.html` — halaman registrasi (alur 3 langkah → e-ticket)
+- `registration-app.jsx` — logika halaman registrasi
 - `assets/` — logo & foto
 
 ## Jalankan lokal
@@ -31,7 +33,10 @@ python -m http.server 8000
 
 ## Catatan
 
-- Tombol **"Daftar Gratis"** saat ini scroll ke section CTA. Halaman registrasi
-  (ada di bundle desain) belum di-deploy — perlu ditentukan tujuan akhirnya
-  (deploy halaman registrasi / Google Form / link WhatsApp).
+- Tombol **"Daftar Gratis"** mengarah ke `daftar.html`. Form di langkah "Data Diri"
+  di-submit ke **Netlify Forms** (nama form: `pwb-registration`) saat klik
+  "Terbitkan E-Ticket". Data pendaftar muncul di Netlify → tab **Forms**.
+  Netlify Forms hanya aktif setelah situs di-deploy di Netlify.
+- E-Ticket + QR di langkah akhir masih tampilan (QR belum di-generate unik /
+  belum kirim email otomatis). Bisa ditambah nanti bila diperlukan.
 - Domain: `pwbekasi.id` (disiapkan, belum dihubungkan ke Netlify).

@@ -78,6 +78,9 @@ function App() {
     if (step === 1) submitRegistration();
     setStep(step + 1);
   };
+  const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
+  const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
+  const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(verifyUrl);
 
   return (
     <div>
@@ -152,17 +155,17 @@ function App() {
               <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Tunjukkan QR ini di pintu masuk Pakuwon Mall Bekasi.</p>
               <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-xl)", padding: 4, maxWidth: 420, margin: "0 auto", boxShadow: "var(--shadow-pop)" }}>
                 <div style={{ background: "#fff", borderRadius: "calc(var(--radius-xl) - 4px)", padding: "22px 24px", display: "flex", gap: 18, alignItems: "center", textAlign: "left" }}>
-                  <div style={{ width: 92, height: 92, borderRadius: "var(--radius-md)", background: "conic-gradient(#0F1419 0 25%,#fff 0 50%,#0F1419 0 75%,#fff 0)", backgroundSize: "16px 16px", flex: "0 0 auto", border: "4px solid #0F1419" }} />
+                  <img src={qrSrc} alt={"QR e-ticket " + ticketCode} width={92} height={92} style={{ width: 92, height: 92, borderRadius: "var(--radius-sm)", flex: "0 0 auto", background: "#fff", border: "4px solid #0F1419", boxSizing: "content-box" }} />
                   <div style={{ flex: 1 }}>
                     <div className="pwb-eyebrow" style={{ color: "var(--pwb-blue-azure)" }}>{selected.name}</div>
                     <div style={{ fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: "1.15rem", color: "var(--text-heading)", margin: "2px 0" }}>{form.nama || "Peserta PWB"}</div>
                     <div style={{ fontSize: ".8rem", color: "var(--text-muted)" }}>27 Juli – 2 Agustus 2026</div>
                     <div style={{ fontSize: ".8rem", color: "var(--text-muted)" }}>Pakuwon Mall Bekasi · Lt.2</div>
-                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, marginTop: 6, color: "var(--pwb-blue-royal)", letterSpacing: ".05em" }}>#PWB26-{(form.nama || "PESERTA").slice(0, 3).toUpperCase()}208</div>
+                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, marginTop: 6, color: "var(--pwb-blue-royal)", letterSpacing: ".05em" }}>#{ticketCode}</div>
                   </div>
                 </div>
               </div>
-              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Salinan e-ticket juga dikirim ke {form.email || "email Anda"}.</p>
+              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Screenshot atau simpan e-ticket ini untuk ditunjukkan di pintu masuk. Pengiriman via email akan diaktifkan menyusul.</p>
             </div>
           )}
 

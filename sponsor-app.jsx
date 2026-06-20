@@ -35,11 +35,12 @@ function SStepper({ step, steps }) {
   );
 }
 
-function SField({ label, children }) {
+function SField({ label, error, children }) {
   return (
     <label style={{ display: "block", marginBottom: 16 }}>
       <span style={{ display: "block", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".82rem", color: "var(--text-heading)", marginBottom: 6 }}>{label}</span>
       {children}
+      {error && <span style={{ display: "block", marginTop: 5, fontSize: ".76rem", fontWeight: 600, color: "var(--pwb-red)" }}>{error}</span>}
     </label>
   );
 }
@@ -70,7 +71,12 @@ function SponsorAppMain() {
   const selected = SPONSOR_TIERS.find(t => t.tier === tier);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const okBenefits = selected.benefits.filter(b => typeof b === "string" || b.ok !== false).length;
-  const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && form.email && form.wa : true;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+  const waDigits = form.wa.replace(/[\s\-+().]/g, "");
+  const waValid = /^\d{8,15}$/.test(waDigits);
+  const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
+  const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
+  const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && emailValid && waValid : true;
 
   const submitSponsor = () => {
     const payload = {
@@ -87,6 +93,24 @@ function SponsorAppMain() {
   };
   const handleNext = () => { if (step === 1) submitSponsor(); setStep(step + 1); };
   const ref = "#SPS26-" + (form.perusahaan || "MITRA").replace(/[^A-Za-z0-9]/g, "").slice(0, 4).toUpperCase() + "07";
+
+  const WA_PANITIA = "6283856665556"; // +62 838 5666 5556
+  const waHref = () => {
+    const lines = [
+      "Halo TDA Bekasi 👋",
+      "Saya ingin mendaftar sponsor *Pesta Wirausaha Planet Bekasi 2026*.",
+      "",
+      "*Paket:* " + selected.tier + " (" + selected.price + ")",
+      "*Perusahaan:* " + (form.perusahaan || "-"),
+      "*PIC:* " + (form.pic || "-") + (form.jabatan ? " (" + form.jabatan + ")" : ""),
+      "*Email:* " + (form.email || "-"),
+      "*WhatsApp:* " + (form.wa || "-"),
+      "*Website/IG:* " + (form.web || "-"),
+      "*Catatan:* " + (form.catatan || "-"),
+      "*Ref:* " + ref,
+    ];
+    return "https://wa.me/" + WA_PANITIA + "?text=" + encodeURIComponent(lines.join("\n"));
+  };
 
   return (
     <div>
@@ -130,8 +154,8 @@ function SponsorAppMain() {
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Nama Perusahaan / Brand *"><input style={sInputStyle} value={form.perusahaan} onChange={e => set("perusahaan", e.target.value)} placeholder="PT / Brand Anda" /></SField></div>
                 <SField label="Nama PIC *"><input style={sInputStyle} value={form.pic} onChange={e => set("pic", e.target.value)} placeholder="Nama penanggung jawab" /></SField>
                 <SField label="Jabatan"><input style={sInputStyle} value={form.jabatan} onChange={e => set("jabatan", e.target.value)} placeholder="Marketing Manager, Owner…" /></SField>
-                <SField label="Email *"><input style={sInputStyle} value={form.email} onChange={e => set("email", e.target.value)} placeholder="email@perusahaan.com" /></SField>
-                <SField label="No. WhatsApp *"><input style={sInputStyle} value={form.wa} onChange={e => set("wa", e.target.value)} placeholder="08xx xxxx xxxx" /></SField>
+                <SField label="Email *" error={emailErr}><input type="email" style={{ ...sInputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></SField>
+                <SField label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...sInputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></SField>
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Website / Instagram"><input style={sInputStyle} value={form.web} onChange={e => set("web", e.target.value)} placeholder="@brand atau www.brand.com" /></SField></div>
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Catatan / kebutuhan khusus"><textarea style={{ ...sInputStyle, minHeight: 90, resize: "vertical" }} value={form.catatan} onChange={e => set("catatan", e.target.value)} placeholder="Mis. butuh booth tambahan, request lokasi, materi iklan…" /></SField></div>
               </div>
@@ -141,8 +165,8 @@ function SponsorAppMain() {
           {step === 2 && (
             <div style={{ textAlign: "center" }}>
               <PWBIconCoin tone="gold" size={64} style={{ margin: "0 auto 14px" }}><PWBIcon name="handshake" size={32} /></PWBIconCoin>
-              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 4px", color: "var(--text-heading)" }}>Terima kasih, mitra! 🤝</h2>
-              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Permintaan paket <strong>{selected.tier}</strong> sudah kami terima. Tim sponsorship akan menghubungi Anda dalam 1×24 jam untuk proses penawaran &amp; invoice.</p>
+              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 4px", color: "var(--text-heading)" }}>Satu langkah lagi, mitra! 🤝</h2>
+              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Untuk <strong>menyelesaikan pendaftaran</strong> paket <strong>{selected.tier}</strong>, mohon konfirmasi data Anda ke admin kami via WhatsApp. Penawaran &amp; invoice diproses setelah konfirmasi.</p>
               <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-xl)", padding: 4, maxWidth: 440, margin: "0 auto", boxShadow: "var(--shadow-pop)" }}>
                 <div style={{ background: "#fff", borderRadius: "calc(var(--radius-xl) - 4px)", padding: "22px 24px", textAlign: "left" }}>
                   <div className="pwb-eyebrow" style={{ color: "var(--pwb-blue-azure)" }}>Paket {selected.tier}</div>
@@ -152,7 +176,13 @@ function SponsorAppMain() {
                   <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, marginTop: 6, color: "var(--pwb-blue-royal)", letterSpacing: ".05em" }}>{ref}</div>
                 </div>
               </div>
-              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Salinan konfirmasi dikirim ke {form.email || "email Anda"}. Pertanyaan? WA +62 838 5666 5556.</p>
+              <div style={{ marginTop: 22 }}>
+                <PWBButton size="lg" onClick={() => window.open(waHref(), "_blank", "noopener")}
+                  style={{ background: "#25D366", color: "#fff", boxShadow: "var(--shadow-pop)" }}
+                  iconLeft={<PWBIcon name="message-circle" size={20} />}>Konfirmasi via WhatsApp</PWBButton>
+                <div style={{ marginTop: 8, fontSize: ".78rem", color: "var(--text-muted)" }}>Pesan otomatis berisi paket &amp; data Anda — tinggal kirim ke tim kami.</div>
+              </div>
+              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Atau hubungi langsung: +62 838 5666 5556.</p>
             </div>
           )}
 

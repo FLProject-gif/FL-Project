@@ -42,7 +42,9 @@ python -m http.server 8000
 - Tombol **"Pilih [Platinum/Gold/Silver/Bronze]"** di section Sponsor mengarah ke
   `sponsor.html?tier=<paket>` (alur terpisah dari tiket pengunjung). Form di-submit
   ke **Netlify Forms** (nama form: `pwb-sponsor`). Tidak ada pembayaran online —
-  tim sponsorship menghubungi mitra untuk penawaran & invoice.
+  tim sponsorship menghubungi mitra untuk penawaran & invoice. Di langkah
+  "Konfirmasi" ada tombol **Konfirmasi via WhatsApp** yang membuka `wa.me`
+  ke nomor panitia dengan pesan terisi otomatis (paket + data yang diisi).
 - E-Ticket + QR di langkah akhir masih tampilan (QR belum di-generate unik /
   belum kirim email otomatis). Bisa ditambah nanti bila diperlukan.
 - Domain: `pwbekasi.id` (disiapkan, belum dihubungkan ke Netlify).

@@ -5,7 +5,14 @@
 const PWB_FONT_SANS = "var(--font-sans)";
 
 function Icon({ name, size = 24, style = {}, ...rest }) {
-  return <i data-lucide={name} style={{ width: size, height: size, display: "inline-flex", ...style }} {...rest} />;
+  // Wrap the <i> so Lucide replaces the inner child (not this React-managed node).
+  // Prevents a React removeChild crash when an icon unmounts after Lucide swapped
+  // the <i> for an <svg> (e.g. when nav icons change between steps).
+  return (
+    <span style={{ width: size, height: size, display: "inline-flex", ...style }} {...rest}>
+      <i data-lucide={name} style={{ width: size, height: size, display: "inline-flex" }} />
+    </span>
+  );
 }
 function useLucide(dep) {
   React.useEffect(() => {

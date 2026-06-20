@@ -67,7 +67,7 @@ function Sponsors({ onRegister }) {
     <section id="sponsor" style={LBStyles.section}>
       <PWBSectionHeader runhead eyebrow="Sponsorship" title="Jadilah Bagian dari Bahan Bakar Ekonomi Bekasi"
         desc="Pilih paket sponsorship yang paling cocok untuk brand Anda. Semua tier mendapat eksposur di videotron indoor & outdoor Pakuwon Mall." />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: 22, marginTop: 48, alignItems: "stretch" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,250px),1fr))", gap: 22, marginTop: 48, alignItems: "stretch" }}>
         {tiers.map((t) => (
           <PWBSponsorTierCard key={t.tier} {...t} cta={<PWBButton variant={t.featured ? "accent" : "secondary"} full onClick={() => goSponsor(t.tier)}>Pilih {t.tier}</PWBButton>} />
         ))}
@@ -96,10 +96,11 @@ function Galeri() {
 }
 
 function Venue() {
+  const isMobile = useIsMobile();
   const stats = [["300K+", "Daily Traffic"], ["70K", "Weekend Visitors"], ["1M+", "Total Impressions"]];
   return (
     <section id="lokasi" style={LBStyles.section}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 40, alignItems: "center" }}>
         <div>
           <PWBSectionHeader eyebrow="The Venue" title="Pakuwon Mall Bekasi" />
           <p style={{ fontSize: "1.05rem", color: "var(--text-body)", margin: "8px 0 24px", maxWidth: 460 }}>
@@ -136,9 +137,10 @@ function CTA({ onRegister }) {
 }
 
 function Footer() {
+  const isMobile = useIsMobile();
   return (
     <footer style={{ background: "#0A1A33", color: "rgba(255,255,255,.78)", padding: "56px var(--gutter) 28px" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: 32 }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr 1fr", gap: 32 }}>
         <div>
           <img src="assets/logo-tda-bekasi.png" alt="TDA Bekasi" style={{ height: 44, filter: "brightness(0) invert(1)", marginBottom: 16 }} />
           <p style={{ fontSize: ".9rem", maxWidth: 320 }}>Event kewirausahaan terbesar di Bekasi — wadah pengusaha untuk belajar, terhubung, dan tumbuh bersama.</p>

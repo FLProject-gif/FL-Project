@@ -25,6 +25,7 @@ h1, h2, h3, h4 {
 
 p { margin: 0 0 1em; text-wrap: pretty; }
 a { color: var(--text-link); text-decoration: none; }
+img { max-width: 100%; }
 
 /* ---- Eyebrow / running header ---- */
 .pwb-eyebrow {

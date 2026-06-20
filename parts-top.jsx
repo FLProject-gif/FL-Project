@@ -6,6 +6,7 @@ const LStyles = {
 
 function Nav({ onRegister }) {
   const [scrolled, setScrolled] = React.useState(false);
+  const isMobile = useIsMobile();
   React.useEffect(() => {
     const f = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", f); return () => window.removeEventListener("scroll", f);
@@ -20,7 +21,7 @@ function Nav({ onRegister }) {
       <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <img src="assets/logo-tda-bekasi.png" alt="TDA Bekasi" style={{ height: 38 }} />
       </a>
-      <nav style={{ display: "flex", alignItems: "center", gap: 28 }}>
+      <nav style={{ display: isMobile ? "none" : "flex", alignItems: "center", gap: 28 }}>
         {links.map(([h, t]) => (
           <a key={h} href={h} style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: ".9rem", color: "var(--pwb-ink)" }}>{t}</a>
         ))}
@@ -35,12 +36,13 @@ function Cloud({ style }) {
 }
 
 function Hero({ onRegister }) {
+  const isMobile = useIsMobile();
   return (
     <section id="top" className="pwb-sky" style={{ position: "relative", overflow: "hidden" }}>
       <Cloud style={{ width: 360, height: 200, top: -40, left: -60 }} />
       <Cloud style={{ width: 280, height: 150, bottom: 30, left: "30%", opacity: .4 }} />
       <Cloud style={{ width: 420, height: 230, top: 120, right: -120, opacity: .35 }} />
-      <div style={{ position: "relative", zIndex: 2, maxWidth: 1280, margin: "0 auto", padding: "56px var(--gutter) 72px", display: "grid", gridTemplateColumns: "1.05fr .95fr", gap: 40, alignItems: "center" }}>
+      <div style={{ position: "relative", zIndex: 2, maxWidth: 1280, margin: "0 auto", padding: isMobile ? "40px var(--gutter) 48px" : "56px var(--gutter) 72px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr .95fr", gap: isMobile ? 32 : 40, alignItems: "center" }}>
         <div>
           <span className="pwb-pill-gold" style={{ fontSize: ".95rem" }}><PWBIcon name="calendar-days" size={18} /> 27 Juli – 2 Agustus 2026 · Pakuwon Mall Bekasi</span>
           <h1 style={{ fontFamily: "var(--font-sans)", fontWeight: 800, color: "#fff", fontSize: "clamp(2.4rem,4.6vw,3.7rem)", lineHeight: 1.04, letterSpacing: "-.02em", margin: "22px 0 0" }}>
@@ -64,7 +66,7 @@ function Hero({ onRegister }) {
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-2xl)", padding: "20px 16px 8px", boxShadow: "0 30px 70px rgba(0,40,120,.4)", textAlign: "center", maxWidth: 440, width: "100%" }}>
-            <img src="assets/logo-badges-strip-blue.png" alt="TDA Bekasi · To The Next Level · 2 Dekade" style={{ height: 40, marginBottom: 6 }} />
+            <img src="assets/logo-badges-strip-blue.png" alt="TDA Bekasi · To The Next Level · 2 Dekade" style={{ width: "100%", maxWidth: 320, height: "auto", marginBottom: 6 }} />
             <img src="assets/logo-pwb-rocket-blue.png" alt="Pesta Wirausaha Planet Bekasi 2026" style={{ width: "100%", display: "block" }} />
           </div>
         </div>

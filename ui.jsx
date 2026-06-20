@@ -21,6 +21,20 @@ function useLucide(dep) {
   });
 }
 
+// Reactive viewport check for responsive (mobile) layout switches.
+function useIsMobile(maxWidth = 820) {
+  const q = "(max-width: " + maxWidth + "px)";
+  const [m, setM] = React.useState(() => typeof window !== "undefined" && window.matchMedia(q).matches);
+  React.useEffect(() => {
+    const mq = window.matchMedia(q);
+    const on = () => setM(mq.matches);
+    on();
+    if (mq.addEventListener) mq.addEventListener("change", on); else mq.addListener(on);
+    return () => { if (mq.removeEventListener) mq.removeEventListener("change", on); else mq.removeListener(on); };
+  }, [q]);
+  return m;
+}
+
 function Button({ children, variant = "primary", size = "md", iconLeft, iconRight, full, disabled, style = {}, ...rest }) {
   const sizes = { sm: { padding: "8px 16px", fontSize: ".875rem" }, md: { padding: "12px 24px", fontSize: "1rem" }, lg: { padding: "16px 32px", fontSize: "1.125rem" } };
   const variants = {
@@ -136,4 +150,4 @@ function SponsorTierCard({ tier, price, priceWords, forWhom, benefits = [], feat
   </div>;
 }
 
-Object.assign(window, { PWBIcon: Icon, useLucide, PWBButton: Button, PWBBadge: Badge, PWBIconCoin: IconCoin, PWBCard: Card, PWBSectionHeader: SectionHeader, PWBStatCard: StatCard, PWBAvatar: Avatar, PWBSpeakerCard: SpeakerCard, PWBSponsorTierCard: SponsorTierCard });
+Object.assign(window, { PWBIcon: Icon, useLucide, useIsMobile, PWBButton: Button, PWBBadge: Badge, PWBIconCoin: IconCoin, PWBCard: Card, PWBSectionHeader: SectionHeader, PWBStatCard: StatCard, PWBAvatar: Avatar, PWBSpeakerCard: SpeakerCard, PWBSponsorTierCard: SponsorTierCard });

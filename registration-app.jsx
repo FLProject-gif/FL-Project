@@ -46,6 +46,7 @@ const inputStyle = {
 
 function App() {
   useLucide();
+  const isMobile = useIsMobile();
   const [step, setStep] = React.useState(0);
   const [ticket, setTicket] = React.useState("visitor");
   const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "" });
@@ -78,6 +79,23 @@ function App() {
     if (step === 1) submitRegistration();
     setStep(step + 1);
   };
+  const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
+  const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
+  const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(verifyUrl);
+  const qrDownloadSrc = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=12&data=" + encodeURIComponent(verifyUrl);
+  const saveQr = async () => {
+    try {
+      const res = await fetch(qrDownloadSrc);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "e-ticket-" + ticketCode + ".png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) {
+      window.open(qrDownloadSrc, "_blank", "noopener");
+    }
+  };
 
   return (
     <div>
@@ -88,8 +106,8 @@ function App() {
         <PWBBadge tone="brand">Pendaftaran PWB 2026</PWBBadge>
       </header>
 
-      <div style={RStyles.shell}>
-        <PWBCard variant="white" pad="xl" style={{ minHeight: 440 }}>
+      <div style={{ ...RStyles.shell, gridTemplateColumns: isMobile ? "1fr" : "1.5fr .9fr" }}>
+        <PWBCard variant="white" pad={isMobile ? "lg" : "xl"} style={{ minHeight: 440 }}>
           <Stepper step={step} steps={steps} />
 
           {step === 0 && (
@@ -124,7 +142,7 @@ function App() {
           {step === 1 && (
             <div>
               <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 18px", color: "var(--text-heading)" }}>Lengkapi data diri</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 18px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0 18px" }}>
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
                 <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
                 <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
@@ -152,17 +170,20 @@ function App() {
               <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Tunjukkan QR ini di pintu masuk Pakuwon Mall Bekasi.</p>
               <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-xl)", padding: 4, maxWidth: 420, margin: "0 auto", boxShadow: "var(--shadow-pop)" }}>
                 <div style={{ background: "#fff", borderRadius: "calc(var(--radius-xl) - 4px)", padding: "22px 24px", display: "flex", gap: 18, alignItems: "center", textAlign: "left" }}>
-                  <div style={{ width: 92, height: 92, borderRadius: "var(--radius-md)", background: "conic-gradient(#0F1419 0 25%,#fff 0 50%,#0F1419 0 75%,#fff 0)", backgroundSize: "16px 16px", flex: "0 0 auto", border: "4px solid #0F1419" }} />
+                  <img src={qrSrc} alt={"QR e-ticket " + ticketCode} width={92} height={92} style={{ width: 92, height: 92, borderRadius: "var(--radius-sm)", flex: "0 0 auto", background: "#fff", border: "4px solid #0F1419", boxSizing: "content-box" }} />
                   <div style={{ flex: 1 }}>
                     <div className="pwb-eyebrow" style={{ color: "var(--pwb-blue-azure)" }}>{selected.name}</div>
                     <div style={{ fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: "1.15rem", color: "var(--text-heading)", margin: "2px 0" }}>{form.nama || "Peserta PWB"}</div>
                     <div style={{ fontSize: ".8rem", color: "var(--text-muted)" }}>27 Juli – 2 Agustus 2026</div>
                     <div style={{ fontSize: ".8rem", color: "var(--text-muted)" }}>Pakuwon Mall Bekasi · Lt.2</div>
-                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, marginTop: 6, color: "var(--pwb-blue-royal)", letterSpacing: ".05em" }}>#PWB26-{(form.nama || "PESERTA").slice(0, 3).toUpperCase()}208</div>
+                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, marginTop: 6, color: "var(--pwb-blue-royal)", letterSpacing: ".05em" }}>#{ticketCode}</div>
                   </div>
                 </div>
               </div>
-              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Salinan e-ticket juga dikirim ke {form.email || "email Anda"}.</p>
+              <div style={{ marginTop: 18 }}>
+                <PWBButton variant="primary" onClick={saveQr} iconLeft={<PWBIcon name="download" size={18} />}>Simpan QR</PWBButton>
+              </div>
+              <p style={{ marginTop: 14, fontSize: ".82rem", color: "var(--text-muted)" }}>Screenshot atau simpan e-ticket ini untuk ditunjukkan di pintu masuk. Pengiriman via email akan diaktifkan menyusul.</p>
             </div>
           )}
 

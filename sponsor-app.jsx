@@ -88,6 +88,24 @@ function SponsorAppMain() {
   const handleNext = () => { if (step === 1) submitSponsor(); setStep(step + 1); };
   const ref = "#SPS26-" + (form.perusahaan || "MITRA").replace(/[^A-Za-z0-9]/g, "").slice(0, 4).toUpperCase() + "07";
 
+  const WA_PANITIA = "6283856665556"; // +62 838 5666 5556
+  const waHref = () => {
+    const lines = [
+      "Halo TDA Bekasi 👋",
+      "Saya ingin mendaftar sponsor *Pesta Wirausaha Planet Bekasi 2026*.",
+      "",
+      "*Paket:* " + selected.tier + " (" + selected.price + ")",
+      "*Perusahaan:* " + (form.perusahaan || "-"),
+      "*PIC:* " + (form.pic || "-") + (form.jabatan ? " (" + form.jabatan + ")" : ""),
+      "*Email:* " + (form.email || "-"),
+      "*WhatsApp:* " + (form.wa || "-"),
+      "*Website/IG:* " + (form.web || "-"),
+      "*Catatan:* " + (form.catatan || "-"),
+      "*Ref:* " + ref,
+    ];
+    return "https://wa.me/" + WA_PANITIA + "?text=" + encodeURIComponent(lines.join("\n"));
+  };
+
   return (
     <div>
       <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px var(--gutter)", background: "#fff", boxShadow: "var(--shadow-sm)", position: "sticky", top: 0, zIndex: 10 }}>
@@ -152,7 +170,13 @@ function SponsorAppMain() {
                   <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, marginTop: 6, color: "var(--pwb-blue-royal)", letterSpacing: ".05em" }}>{ref}</div>
                 </div>
               </div>
-              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Salinan konfirmasi dikirim ke {form.email || "email Anda"}. Pertanyaan? WA +62 838 5666 5556.</p>
+              <div style={{ marginTop: 22 }}>
+                <PWBButton size="lg" onClick={() => window.open(waHref(), "_blank", "noopener")}
+                  style={{ background: "#25D366", color: "#fff", boxShadow: "var(--shadow-pop)" }}
+                  iconLeft={<PWBIcon name="message-circle" size={20} />}>Konfirmasi via WhatsApp</PWBButton>
+                <div style={{ marginTop: 8, fontSize: ".78rem", color: "var(--text-muted)" }}>Pesan otomatis berisi paket &amp; data Anda — tinggal kirim ke tim kami.</div>
+              </div>
+              <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Atau hubungi langsung: +62 838 5666 5556.</p>
             </div>
           )}
 

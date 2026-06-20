@@ -98,6 +98,16 @@ img { max-width: 100%; }
 
 .pwb-container { max-width: var(--container-max); margin-inline: auto; padding-inline: var(--gutter); }
 
+/* On small screens, let the gold pill wrap instead of being clipped by overflow:hidden */
+@media (max-width: 560px) {
+  .pwb-pill-gold {
+    white-space: normal;
+    text-align: left;
+    max-width: 100%;
+    font-size: 0.85rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }

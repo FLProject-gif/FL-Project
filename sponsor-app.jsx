@@ -64,6 +64,7 @@ function getInitialStep() { return getTierFromUrl() ? 1 : 0; }
 
 function SponsorAppMain() {
   useLucide();
+  const isMobile = useIsMobile();
   const [step, setStep] = React.useState(getInitialStep);
   const [tier, setTier] = React.useState(getInitialTier);
   const [form, setForm] = React.useState({ perusahaan: "", pic: "", jabatan: "", email: "", wa: "", web: "", catatan: "" });
@@ -121,15 +122,15 @@ function SponsorAppMain() {
         <PWBBadge tone="gold">Pendaftaran Sponsor PWB 2026</PWBBadge>
       </header>
 
-      <div style={SStyles.shell}>
-        <PWBCard variant="white" pad="xl" style={{ minHeight: 460 }}>
+      <div style={{ ...SStyles.shell, gridTemplateColumns: isMobile ? "1fr" : "1.6fr .85fr" }}>
+        <PWBCard variant="white" pad={isMobile ? "lg" : "xl"} style={{ minHeight: 460 }}>
           <SStepper step={step} steps={steps} />
 
           {step === 0 && (
             <div>
               <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 6px", color: "var(--text-heading)" }}>Pilih paket sponsorship Anda</h2>
               <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Semua tier mendapat eksposur di videotron indoor &amp; outdoor Pakuwon Mall. Pilih yang paling cocok untuk brand Anda.</p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 18, alignItems: "stretch" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 18, alignItems: "stretch" }}>
                 {SPONSOR_TIERS.map(t => {
                   const on = tier === t.tier;
                   // Pilih paket → ganti tier sekaligus lanjut ke Data Perusahaan.
@@ -150,7 +151,7 @@ function SponsorAppMain() {
           {step === 1 && (
             <div>
               <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 18px", color: "var(--text-heading)" }}>Data perusahaan &amp; PIC</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 18px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0 18px" }}>
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Nama Perusahaan / Brand *"><input style={sInputStyle} value={form.perusahaan} onChange={e => set("perusahaan", e.target.value)} placeholder="PT / Brand Anda" /></SField></div>
                 <SField label="Nama PIC *"><input style={sInputStyle} value={form.pic} onChange={e => set("pic", e.target.value)} placeholder="Nama penanggung jawab" /></SField>
                 <SField label="Jabatan"><input style={sInputStyle} value={form.jabatan} onChange={e => set("jabatan", e.target.value)} placeholder="Marketing Manager, Owner…" /></SField>

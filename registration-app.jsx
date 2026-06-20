@@ -46,6 +46,7 @@ const inputStyle = {
 
 function App() {
   useLucide();
+  const isMobile = useIsMobile();
   const [step, setStep] = React.useState(0);
   const [ticket, setTicket] = React.useState("visitor");
   const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "" });
@@ -91,8 +92,8 @@ function App() {
         <PWBBadge tone="brand">Pendaftaran PWB 2026</PWBBadge>
       </header>
 
-      <div style={RStyles.shell}>
-        <PWBCard variant="white" pad="xl" style={{ minHeight: 440 }}>
+      <div style={{ ...RStyles.shell, gridTemplateColumns: isMobile ? "1fr" : "1.5fr .9fr" }}>
+        <PWBCard variant="white" pad={isMobile ? "lg" : "xl"} style={{ minHeight: 440 }}>
           <Stepper step={step} steps={steps} />
 
           {step === 0 && (
@@ -127,7 +128,7 @@ function App() {
           {step === 1 && (
             <div>
               <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 18px", color: "var(--text-heading)" }}>Lengkapi data diri</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 18px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0 18px" }}>
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
                 <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
                 <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>

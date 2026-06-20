@@ -48,19 +48,22 @@ const sInputStyle = {
   fontFamily: "var(--font-sans)", fontSize: ".95rem", color: "var(--text-heading)", background: "#fff", outline: "none", boxSizing: "border-box",
 };
 
-function getInitialTier() {
+function getTierFromUrl() {
   try {
     const q = new URLSearchParams(window.location.search).get("tier");
     if (q && SPONSOR_TIERS.some(t => t.tier.toLowerCase() === q.toLowerCase())) {
       return SPONSOR_TIERS.find(t => t.tier.toLowerCase() === q.toLowerCase()).tier;
     }
   } catch (e) {}
-  return "Platinum";
+  return null;
 }
+function getInitialTier() { return getTierFromUrl() || "Platinum"; }
+// Paket sudah dipilih dari beranda → langsung ke step Data Perusahaan.
+function getInitialStep() { return getTierFromUrl() ? 1 : 0; }
 
 function SponsorAppMain() {
   useLucide();
-  const [step, setStep] = React.useState(0);
+  const [step, setStep] = React.useState(getInitialStep);
   const [tier, setTier] = React.useState(getInitialTier);
   const [form, setForm] = React.useState({ perusahaan: "", pic: "", jabatan: "", email: "", wa: "", web: "", catatan: "" });
   const steps = ["Pilih Paket", "Data Perusahaan", "Konfirmasi"];

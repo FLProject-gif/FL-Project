@@ -108,11 +108,12 @@ function SponsorAppMain() {
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 18, alignItems: "stretch" }}>
                 {SPONSOR_TIERS.map(t => {
                   const on = tier === t.tier;
+                  // Pilih paket → ganti tier sekaligus lanjut ke Data Perusahaan.
+                  const choose = () => { setTier(t.tier); setStep(1); };
                   return (
                     <PWBSponsorTierCard key={t.tier} {...t}
                       style={on ? { border: "2px solid var(--pwb-blue-azure)", boxShadow: "var(--shadow-pop)" } : {}}
-                      cta={<PWBButton variant={on ? "primary" : "secondary"} full onClick={() => setTier(t.tier)}
-                        iconLeft={on ? <PWBIcon name="check" size={18} /> : undefined}>{on ? "Terpilih" : "Pilih " + t.tier}</PWBButton>} />
+                      cta={<PWBButton variant={on ? "primary" : "secondary"} full onClick={choose}>{on ? "Lanjut dengan " + t.tier : "Pilih " + t.tier}</PWBButton>} />
                   );
                 })}
               </div>

@@ -52,6 +52,7 @@ function Speakers() {
 }
 
 function Sponsors({ onRegister }) {
+  const goSponsor = (tier) => { window.location.href = "sponsor.html?tier=" + encodeURIComponent(tier); };
   const tiers = [
     { tier: "Platinum", price: "Rp 50 jt", priceWords: "Lima Puluh Juta", forWhom: "Otomotif, Fintech, Asuransi, FMCG besar.", featured: true,
       benefits: ["Data Leads Peserta", "Free 2 booth standar (7 hari)", "Sesi presentasi 20 menit prime time", "Pemutaran iklan 60 detik", "Logo XL di videotron"] },
@@ -68,7 +69,7 @@ function Sponsors({ onRegister }) {
         desc="Pilih paket sponsorship yang paling cocok untuk brand Anda. Semua tier mendapat eksposur di videotron indoor & outdoor Pakuwon Mall." />
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: 22, marginTop: 48, alignItems: "stretch" }}>
         {tiers.map((t) => (
-          <PWBSponsorTierCard key={t.tier} {...t} cta={<PWBButton variant={t.featured ? "accent" : "secondary"} full onClick={onRegister}>Pilih {t.tier}</PWBButton>} />
+          <PWBSponsorTierCard key={t.tier} {...t} cta={<PWBButton variant={t.featured ? "accent" : "secondary"} full onClick={() => goSponsor(t.tier)}>Pilih {t.tier}</PWBButton>} />
         ))}
       </div>
       <div style={{ marginTop: 24, textAlign: "center" }}>

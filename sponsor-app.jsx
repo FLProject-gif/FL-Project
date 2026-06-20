@@ -35,11 +35,12 @@ function SStepper({ step, steps }) {
   );
 }
 
-function SField({ label, children }) {
+function SField({ label, error, children }) {
   return (
     <label style={{ display: "block", marginBottom: 16 }}>
       <span style={{ display: "block", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".82rem", color: "var(--text-heading)", marginBottom: 6 }}>{label}</span>
       {children}
+      {error && <span style={{ display: "block", marginTop: 5, fontSize: ".76rem", fontWeight: 600, color: "var(--pwb-red)" }}>{error}</span>}
     </label>
   );
 }
@@ -70,7 +71,12 @@ function SponsorAppMain() {
   const selected = SPONSOR_TIERS.find(t => t.tier === tier);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const okBenefits = selected.benefits.filter(b => typeof b === "string" || b.ok !== false).length;
-  const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && form.email && form.wa : true;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+  const waDigits = form.wa.replace(/[\s\-+().]/g, "");
+  const waValid = /^\d{8,15}$/.test(waDigits);
+  const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
+  const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
+  const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && emailValid && waValid : true;
 
   const submitSponsor = () => {
     const payload = {
@@ -148,8 +154,8 @@ function SponsorAppMain() {
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Nama Perusahaan / Brand *"><input style={sInputStyle} value={form.perusahaan} onChange={e => set("perusahaan", e.target.value)} placeholder="PT / Brand Anda" /></SField></div>
                 <SField label="Nama PIC *"><input style={sInputStyle} value={form.pic} onChange={e => set("pic", e.target.value)} placeholder="Nama penanggung jawab" /></SField>
                 <SField label="Jabatan"><input style={sInputStyle} value={form.jabatan} onChange={e => set("jabatan", e.target.value)} placeholder="Marketing Manager, Owner…" /></SField>
-                <SField label="Email *"><input style={sInputStyle} value={form.email} onChange={e => set("email", e.target.value)} placeholder="email@perusahaan.com" /></SField>
-                <SField label="No. WhatsApp *"><input style={sInputStyle} value={form.wa} onChange={e => set("wa", e.target.value)} placeholder="08xx xxxx xxxx" /></SField>
+                <SField label="Email *" error={emailErr}><input type="email" style={{ ...sInputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></SField>
+                <SField label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...sInputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></SField>
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Website / Instagram"><input style={sInputStyle} value={form.web} onChange={e => set("web", e.target.value)} placeholder="@brand atau www.brand.com" /></SField></div>
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Catatan / kebutuhan khusus"><textarea style={{ ...sInputStyle, minHeight: 90, resize: "vertical" }} value={form.catatan} onChange={e => set("catatan", e.target.value)} placeholder="Mis. butuh booth tambahan, request lokasi, materi iklan…" /></SField></div>
               </div>

@@ -242,7 +242,7 @@ function SponsorAppMain() {
           <div className="pwb-eyebrow" style={{ marginBottom: 14 }}>Ringkasan Paket</div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
             <PWBBadge tone={{ Platinum: "deep", Gold: "gold", Silver: "neutral", Bronze: "warm" }[selected.tier] || "brand"} size="lg">{selected.tier}</PWBBadge>
-            {selected.featured && <PWBBadge tone="gold" size="sm">Paling Diminati</PWBBadge>}
+            {selected.featured && <PWBBadge tone="gold" size="sm">Paling Powerfull</PWBBadge>}
           </div>
           <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.8rem", color: "var(--pwb-ink)", lineHeight: 1 }}>{selected.price}</div>
           <div style={{ fontSize: ".8rem", color: "var(--text-muted)", marginTop: 4 }}>{selected.priceWords}</div>

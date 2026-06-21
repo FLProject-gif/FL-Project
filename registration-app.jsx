@@ -50,23 +50,43 @@ function App() {
   const isMobile = useIsMobile();
   const [step, setStep] = React.useState(0);
   const [ticket, setTicket] = React.useState("visitor");
-  const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "" });
+  const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "" });
   const [sessions, setSessions] = React.useState(["Inspirasi Bisnis"]);
   const steps = ["Pilih Tiket", "Data Diri", "E-Ticket"];
   const selected = TICKETS.find(t => t.id === ticket);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const toggleSession = (s) => setSessions(a => a.includes(s) ? a.filter(x => x !== s) : [...a, s]);
+
+  // Wilayah Indonesia (emsifa) — dropdown bertingkat Provinsi → Kota/Kabupaten.
+  const GEO = "https://www.emsifa.com/api-wilayah-indonesia/api";
+  const [provinces, setProvinces] = React.useState([]);
+  const [regencies, setRegencies] = React.useState([]);
+  const [provId, setProvId] = React.useState("");
+  const [geoError, setGeoError] = React.useState(false);
+  React.useEffect(() => {
+    let ok = true;
+    fetch(GEO + "/provinces.json").then(r => r.json()).then(d => { if (ok) setProvinces(d); }).catch(() => { if (ok) setGeoError(true); });
+    return () => { ok = false; };
+  }, []);
+  const onProvince = (id) => {
+    setProvId(id);
+    const p = provinces.find(x => String(x.id) === String(id));
+    setForm(f => ({ ...f, provinsi: p ? p.name : "", kota: "" }));
+    setRegencies([]);
+    if (id) fetch(GEO + "/regencies/" + id + ".json").then(r => r.json()).then(setRegencies).catch(() => {});
+  };
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
   const waDigits = form.wa.replace(/[\s\-+().]/g, "");
   const waValid = /^\d{8,15}$/.test(waDigits);
   const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
-  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid : true;
+  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid && form.provinsi && form.kota : true;
 
   const submitRegistration = () => {
     const payload = {
       "form-name": "pwb-registration",
       nama: form.nama, email: form.email, wa: form.wa, usaha: form.usaha,
+      kota: form.kota, provinsi: form.provinsi,
       ticket: selected.name, sessions: sessions.join(", "),
     };
     fetch("/", {
@@ -196,6 +216,27 @@ function App() {
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
                 <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
                 <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
+                {geoError ? (
+                  <React.Fragment>
+                    <Field label="Provinsi *"><input style={inputStyle} value={form.provinsi} onChange={e => set("provinsi", e.target.value)} placeholder="Provinsi" /></Field>
+                    <Field label="Kota / Kabupaten *"><input style={inputStyle} value={form.kota} onChange={e => set("kota", e.target.value)} placeholder="Kota / Kabupaten" /></Field>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <Field label="Provinsi *">
+                      <select style={{ ...inputStyle, cursor: "pointer" }} value={provId} onChange={e => onProvince(e.target.value)}>
+                        <option value="">{provinces.length ? "Pilih provinsi…" : "Memuat…"}</option>
+                        {provinces.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                      </select>
+                    </Field>
+                    <Field label="Kota / Kabupaten *">
+                      <select style={{ ...inputStyle, cursor: provId ? "pointer" : "not-allowed" }} value={form.kota} disabled={!provId} onChange={e => set("kota", e.target.value)}>
+                        <option value="">{provId ? "Pilih kota/kabupaten…" : "Pilih provinsi dulu"}</option>
+                        {regencies.map(r => <option key={r.id} value={r.name}>{r.name}</option>)}
+                      </select>
+                    </Field>
+                  </React.Fragment>
+                )}
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Bidang Usaha / Profesi"><input style={inputStyle} value={form.usaha} onChange={e => set("usaha", e.target.value)} placeholder="F&B, Fashion, Mahasiswa…" /></Field></div>
               </div>
               <div style={{ marginTop: 8 }}>
@@ -241,7 +282,7 @@ function App() {
             {step > 0 && step < 2 ? <PWBButton variant="ghost" onClick={() => setStep(step - 1)} iconLeft={<PWBIcon name="arrow-left" size={18} />}>Kembali</PWBButton> : <span />}
             {step < 2
               ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? "Terbitkan E-Ticket" : selected.href ? "Lanjut ke Pembayaran" : "Lanjut"}</PWBButton>
-              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "" }); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
+              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
           </div>
         </PWBCard>
 

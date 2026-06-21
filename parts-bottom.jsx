@@ -33,7 +33,7 @@ function Speakers() {
     ["Kilala Tilaar", "CEO Martha Tilaar Group"],
     ["Ben Wirawan", "Founder Torch.id"],
     ["Dian Aryanti", "CEO Ciomy"],
-    ["Ust. M Nur Maulana", "Penceramah"],
+    ["M. Hadiyatuloh", "Founder Brighty"],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>
@@ -43,7 +43,7 @@ function Speakers() {
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "var(--fs-h1)", letterSpacing: "-.02em", margin: 0, maxWidth: 620 }}>Belajar Langsung dari Para Praktisi & Tokoh</h2>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 28, marginTop: 44, justifyContent: "center" }}>
           {people.map(([n, r]) => (
-            <PWBSpeakerCard key={n} name={n} role={<span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span>} initial={n.replace(/^(Ust\.|M|Dr\.)\s*/, "")[0]} size={118} />
+            <PWBSpeakerCard key={n} name={n} role={<span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span>} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={118} />
           ))}
         </div>
         <p style={{ textAlign: "center", color: "rgba(255,255,255,.6)", fontSize: ".82rem", marginTop: 32 }}>*) Sebagian pembicara masih dalam konfirmasi</p>
@@ -75,6 +75,46 @@ function Sponsors({ onRegister }) {
       </div>
       <div style={{ marginTop: 24, textAlign: "center" }}>
         <PWBBadge tone="neutral" size="lg">+ Standar Indoor Booth — Rp 10 jt / booth (2×2 m, 7 hari)</PWBBadge>
+      </div>
+    </section>
+  );
+}
+
+function Kolaborasi() {
+  const isMobile = useIsMobile();
+  // [nama, file logo di assets/]. Tile menampilkan ikon placeholder sampai file logo tersedia.
+  const partners = [
+    ["GENPRO Kota Bekasi", "partner-genpro.png"],
+    ["KPMI Kota Bekasi", "partner-kpmi.png"],
+    ["Jaringan Pengusaha Bekasi", "partner-jpn-bekasi.png"],
+    ["BBPVP CEVEST Bekasi", "partner-bbpvp-cevest.png"],
+    ["HIPMI Kota Bekasi", "partner-hipmi.png"],
+    ["APKULINDO", "partner-apkulindo.png"],
+    ["Teman Trader", "partner-teman-trader.png"],
+    ["IKABOGA Bekasi", "partner-ikaboga.png"],
+    ["Hijabersmom Community Bekasi", "partner-hijabersmom.png"],
+    ["The Unlimited Space", "partner-unlimited-space.png"],
+    ["Gemantara Indonesia", "partner-gemantara.png"],
+    ["Genggam Tangan Indonesia", "partner-genggam-tangan.png"],
+    ["Jawara Muda Bekasi", "partner-jawara-muda.png"],
+    ["RECOOK.ID", "partner-recook.png"],
+  ];
+  return (
+    <section id="kolaborasi" style={{ background: "var(--pwb-cloud)" }} className="pwb-topo">
+      <div style={LBStyles.section}>
+        <PWBSectionHeader runhead align="center" eyebrow="Kolaborasi Komunitas" title="Didukung Komunitas &amp; Mitra"
+          desc="Pesta Wirausaha Planet Bekasi 2026 terselenggara bersama jejaring komunitas pengusaha &amp; mitra strategis di Bekasi dan sekitarnya." />
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%," + (isMobile ? "130px" : "150px") + "),1fr))", gap: 24, marginTop: 44, justifyItems: "center" }}>
+          {partners.map(([name, logo]) => (
+            <div key={name} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%", maxWidth: 170 }}>
+              <div style={{ position: "relative", width: 116, height: 116, borderRadius: "50%", background: "#fff", boxShadow: "var(--shadow-card)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flex: "0 0 auto", border: "1px solid var(--border-subtle)" }}>
+                <PWBIcon name="users-round" size={40} style={{ color: "var(--pwb-blue-azure)" }} />
+                <img src={"assets/" + logo} alt={name} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 16, background: "#fff" }} />
+              </div>
+              <span style={{ background: "var(--pwb-blue-azure)", color: "#fff", borderRadius: "var(--radius-pill)", padding: "6px 14px", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".76rem", textAlign: "center", lineHeight: 1.2 }}>{name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -167,4 +207,4 @@ function Footer() {
   );
 }
 
-Object.assign(window, { LTemaAcara: TemaAcara, LSpeakers: Speakers, LSponsors: Sponsors, LGaleri: Galeri, LVenue: Venue, LCTA: CTA, LFooter: Footer });
+Object.assign(window, { LTemaAcara: TemaAcara, LSpeakers: Speakers, LSponsors: Sponsors, LKolaborasi: Kolaborasi, LGaleri: Galeri, LVenue: Venue, LCTA: CTA, LFooter: Footer });

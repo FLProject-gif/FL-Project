@@ -4,6 +4,7 @@ const LBStyles = {
 };
 
 function TemaAcara() {
+  const isMobile = useIsMobile();
   const items = [
     ["photo-event-stage.jpg", "Religi & Keluarga", "Bisnis lebih rapi & delegasi tepat — waktu berkualitas untuk keluarga dan warisan (legacy) yang bermakna."],
     ["photo-event-talkshow.jpg", "Inspirasi Bisnis", "Agar bisnis tidak lagi owner-dependent, melainkan berjalan di atas sistem yang benar dan siap naik kelas (scale up)."],
@@ -12,11 +13,11 @@ function TemaAcara() {
   return (
     <section id="acara" style={LBStyles.section}>
       <PWBSectionHeader runhead eyebrow="Tema Acara" title="Tiga Tema, Satu Semangat" />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 24, marginTop: 40 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: 24, marginTop: 40 }}>
         {items.map(([img, t, d]) => (
           <div key={t}>
-            <div style={{ height: 190, borderRadius: "var(--radius-lg)", backgroundImage: `url(assets/${img})`, backgroundSize: "cover", backgroundPosition: "center", boxShadow: "var(--shadow-card)" }} />
-            <div style={{ background: "var(--pwb-blue-azure)", color: "#fff", borderRadius: "var(--radius-md)", padding: "12px 18px", margin: "-22px 16px 0", position: "relative", textAlign: "center", fontWeight: 800, fontSize: "1.1rem", boxShadow: "var(--shadow-pop)" }}>{t}</div>
+            <div style={{ height: isMobile ? 220 : 190, borderRadius: "var(--radius-lg)", backgroundImage: `url(assets/${img})`, backgroundSize: "cover", backgroundPosition: "center", boxShadow: "var(--shadow-card)" }} />
+            <div style={{ background: "var(--pwb-blue-azure)", color: "#fff", borderRadius: "var(--radius-md)", padding: "12px 18px", margin: isMobile ? "12px 0 0" : "-22px 16px 0", position: "relative", textAlign: "center", fontWeight: 800, fontSize: "1.1rem", boxShadow: "var(--shadow-pop)" }}>{t}</div>
             <p style={{ margin: "16px 6px 0", fontSize: ".92rem", color: "var(--text-body)" }}>{d}</p>
           </div>
         ))}

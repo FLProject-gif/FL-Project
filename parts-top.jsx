@@ -26,7 +26,7 @@ function Nav({ onRegister }) {
           <a key={h} href={h} style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: ".9rem", color: "var(--pwb-ink)" }}>{t}</a>
         ))}
       </nav>
-      <PWBButton variant="primary" size="sm" onClick={onRegister} iconRight={<PWBIcon name="arrow-right" size={16} />}>Daftar Gratis</PWBButton>
+      <PWBButton variant="primary" size="sm" onClick={onRegister} iconRight={<PWBIcon name="arrow-right" size={16} />}>Daftar Sekarang</PWBButton>
     </header>
   );
 }
@@ -52,7 +52,7 @@ function Hero({ onRegister }) {
             Tujuh hari perayaan komunitas Tangan Di Atas — titik temu ribuan UMKM, mentor bisnis, dan investor. Bukan sekadar bazar. Mari tumbuh bersama.
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <PWBButton variant="accent" size="lg" onClick={onRegister} iconRight={<PWBIcon name="rocket" size={20} />}>Daftar Gratis</PWBButton>
+            <PWBButton variant="accent" size="lg" onClick={onRegister} iconRight={<PWBIcon name="rocket" size={20} />}>Daftar Sekarang</PWBButton>
             <PWBButton variant="white" size="lg" onClick={() => document.getElementById("acara").scrollIntoView({ behavior: "smooth" })}>Lihat Rundown</PWBButton>
           </div>
           <div style={{ display: "flex", gap: 28, marginTop: 36, flexWrap: "wrap" }}>

@@ -96,8 +96,10 @@ function App() {
     }).catch(() => {});
   };
   const handleNext = () => {
-    if (step === 0 && selected.href) { window.location.href = selected.href; return; }
-    if (step === 1) submitRegistration();
+    if (step === 1) {
+      submitRegistration();
+      if (selected.href) { window.location.href = selected.href; return; }
+    }
     setStep(step + 1);
   };
   const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
@@ -281,7 +283,7 @@ function App() {
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 30 }}>
             {step > 0 && step < 2 ? <PWBButton variant="ghost" onClick={() => setStep(step - 1)} iconLeft={<PWBIcon name="arrow-left" size={18} />}>Kembali</PWBButton> : <span />}
             {step < 2
-              ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? "Terbitkan E-Ticket" : selected.href ? "Lanjut ke Pembayaran" : "Lanjut"}</PWBButton>
+              ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? (selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket") : "Lanjut"}</PWBButton>
               : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
           </div>
         </PWBCard>

@@ -68,23 +68,43 @@ function SponsorAppMain() {
   const isMobile = useIsMobile();
   const [step, setStep] = React.useState(getInitialStep);
   const [tier, setTier] = React.useState(getInitialTier);
-  const [form, setForm] = React.useState({ perusahaan: "", pic: "", jabatan: "", email: "", wa: "", web: "", catatan: "" });
+  const [form, setForm] = React.useState({ perusahaan: "", pic: "", jabatan: "", email: "", wa: "", web: "", catatan: "", provinsi: "", kota: "" });
   const steps = ["Pilih Paket", "Data Perusahaan", "Konfirmasi"];
   const selected = SPONSOR_TIERS.find(t => t.tier === tier);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+
+  // Wilayah Indonesia (emsifa) — dropdown bertingkat Provinsi → Kota/Kabupaten.
+  const GEO = "https://www.emsifa.com/api-wilayah-indonesia/api";
+  const [provinces, setProvinces] = React.useState([]);
+  const [regencies, setRegencies] = React.useState([]);
+  const [provId, setProvId] = React.useState("");
+  const [geoError, setGeoError] = React.useState(false);
+  React.useEffect(() => {
+    let ok = true;
+    fetch(GEO + "/provinces.json").then(r => r.json()).then(d => { if (ok) setProvinces(d); }).catch(() => { if (ok) setGeoError(true); });
+    return () => { ok = false; };
+  }, []);
+  const onProvince = (id) => {
+    setProvId(id);
+    const p = provinces.find(x => String(x.id) === String(id));
+    setForm(f => ({ ...f, provinsi: p ? p.name : "", kota: "" }));
+    setRegencies([]);
+    if (id) fetch(GEO + "/regencies/" + id + ".json").then(r => r.json()).then(setRegencies).catch(() => {});
+  };
   const okBenefits = selected.benefits.filter(b => typeof b === "string" || b.ok !== false).length;
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
   const waDigits = form.wa.replace(/[\s\-+().]/g, "");
   const waValid = /^\d{8,15}$/.test(waDigits);
   const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
-  const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && emailValid && waValid : true;
+  const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && emailValid && waValid && form.provinsi && form.kota : true;
 
   const submitSponsor = () => {
     const payload = {
       "form-name": "pwb-sponsor",
       perusahaan: form.perusahaan, pic: form.pic, jabatan: form.jabatan,
       email: form.email, wa: form.wa, web: form.web, catatan: form.catatan,
+      kota: form.kota, provinsi: form.provinsi,
       paket: selected.tier, harga: selected.price,
     };
     fetch("/", {
@@ -107,6 +127,7 @@ function SponsorAppMain() {
       "*PIC:* " + (form.pic || "-") + (form.jabatan ? " (" + form.jabatan + ")" : ""),
       "*Email:* " + (form.email || "-"),
       "*WhatsApp:* " + (form.wa || "-"),
+      "*Lokasi:* " + [form.kota, form.provinsi].filter(Boolean).join(", "),
       "*Website/IG:* " + (form.web || "-"),
       "*Catatan:* " + (form.catatan || "-"),
       "*Ref:* " + ref,
@@ -158,6 +179,27 @@ function SponsorAppMain() {
                 <SField label="Jabatan"><input style={sInputStyle} value={form.jabatan} onChange={e => set("jabatan", e.target.value)} placeholder="Marketing Manager, Owner…" /></SField>
                 <SField label="Email *" error={emailErr}><input type="email" style={{ ...sInputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></SField>
                 <SField label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...sInputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></SField>
+                {geoError ? (
+                  <React.Fragment>
+                    <SField label="Provinsi *"><input style={sInputStyle} value={form.provinsi} onChange={e => set("provinsi", e.target.value)} placeholder="Provinsi" /></SField>
+                    <SField label="Kota / Kabupaten *"><input style={sInputStyle} value={form.kota} onChange={e => set("kota", e.target.value)} placeholder="Kota / Kabupaten" /></SField>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <SField label="Provinsi *">
+                      <select style={{ ...sInputStyle, cursor: "pointer" }} value={provId} onChange={e => onProvince(e.target.value)}>
+                        <option value="">{provinces.length ? "Pilih provinsi…" : "Memuat…"}</option>
+                        {provinces.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                      </select>
+                    </SField>
+                    <SField label="Kota / Kabupaten *">
+                      <select style={{ ...sInputStyle, cursor: provId ? "pointer" : "not-allowed" }} value={form.kota} disabled={!provId} onChange={e => set("kota", e.target.value)}>
+                        <option value="">{provId ? "Pilih kota/kabupaten…" : "Pilih provinsi dulu"}</option>
+                        {regencies.map(r => <option key={r.id} value={r.name}>{r.name}</option>)}
+                      </select>
+                    </SField>
+                  </React.Fragment>
+                )}
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Website / Instagram"><input style={sInputStyle} value={form.web} onChange={e => set("web", e.target.value)} placeholder="@brand atau www.brand.com" /></SField></div>
                 <div style={{ gridColumn: "1 / -1" }}><SField label="Catatan / kebutuhan khusus"><textarea style={{ ...sInputStyle, minHeight: 90, resize: "vertical" }} value={form.catatan} onChange={e => set("catatan", e.target.value)} placeholder="Mis. butuh booth tambahan, request lokasi, materi iklan…" /></SField></div>
               </div>
@@ -192,7 +234,7 @@ function SponsorAppMain() {
             {step > 0 && step < 2 ? <PWBButton variant="ghost" onClick={() => setStep(step - 1)} iconLeft={<PWBIcon name="arrow-left" size={18} />}>Kembali</PWBButton> : <span />}
             {step < 2
               ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? "Kirim Permintaan" : "Lanjut"}</PWBButton>
-              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ perusahaan: "", pic: "", jabatan: "", email: "", wa: "", web: "", catatan: "" }); }} iconLeft={<PWBIcon name="rotate-ccw" size={18} />}>Selesai · Daftar Paket Lain</PWBButton>}
+              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ perusahaan: "", pic: "", jabatan: "", email: "", wa: "", web: "", catatan: "", provinsi: "", kota: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="rotate-ccw" size={18} />}>Selesai · Daftar Paket Lain</PWBButton>}
           </div>
         </PWBCard>
 

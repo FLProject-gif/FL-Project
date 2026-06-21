@@ -33,7 +33,7 @@ function Speakers() {
     ["Kilala Tilaar", "CEO Martha Tilaar Group"],
     ["Ben Wirawan", "Founder Torch.id"],
     ["Dian Aryanti", "CEO Ciomy"],
-    ["Ust. M Nur Maulana", "Penceramah"],
+    ["M. Hadiyatuloh", "Founder Brighty"],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>
@@ -43,7 +43,7 @@ function Speakers() {
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "var(--fs-h1)", letterSpacing: "-.02em", margin: 0, maxWidth: 620 }}>Belajar Langsung dari Para Praktisi & Tokoh</h2>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 28, marginTop: 44, justifyContent: "center" }}>
           {people.map(([n, r]) => (
-            <PWBSpeakerCard key={n} name={n} role={<span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span>} initial={n.replace(/^(Ust\.|M|Dr\.)\s*/, "")[0]} size={118} />
+            <PWBSpeakerCard key={n} name={n} role={<span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span>} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={118} />
           ))}
         </div>
         <p style={{ textAlign: "center", color: "rgba(255,255,255,.6)", fontSize: ".82rem", marginTop: 32 }}>*) Sebagian pembicara masih dalam konfirmasi</p>

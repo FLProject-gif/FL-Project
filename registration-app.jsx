@@ -5,9 +5,11 @@ const RStyles = {
 
 const TICKETS = [
   { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event" },
-  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login" },
+  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
+// Isi link grup WhatsApp di sini untuk mengaktifkan tombolnya (kosong = tombol nonaktif).
+const WA_GROUP_LINK = "";
 
 function Stepper({ step, steps }) {
   const isMobile = useIsMobile();
@@ -50,7 +52,7 @@ function App() {
   const isMobile = useIsMobile();
   const [step, setStep] = React.useState(0);
   const [ticket, setTicket] = React.useState("visitor");
-  const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "" });
+  const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" });
   const [sessions, setSessions] = React.useState(["Inspirasi Bisnis"]);
   const steps = ["Pilih Tiket", "Data Diri", "E-Ticket"];
   const selected = TICKETS.find(t => t.id === ticket);
@@ -80,13 +82,13 @@ function App() {
   const waValid = /^\d{8,15}$/.test(waDigits);
   const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
-  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid && form.provinsi && form.kota : true;
+  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid && form.provinsi && form.kota && form.tanggal : true;
 
   const submitRegistration = () => {
     const payload = {
       "form-name": "pwb-registration",
       nama: form.nama, email: form.email, wa: form.wa, usaha: form.usaha,
-      kota: form.kota, provinsi: form.provinsi,
+      kota: form.kota, provinsi: form.provinsi, tanggal: form.tanggal,
       ticket: selected.name, sessions: sessions.join(", "),
     };
     fetch("/", {
@@ -104,8 +106,13 @@ function App() {
   };
   const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
-  const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(verifyUrl);
-  const qrDownloadSrc = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=12&data=" + encodeURIComponent(verifyUrl);
+  // Google Apps Script web app — tiap QR di-scan akan mencatat data peserta ke Google Sheet.
+  const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycbw4bJYzbi0MEFlYtv_agOiLnn2Uc2I4Euleju_Hug9eVsHond8laSvljAy_3bBkhqO2Pw/exec";
+  const qrPayload = SCAN_LOG_URL
+    ? SCAN_LOG_URL + "?" + new URLSearchParams({ id: ticketCode, nama: form.nama || "", ticket: selected.name, tanggal: form.tanggal || "", email: form.email || "", wa: form.wa || "", kota: form.kota || "", provinsi: form.provinsi || "" }).toString()
+    : verifyUrl;
+  const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(qrPayload);
+  const qrDownloadSrc = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=12&data=" + encodeURIComponent(qrPayload);
   const downloadBlob = (blob, name) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -191,7 +198,7 @@ function App() {
                   const on = ticket === t.id;
                   return (
                     <button key={t.id} onClick={() => setTicket(t.id)} style={{
-                      display: "flex", alignItems: "center", gap: 16, textAlign: "left", cursor: "pointer",
+                      display: "flex", alignItems: "flex-start", gap: 16, textAlign: "left", cursor: "pointer",
                       padding: "16px 18px", borderRadius: "var(--radius-lg)", background: on ? "var(--pwb-blue-50)" : "#fff",
                       border: on ? "2px solid var(--pwb-blue-azure)" : "1.5px solid var(--border-subtle)", transition: "all .2s",
                     }}>
@@ -202,6 +209,16 @@ function App() {
                           <PWBBadge tone="neutral" size="sm">{t.note}</PWBBadge>
                         </div>
                         <div style={{ fontSize: ".86rem", color: "var(--text-body)", marginTop: 3 }}>{t.desc}</div>
+                        {t.benefits && (
+                          <ul style={{ listStyle: "none", margin: "10px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                            {t.benefits.map((b, i) => (
+                              <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: ".82rem", color: "var(--text-body)" }}>
+                                <span style={{ flex: "0 0 auto", width: 18, height: 18, marginTop: 1, borderRadius: "50%", background: "var(--state-yes)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".7rem", fontWeight: 800 }}>✓</span>
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                       <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.15rem", color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)" }}>{t.price}</span>
                     </button>
@@ -240,6 +257,7 @@ function App() {
                   </React.Fragment>
                 )}
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Bidang Usaha / Profesi"><input style={inputStyle} value={form.usaha} onChange={e => set("usaha", e.target.value)} placeholder="F&B, Fashion, Mahasiswa…" /></Field></div>
+                <div style={{ gridColumn: "1 / -1" }}><Field label="Rencana Tanggal Kedatangan *"><input type="date" min="2026-07-27" max="2026-08-02" style={{ ...inputStyle, cursor: "pointer" }} value={form.tanggal} onChange={e => set("tanggal", e.target.value)} /><span style={{ display: "block", marginTop: 5, fontSize: ".76rem", color: "var(--text-muted)" }}>Pilih tanggal antara 27 Juli – 2 Agustus 2026 (durasi event).</span></Field></div>
               </div>
               <div style={{ marginTop: 8 }}>
                 <span style={{ display: "block", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".82rem", color: "var(--text-heading)", marginBottom: 10 }}>Sesi yang diminati</span>
@@ -273,9 +291,11 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div style={{ marginTop: 18 }}>
+              <div style={{ marginTop: 18, display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
                 <PWBButton variant="primary" onClick={saveQr} iconLeft={<PWBIcon name="download" size={18} />}>Simpan QR</PWBButton>
+                <PWBButton variant="primary" disabled={!WA_GROUP_LINK} onClick={() => WA_GROUP_LINK && window.open(WA_GROUP_LINK, "_blank", "noopener")} style={{ background: "#25D366", color: "#fff" }} iconLeft={<PWBIcon name="message-circle" size={18} />}>Gabung Grup WhatsApp</PWBButton>
               </div>
+              {!WA_GROUP_LINK && <p style={{ marginTop: 8, fontSize: ".76rem", color: "var(--text-muted)" }}>Tombol grup WhatsApp akan diaktifkan menyusul.</p>}
               <p style={{ marginTop: 14, fontSize: ".82rem", color: "var(--text-muted)" }}>Screenshot atau simpan e-ticket ini untuk ditunjukkan di pintu masuk. Pengiriman via email akan diaktifkan menyusul.</p>
             </div>
           )}
@@ -284,7 +304,7 @@ function App() {
             {step > 0 && step < 2 ? <PWBButton variant="ghost" onClick={() => setStep(step - 1)} iconLeft={<PWBIcon name="arrow-left" size={18} />}>Kembali</PWBButton> : <span />}
             {step < 2
               ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? (selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket") : "Lanjut"}</PWBButton>
-              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
+              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
           </div>
         </PWBCard>
 

@@ -1,8 +1,290 @@
-/* Pesta Wirausaha Bekasi — Design System
-   Global stylesheet entry. Consumers link THIS file.
-   Keep this as @import lines only. */
-@import url("./tokens/fonts.css");
-@import url("./tokens/colors.css");
-@import url("./tokens/typography.css");
-@import url("./tokens/spacing.css");
-@import url("./tokens/base.css");
+/* AUTO-GENERATED bundle — edit tokens/*.css instead, then run node build.js */
+
+/* ===== tokens/fonts.css ===== */
+/* FONTS — Pesta Wirausaha Bekasi
+   Fredoka  → playful, rounded display (echoes the rocket wordmark's bubble lettering)
+   Plus Jakarta Sans → clean UI + body (Indonesian-made grotesque; stands in for the deck's SF-Pro-like headings)
+   NOTE: these are Google Fonts substitutes — the event's logo wordmark is a bespoke comic face.
+   See readme.md → VISUAL FOUNDATIONS for the substitution flag. */
+:root {
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: var(--font-sans);
+}
+
+/* ===== tokens/colors.css ===== */
+/* COLORS — Pesta Wirausaha Bekasi
+   Sampled from the official PWB 2026 proposal deck + rocket logo.
+   Base ramp first, semantic aliases below. */
+:root {
+  /* ---- Brand base ---- */
+  --pwb-blue-royal: #005BFC;   /* deep cobalt — logo field, dark sections */
+  --pwb-blue-azure: #0097FE;   /* bright action blue — cards, buttons, icon coins */
+  --pwb-blue-sky:   #0E84DC;   /* hero sky gradient */
+  --pwb-orange:     #FD6212;   /* "PESTA" orange — energy, warm accent */
+  --pwb-red:        #C80807;   /* "WIRAUSAHA" red — emphasis, alerts */
+  --pwb-gold:       #FFB11D;   /* sun + "Let's Grow Together" pill */
+  --pwb-navy:       #122547;   /* eyebrow / running header on light */
+  --pwb-ink:        #0F1419;   /* near-black headings */
+  --pwb-slate:      #334155;   /* body copy on light */
+  --pwb-cloud:      #F4F9FF;   /* page background, cool near-white */
+  --pwb-white:      #FFFFFF;
+
+  /* ---- Blue tints ---- */
+  --pwb-blue-50:  #EAF4FF;
+  --pwb-blue-100: #CFE7FF;
+  --pwb-blue-200: #A6D2FF;
+  --pwb-blue-700: #0061C4;
+  --pwb-blue-900: #062B66;
+
+  /* ---- Warm tints ---- */
+  --pwb-orange-50: #FFF0E6;
+  --pwb-gold-50:   #FFF4DC;
+  --pwb-gold-soft: #FFE08A;   /* sticky-note yellow (gamification cards) */
+  --pwb-red-50:    #FDEBEA;
+
+  /* ---- Neutrals ---- */
+  --pwb-gray-50:  #F6F8FB;
+  --pwb-gray-100: #EEF2F7;
+  --pwb-gray-200: #E2ECF7;   /* hairline borders */
+  --pwb-gray-300: #CBD6E4;
+  --pwb-gray-500: #6B7A90;
+  --pwb-gray-700: #3A4860;
+
+  /* ---- Topographic line texture color ---- */
+  --pwb-line: #C9DEF3;
+
+  /* ===== Semantic aliases ===== */
+  --color-bg: var(--pwb-cloud);
+  --color-bg-deep: var(--pwb-blue-royal);
+  --surface-card: var(--pwb-white);
+  --surface-muted: var(--pwb-gray-50);
+  --surface-brand: var(--pwb-blue-azure);
+  --surface-brand-deep: var(--pwb-blue-royal);
+  --surface-gold: var(--pwb-gold);
+
+  --text-heading: var(--pwb-ink);
+  --text-body: var(--pwb-slate);
+  --text-muted: var(--pwb-gray-500);
+  --text-eyebrow: var(--pwb-navy);
+  --text-on-brand: var(--pwb-white);
+  --text-link: var(--pwb-blue-azure);
+
+  --accent-primary: var(--pwb-blue-azure);
+  --accent-deep: var(--pwb-blue-royal);
+  --accent-warm: var(--pwb-orange);
+  --accent-danger: var(--pwb-red);
+  --accent-gold: var(--pwb-gold);
+
+  --border-subtle: var(--pwb-gray-200);
+  --border-strong: var(--pwb-gray-300);
+  --ring-focus: rgba(0, 151, 254, 0.40);
+
+  /* state success/danger for table ticks etc. */
+  --state-yes: #2BB24C;
+  --state-no:  var(--pwb-red);
+}
+
+/* ===== tokens/typography.css ===== */
+/* TYPOGRAPHY — Pesta Wirausaha Bekasi
+   Two registers:
+   • Display (Fredoka)  → festival/hero headlines, mascot energy, big numbers
+   • Sans (Plus Jakarta Sans) → document headings, UI, body, captions  */
+:root {
+  /* families (also defined in fonts.css) */
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* weights */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+  --fw-extra: 800; /* @kind font */
+
+  /* type scale (rem, 16px base) */
+  --fs-display-2xl: 4.5rem;   /* 72 — hero wordmark scale */
+  --fs-display-xl: 3.5rem;    /* 56 */
+  --fs-display-lg: 2.75rem;   /* 44 — slide titles ("Profil TDA") */
+  --fs-h1: 2.25rem;           /* 36 */
+  --fs-h2: 1.75rem;           /* 28 */
+  --fs-h3: 1.375rem;          /* 22 */
+  --fs-h4: 1.125rem;          /* 18 */
+  --fs-body-lg: 1.125rem;     /* 18 */
+  --fs-body: 1rem;            /* 16 */
+  --fs-sm: 0.875rem;          /* 14 */
+  --fs-xs: 0.75rem;           /* 12 */
+
+  /* line-heights */
+  --lh-tight: 1.04; /* @kind font */
+  --lh-snug: 1.18; /* @kind font */
+  --lh-heading: 1.12; /* @kind font */
+  --lh-body: 1.6; /* @kind font */
+
+  /* letter-spacing */
+  --ls-tight: -0.02em; /* @kind font */
+  --ls-display: -0.01em; /* @kind font */
+  --ls-eyebrow: 0.14em;   /* @kind font */
+  --ls-normal: 0; /* @kind font */
+}
+
+/* ===== tokens/spacing.css ===== */
+/* SPACING · RADII · SHADOWS · MOTION — Pesta Wirausaha Bekasi */
+:root {
+  /* spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* radii — the deck leans round: cards 20-28px, pills full */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-2xl: 40px;
+  --radius-pill: 999px;
+
+  /* shadows — soft, cool, blue-tinted */
+  --shadow-xs: 0 1px 2px rgba(15, 31, 64, 0.06);
+  --shadow-sm: 0 4px 12px rgba(15, 41, 90, 0.08);
+  --shadow-card: 0 12px 30px rgba(8, 43, 102, 0.10);
+  --shadow-pop: 0 20px 50px rgba(0, 91, 252, 0.18);
+  --shadow-gold: 0 14px 32px rgba(255, 177, 29, 0.35);
+
+  /* layout */
+  --container-max: 1200px; /* @kind spacing */
+  --container-narrow: 820px; /* @kind spacing */
+  --gutter: clamp(20px, 5vw, 64px); /* @kind spacing */
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);   /* @kind other */
+  --dur-fast: 0.14s; /* @kind other */
+  --dur-base: 0.24s; /* @kind other */
+  --dur-slow: 0.5s; /* @kind other */
+}
+
+/* ===== tokens/base.css ===== */
+/* BASE — resets, helpers, signature surfaces — Pesta Wirausaha Bekasi */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  color: var(--text-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  font-weight: var(--fw-extra);
+  margin: 0 0 0.4em;
+  text-wrap: balance;
+}
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+a { color: var(--text-link); text-decoration: none; }
+img { max-width: 100%; }
+
+/* ---- Eyebrow / running header ---- */
+.pwb-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-eyebrow);
+}
+
+/* "Let's Grow Together" running header rule used across slides/sections */
+.pwb-runhead {
+  display: flex; align-items: center; gap: var(--space-4);
+  color: var(--pwb-navy);
+}
+.pwb-runhead::before {
+  content: ""; flex: 1 1 auto; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--pwb-navy));
+  opacity: 0.5;
+}
+.pwb-runhead > span {
+  font-weight: var(--fw-bold); font-size: var(--fs-h4);
+  letter-spacing: var(--ls-tight); white-space: nowrap;
+}
+
+/* ---- Display headline (playful Fredoka) ---- */
+.pwb-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+}
+
+/* ---- Signature surfaces ---- */
+.pwb-sky {
+  background:
+    radial-gradient(120% 80% at 80% -10%, var(--pwb-blue-sky), transparent 60%),
+    linear-gradient(160deg, #1AA0EC 0%, var(--pwb-blue-royal) 90%);
+  color: var(--text-on-brand);
+}
+.pwb-surface-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Topographic line texture (echoes deck backgrounds) ----
+   Drop onto any container; lines hug the lower-right like the proposal slides. */
+.pwb-topo { position: relative; isolation: isolate; }
+.pwb-topo::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    repeating-radial-gradient(circle at 118% 122%,
+      transparent 0 22px, var(--pwb-line) 22px 23.6px);
+  -webkit-mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+  opacity: 1;
+}
+
+/* gold "Let's Grow Together" pill */
+.pwb-pill-gold {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--pwb-gold); color: #5A3A00;
+  font-family: var(--font-display); font-weight: var(--fw-semibold);
+  padding: 0.5em 1.2em; border-radius: var(--radius-pill);
+  white-space: nowrap;
+  box-shadow: var(--shadow-gold);
+}
+
+.pwb-container { max-width: var(--container-max); margin-inline: auto; padding-inline: var(--gutter); }
+
+/* On small screens, let the gold pill wrap instead of being clipped by overflow:hidden */
+@media (max-width: 560px) {
+  .pwb-pill-gold {
+    white-space: normal;
+    text-align: left;
+    max-width: 100%;
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

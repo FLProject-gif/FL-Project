@@ -12,6 +12,8 @@ const SPONSOR_TIERS = [
     benefits: ["Free 1 booth standar (7 hari)", "Pemutaran iklan 20 detik", "Logo M di videotron", { text: "Data Leads Peserta", ok: false }, { text: "Sesi panggung", ok: false }] },
   { tier: "Bronze", price: "Rp 1 jt", priceWords: "Satu Juta", forWhom: "UMKM naik kelas, usaha jasa lokal, start-up baru.",
     benefits: ["5x Post IG Feed + 10x Stories", "Pembagian brosur / sampling", "Logo S di videotron", { text: "Booth pameran", ok: false }, { text: "Data Leads Peserta", ok: false }] },
+  { tier: "Booth", price: "Rp 7 jt", priceWords: "Tujuh Juta", forWhom: "Tampil & berjualan langsung di area pameran selama acara berlangsung.",
+    benefits: ["Booth standar 2×2 m — lokasi strategis", "Berlaku penuh selama 7 hari acara", "Meja, kursi & sumber listrik tersedia", "Nama brand tercantum di denah acara", { text: "Sesi panggung & iklan videotron", ok: false }] },
 ];
 
 function SStepper({ step, steps }) {

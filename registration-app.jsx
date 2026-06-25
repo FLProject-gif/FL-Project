@@ -96,6 +96,15 @@ function App() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(payload).toString(),
     }).catch(() => {});
+    // Catat juga ke Google Sheet (tab "Pendaftar") via Apps Script — fire & forget.
+    try {
+      const q = new URLSearchParams({
+        mode: "register", id: ticketCode, nama: form.nama, ticket: selected.name,
+        email: form.email, wa: form.wa, tanggal: form.tanggal,
+        provinsi: form.provinsi, kota: form.kota, usaha: form.usaha, sessions: sessions.join(", "),
+      }).toString();
+      fetch(SCAN_LOG_URL + "?" + q, { mode: "no-cors" }).catch(() => {});
+    } catch (e) {}
   };
   const handleNext = () => {
     if (step === 1) {

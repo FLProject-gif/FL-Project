@@ -39,6 +39,12 @@ console.log('bundled -> styles.css');
 
 // 2) Rewrite the HTML files
 const htmlFiles = ['index.html', 'daftar.html', 'sponsor.html'];
+// Prefetch the other pages + their app bundles so navigation feels instant.
+const PREFETCH = {
+  'index.html': ['daftar.html', 'registration-app.js', 'sponsor.html', 'sponsor-app.js'],
+  'daftar.html': ['sponsor.html', 'sponsor-app.js'],
+  'sponsor.html': ['daftar.html', 'registration-app.js'],
+};
 const FONT_LINKS =
   '<link rel="preconnect" href="https://fonts.googleapis.com" />\n' +
   '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n' +
@@ -59,6 +65,11 @@ for (const hf of htmlFiles) {
   // load Google Fonts in parallel via <link> (once)
   if (!html.includes('fonts.googleapis.com')) {
     html = html.replace('<link rel="stylesheet" href="styles.css" />', FONT_LINKS + '<link rel="stylesheet" href="styles.css" />');
+  }
+  // prefetch sibling pages + their app bundles so clicking a nav button is instant (once)
+  if (!html.includes('rel="prefetch"')) {
+    const pf = (PREFETCH[hf] || []).map((h) => '<link rel="prefetch" href="' + h + '" />').join('\n');
+    if (pf) html = html.replace('<link rel="stylesheet" href="styles.css" />', '<link rel="stylesheet" href="styles.css" />\n' + pf);
   }
   fs.writeFileSync(path.join(ROOT, hf), html);
   console.log('rewrote', hf);

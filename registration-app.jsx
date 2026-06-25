@@ -5,7 +5,7 @@ const RStyles = {
 
 const TICKETS = [
   { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event" },
-  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login" },
+  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 
@@ -191,7 +191,7 @@ function App() {
                   const on = ticket === t.id;
                   return (
                     <button key={t.id} onClick={() => setTicket(t.id)} style={{
-                      display: "flex", alignItems: "center", gap: 16, textAlign: "left", cursor: "pointer",
+                      display: "flex", alignItems: "flex-start", gap: 16, textAlign: "left", cursor: "pointer",
                       padding: "16px 18px", borderRadius: "var(--radius-lg)", background: on ? "var(--pwb-blue-50)" : "#fff",
                       border: on ? "2px solid var(--pwb-blue-azure)" : "1.5px solid var(--border-subtle)", transition: "all .2s",
                     }}>
@@ -202,6 +202,16 @@ function App() {
                           <PWBBadge tone="neutral" size="sm">{t.note}</PWBBadge>
                         </div>
                         <div style={{ fontSize: ".86rem", color: "var(--text-body)", marginTop: 3 }}>{t.desc}</div>
+                        {t.benefits && (
+                          <ul style={{ listStyle: "none", margin: "10px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                            {t.benefits.map((b, i) => (
+                              <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: ".82rem", color: "var(--text-body)" }}>
+                                <span style={{ flex: "0 0 auto", width: 18, height: 18, marginTop: 1, borderRadius: "50%", background: "var(--state-yes)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".7rem", fontWeight: 800 }}>✓</span>
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
                       <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.15rem", color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)" }}>{t.price}</span>
                     </button>

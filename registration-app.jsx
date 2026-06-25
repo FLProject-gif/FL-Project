@@ -113,7 +113,10 @@ function App() {
     }
     setStep(step + 1);
   };
-  const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
+  // Kode tiket unik per peserta: prefiks nama + hash stabil dari email/WA/nama
+  // (mencegah ID kembar yang memicu "sudah check-in" palsu).
+  const codeHash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) >>> 0; } return ("000" + h.toString(36).toUpperCase()).slice(-4); };
+  const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "-" + codeHash((form.email || "") + "|" + (form.wa || "") + "|" + (form.nama || ""));
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
   // Google Apps Script web app — tiap QR di-scan akan mencatat data peserta ke Google Sheet.
   const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycbzNbLhXJFKILpPp88Sv0tIEQNiXEQVaXyTZkSu4YtCvrJoR0Xgvwtm4gXx79Q5h5FjkCQ/exec";

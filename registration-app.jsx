@@ -106,8 +106,13 @@ function App() {
   };
   const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
-  const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(verifyUrl);
-  const qrDownloadSrc = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=12&data=" + encodeURIComponent(verifyUrl);
+  // Google Apps Script web app — tiap QR di-scan akan mencatat data peserta ke Google Sheet.
+  const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycbw4bJYzbi0MEFlYtv_agOiLnn2Uc2I4Euleju_Hug9eVsHond8laSvljAy_3bBkhqO2Pw/exec";
+  const qrPayload = SCAN_LOG_URL
+    ? SCAN_LOG_URL + "?" + new URLSearchParams({ id: ticketCode, nama: form.nama || "", ticket: selected.name, tanggal: form.tanggal || "", email: form.email || "", wa: form.wa || "", kota: form.kota || "", provinsi: form.provinsi || "" }).toString()
+    : verifyUrl;
+  const qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=" + encodeURIComponent(qrPayload);
+  const qrDownloadSrc = "https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=12&data=" + encodeURIComponent(qrPayload);
   const downloadBlob = (blob, name) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

@@ -1,4 +1,6 @@
 /* Sponsorship kit — dedicated B2B flow for PWB 2026 sponsor packages */
+// Apps Script web app — data sponsor dicatat ke Google Sheet (tab "Sponsor").
+const SPONSOR_LOG_URL = "https://script.google.com/macros/s/AKfycbw1ACbJVfWDoOK5WZ0pnIg8_QorChSS3PL_3UaAO69e-mahMFScTderFqyM5zDXNjLYpA/exec";
 const SStyles = {
   shell: { maxWidth: 1180, margin: "0 auto", padding: "28px var(--gutter) 64px", display: "grid", gridTemplateColumns: "1.6fr .85fr", gap: 28, alignItems: "start" },
 };
@@ -114,6 +116,15 @@ function SponsorAppMain() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(payload).toString(),
     }).catch(() => {});
+    // Catat juga ke Google Sheet (tab "Sponsor") via Apps Script — fire & forget.
+    try {
+      const q = new URLSearchParams({
+        mode: "sponsor", ref: ref, perusahaan: form.perusahaan, pic: form.pic, jabatan: form.jabatan,
+        email: form.email, wa: form.wa, paket: selected.tier, harga: selected.price,
+        provinsi: form.provinsi, kota: form.kota, web: form.web, catatan: form.catatan,
+      }).toString();
+      fetch(SPONSOR_LOG_URL + "?" + q, { mode: "no-cors" }).catch(() => {});
+    } catch (e) {}
   };
   const handleNext = () => { if (step === 1) submitSponsor(); setStep(step + 1); };
   const ref = "#SPS26-" + (form.perusahaan || "MITRA").replace(/[^A-Za-z0-9]/g, "").slice(0, 4).toUpperCase() + "07";

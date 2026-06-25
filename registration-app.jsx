@@ -8,6 +8,8 @@ const TICKETS = [
   { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
+// Isi link grup WhatsApp di sini untuk mengaktifkan tombolnya (kosong = tombol nonaktif).
+const WA_GROUP_LINK = "";
 
 function Stepper({ step, steps }) {
   const isMobile = useIsMobile();
@@ -284,9 +286,11 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div style={{ marginTop: 18 }}>
+              <div style={{ marginTop: 18, display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
                 <PWBButton variant="primary" onClick={saveQr} iconLeft={<PWBIcon name="download" size={18} />}>Simpan QR</PWBButton>
+                <PWBButton variant="primary" disabled={!WA_GROUP_LINK} onClick={() => WA_GROUP_LINK && window.open(WA_GROUP_LINK, "_blank", "noopener")} style={{ background: "#25D366", color: "#fff" }} iconLeft={<PWBIcon name="message-circle" size={18} />}>Gabung Grup WhatsApp</PWBButton>
               </div>
+              {!WA_GROUP_LINK && <p style={{ marginTop: 8, fontSize: ".76rem", color: "var(--text-muted)" }}>Tombol grup WhatsApp akan diaktifkan menyusul.</p>}
               <p style={{ marginTop: 14, fontSize: ".82rem", color: "var(--text-muted)" }}>Screenshot atau simpan e-ticket ini untuk ditunjukkan di pintu masuk. Pengiriman via email akan diaktifkan menyusul.</p>
             </div>
           )}

@@ -1,0 +1,8 @@
+{
+  // Static-assets-only Worker for PWB 2026 — serves the prebuilt site from repo root.
+  "name": "fl-project",
+  "compatibility_date": "2024-12-01",
+  "assets": {
+    "directory": "."
+  }
+}

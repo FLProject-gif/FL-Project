@@ -96,6 +96,15 @@ function App() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(payload).toString(),
     }).catch(() => {});
+    // Catat juga ke Google Sheet (tab "Pendaftar") via Apps Script — fire & forget.
+    try {
+      const q = new URLSearchParams({
+        mode: "register", id: ticketCode, nama: form.nama, ticket: selected.name,
+        email: form.email, wa: form.wa, tanggal: form.tanggal,
+        provinsi: form.provinsi, kota: form.kota, usaha: form.usaha, sessions: sessions.join(", "),
+      }).toString();
+      fetch(SCAN_LOG_URL + "?" + q, { mode: "no-cors" }).catch(() => {});
+    } catch (e) {}
   };
   const handleNext = () => {
     if (step === 1) {
@@ -107,7 +116,7 @@ function App() {
   const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "208";
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
   // Google Apps Script web app — tiap QR di-scan akan mencatat data peserta ke Google Sheet.
-  const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycbw4bJYzbi0MEFlYtv_agOiLnn2Uc2I4Euleju_Hug9eVsHond8laSvljAy_3bBkhqO2Pw/exec";
+  const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycbzNbLhXJFKILpPp88Sv0tIEQNiXEQVaXyTZkSu4YtCvrJoR0Xgvwtm4gXx79Q5h5FjkCQ/exec";
   const qrPayload = SCAN_LOG_URL
     ? SCAN_LOG_URL + "?" + new URLSearchParams({ id: ticketCode, nama: form.nama || "", ticket: selected.name, tanggal: form.tanggal || "", email: form.email || "", wa: form.wa || "", kota: form.kota || "", provinsi: form.provinsi || "" }).toString()
     : verifyUrl;

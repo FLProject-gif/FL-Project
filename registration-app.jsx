@@ -50,7 +50,7 @@ function App() {
   const isMobile = useIsMobile();
   const [step, setStep] = React.useState(0);
   const [ticket, setTicket] = React.useState("visitor");
-  const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "" });
+  const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" });
   const [sessions, setSessions] = React.useState(["Inspirasi Bisnis"]);
   const steps = ["Pilih Tiket", "Data Diri", "E-Ticket"];
   const selected = TICKETS.find(t => t.id === ticket);
@@ -80,13 +80,13 @@ function App() {
   const waValid = /^\d{8,15}$/.test(waDigits);
   const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
-  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid && form.provinsi && form.kota : true;
+  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid && form.provinsi && form.kota && form.tanggal : true;
 
   const submitRegistration = () => {
     const payload = {
       "form-name": "pwb-registration",
       nama: form.nama, email: form.email, wa: form.wa, usaha: form.usaha,
-      kota: form.kota, provinsi: form.provinsi,
+      kota: form.kota, provinsi: form.provinsi, tanggal: form.tanggal,
       ticket: selected.name, sessions: sessions.join(", "),
     };
     fetch("/", {
@@ -250,6 +250,7 @@ function App() {
                   </React.Fragment>
                 )}
                 <div style={{ gridColumn: "1 / -1" }}><Field label="Bidang Usaha / Profesi"><input style={inputStyle} value={form.usaha} onChange={e => set("usaha", e.target.value)} placeholder="F&B, Fashion, Mahasiswa…" /></Field></div>
+                <div style={{ gridColumn: "1 / -1" }}><Field label="Rencana Tanggal Kedatangan *"><input type="date" min="2026-07-27" max="2026-08-02" style={{ ...inputStyle, cursor: "pointer" }} value={form.tanggal} onChange={e => set("tanggal", e.target.value)} /><span style={{ display: "block", marginTop: 5, fontSize: ".76rem", color: "var(--text-muted)" }}>Pilih tanggal antara 27 Juli – 2 Agustus 2026 (durasi event).</span></Field></div>
               </div>
               <div style={{ marginTop: 8 }}>
                 <span style={{ display: "block", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".82rem", color: "var(--text-heading)", marginBottom: 10 }}>Sesi yang diminati</span>
@@ -294,7 +295,7 @@ function App() {
             {step > 0 && step < 2 ? <PWBButton variant="ghost" onClick={() => setStep(step - 1)} iconLeft={<PWBIcon name="arrow-left" size={18} />}>Kembali</PWBButton> : <span />}
             {step < 2
               ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{step === 1 ? (selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket") : "Lanjut"}</PWBButton>
-              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
+              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
           </div>
         </PWBCard>
 

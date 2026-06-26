@@ -1,6 +1,6 @@
 /* Sponsorship kit — dedicated B2B flow for PWB 2026 sponsor packages */
 // Apps Script web app — data sponsor dicatat ke Google Sheet (tab "Sponsor").
-const SPONSOR_LOG_URL = "https://script.google.com/macros/s/AKfycbw1ACbJVfWDoOK5WZ0pnIg8_QorChSS3PL_3UaAO69e-mahMFScTderFqyM5zDXNjLYpA/exec";
+const SPONSOR_LOG_URL = "https://script.google.com/macros/s/AKfycby3guXKgk5xzvibr_0lPbN3asfFZNjmP2bgh8aW7ftzmvVxHFT4NfUVMxcF8D3c7uu2Cg/exec";
 const SStyles = {
   shell: { maxWidth: 1180, margin: "0 auto", padding: "28px var(--gutter) 64px", display: "grid", gridTemplateColumns: "1.6fr .85fr", gap: 28, alignItems: "start" },
 };

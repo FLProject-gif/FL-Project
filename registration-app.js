@@ -248,7 +248,7 @@ function App() {
   const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "-" + codeHash((form.email || "") + "|" + (form.wa || "") + "|" + (form.nama || ""));
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
   // Google Apps Script web app — tiap QR di-scan akan mencatat data peserta ke Google Sheet.
-  const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycbw1ACbJVfWDoOK5WZ0pnIg8_QorChSS3PL_3UaAO69e-mahMFScTderFqyM5zDXNjLYpA/exec";
+  const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycby3guXKgk5xzvibr_0lPbN3asfFZNjmP2bgh8aW7ftzmvVxHFT4NfUVMxcF8D3c7uu2Cg/exec";
   const qrPayload = SCAN_LOG_URL ? SCAN_LOG_URL + "?" + new URLSearchParams({
     id: ticketCode,
     nama: form.nama || "",

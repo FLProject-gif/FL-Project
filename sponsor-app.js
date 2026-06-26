@@ -2,7 +2,7 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Sponsorship kit — dedicated B2B flow for PWB 2026 sponsor packages */
 // Apps Script web app — data sponsor dicatat ke Google Sheet (tab "Sponsor").
-const SPONSOR_LOG_URL = "https://script.google.com/macros/s/AKfycbw1ACbJVfWDoOK5WZ0pnIg8_QorChSS3PL_3UaAO69e-mahMFScTderFqyM5zDXNjLYpA/exec";
+const SPONSOR_LOG_URL = "https://script.google.com/macros/s/AKfycby3guXKgk5xzvibr_0lPbN3asfFZNjmP2bgh8aW7ftzmvVxHFT4NfUVMxcF8D3c7uu2Cg/exec";
 const SStyles = {
   shell: {
     maxWidth: 1180,

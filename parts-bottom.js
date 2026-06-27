@@ -59,7 +59,7 @@ function TemaAcara() {
 }
 function Speakers() {
   // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
-  const people = [["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg"], ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg"], ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg"], ["Dian Aryanti", "CEO Ciomy", "speaker-dian.jpg"], ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg"]];
+  const people = [["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.jpg"], ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg"], ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg"], ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg"], ["Dian Aryanti", "CEO Ciomy", "speaker-dian.jpg"], ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg"], ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.jpg"], ["Adyhtia Pratama", "", "speaker-adyhtia.jpg"], ["Coach Dr Fahmi", "", "speaker-fahmi.jpg"], ["M Yusuf Supriadi", "", "speaker-yusuf.jpg"], ["Suhu Wan", "", "speaker-suhu-wan.jpg"]];
   return /*#__PURE__*/React.createElement("section", {
     id: "speaker",
     style: {
@@ -107,11 +107,11 @@ function Speakers() {
   }, people.map(([n, r, photo]) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
     key: n,
     name: n,
-    role: /*#__PURE__*/React.createElement("span", {
+    role: r ? /*#__PURE__*/React.createElement("span", {
       style: {
         color: "rgba(255,255,255,.78)"
       }
-    }, r),
+    }, r) : undefined,
     src: photo ? "assets/" + photo : undefined,
     initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
     size: 118

@@ -12,13 +12,6 @@ const RStyles = {
   }
 };
 const TICKETS = [{
-  id: "visitor",
-  name: "Visitor Pass",
-  price: "GRATIS",
-  icon: "ticket",
-  desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.",
-  note: "Explore the Event"
-}, {
   id: "growth",
   name: "Growth Pass",
   price: "Rp 50.000",
@@ -26,7 +19,19 @@ const TICKETS = [{
   desc: "Datang untuk belajar & berkembang bersama para praktisi.",
   note: "Accelerate Your Growth",
   href: "https://pwbekasi.com/login",
+  featured: true,
   benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"]
+}, {
+  id: "visitor",
+  name: "Visitor Pass",
+  price: "GRATIS",
+  icon: "ticket",
+  desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.",
+  note: "Explore the Event",
+  benefits: [{
+    text: "Tanpa benefit tambahan",
+    ok: false
+  }]
 }];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 // Isi link grup WhatsApp di sini untuk mengaktifkan tombolnya (kosong = tombol nonaktif).
@@ -143,8 +148,8 @@ function App() {
     kota: "",
     tanggal: ""
   });
-  const [sessions, setSessions] = React.useState(["Inspirasi Bisnis"]);
-  const steps = ["Pilih Tiket", "Data Diri", "E-Ticket"];
+  const [sessions, setSessions] = React.useState([]);
+  const steps = ["Pilih Tiket & Data", "E-Ticket"];
   const selected = TICKETS.find(t => t.id === ticket);
   const set = (k, v) => setForm(f => ({
     ...f,
@@ -158,17 +163,6 @@ function App() {
   const [regencies, setRegencies] = React.useState([]);
   const [provId, setProvId] = React.useState("");
   const [geoError, setGeoError] = React.useState(false);
-  React.useEffect(() => {
-    let ok = true;
-    fetch(GEO + "/provinces.json").then(r => r.json()).then(d => {
-      if (ok) setProvinces(d);
-    }).catch(() => {
-      if (ok) setGeoError(true);
-    });
-    return () => {
-      ok = false;
-    };
-  }, []);
   const onProvince = id => {
     setProvId(id);
     const p = provinces.find(x => String(x.id) === String(id));
@@ -185,7 +179,7 @@ function App() {
   const waValid = /^\d{8,15}$/.test(waDigits);
   const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
-  const canNext = step === 0 ? !!ticket : step === 1 ? form.nama && emailValid && waValid && form.provinsi && form.kota && form.tanggal : true;
+  const canNext = step === 0 ? !!ticket && form.nama && emailValid && waValid : true;
   const submitRegistration = () => {
     const payload = {
       "form-name": "pwb-registration",
@@ -227,7 +221,7 @@ function App() {
     } catch (e) {}
   };
   const handleNext = () => {
-    if (step === 1) {
+    if (step === 0) {
       submitRegistration();
       if (selected.href) {
         window.location.href = selected.href;
@@ -429,27 +423,45 @@ function App() {
     }
   }, TICKETS.map(t => {
     const on = ticket === t.id;
+    const feat = t.featured;
     return /*#__PURE__*/React.createElement("button", {
       key: t.id,
       onClick: () => setTicket(t.id),
       style: {
         display: "flex",
         alignItems: "flex-start",
-        gap: 16,
+        gap: feat ? 16 : 13,
         textAlign: "left",
         cursor: "pointer",
-        padding: "16px 18px",
+        position: "relative",
+        padding: feat ? "20px 20px" : "13px 15px",
         borderRadius: "var(--radius-lg)",
-        background: on ? "var(--pwb-blue-50)" : "#fff",
-        border: on ? "2px solid var(--pwb-blue-azure)" : "1.5px solid var(--border-subtle)",
+        background: feat ? "var(--pwb-blue-50)" : "#fff",
+        border: on ? "2px solid var(--pwb-blue-azure)" : feat ? "2px solid var(--pwb-blue-200)" : "1.5px solid var(--border-subtle)",
+        boxShadow: feat ? "var(--shadow-card)" : "none",
         transition: "all .2s"
       }
-    }, /*#__PURE__*/React.createElement(PWBIconCoin, {
-      tone: on ? "azure" : "soft",
-      size: 48
+    }, feat && /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "absolute",
+        top: -10,
+        left: 18,
+        background: "var(--pwb-gold)",
+        color: "#5A3A00",
+        fontFamily: "var(--font-sans)",
+        fontWeight: 800,
+        fontSize: ".66rem",
+        letterSpacing: ".03em",
+        padding: "3px 10px",
+        borderRadius: "var(--radius-pill)",
+        boxShadow: "var(--shadow-sm)"
+      }
+    }, "\u2605 PALING DIREKOMENDASIKAN"), /*#__PURE__*/React.createElement(PWBIconCoin, {
+      tone: feat || on ? "azure" : "soft",
+      size: feat ? 52 : 38
     }, /*#__PURE__*/React.createElement(PWBIcon, {
       name: t.icon,
-      size: 24
+      size: feat ? 26 : 20
     })), /*#__PURE__*/React.createElement("div", {
       style: {
         flex: 1
@@ -458,11 +470,12 @@ function App() {
       style: {
         display: "flex",
         alignItems: "center",
-        gap: 8
+        gap: 8,
+        flexWrap: "wrap"
       }
     }, /*#__PURE__*/React.createElement("strong", {
       style: {
-        fontSize: "1.02rem",
+        fontSize: feat ? "1.1rem" : ".95rem",
         color: "var(--text-heading)"
       }
     }, t.name), /*#__PURE__*/React.createElement(PWBBadge, {
@@ -470,56 +483,64 @@ function App() {
       size: "sm"
     }, t.note)), /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: ".86rem",
+        fontSize: feat ? ".88rem" : ".82rem",
         color: "var(--text-body)",
         marginTop: 3
       }
     }, t.desc), t.benefits && /*#__PURE__*/React.createElement("ul", {
       style: {
         listStyle: "none",
-        margin: "10px 0 0",
+        margin: feat ? "12px 0 0" : "8px 0 0",
         padding: 0,
         display: "flex",
         flexDirection: "column",
         gap: 6
       }
-    }, t.benefits.map((b, i) => /*#__PURE__*/React.createElement("li", {
-      key: i,
-      style: {
-        display: "flex",
-        gap: 8,
-        alignItems: "flex-start",
-        fontSize: ".82rem",
-        color: "var(--text-body)"
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        flex: "0 0 auto",
-        width: 18,
-        height: 18,
-        marginTop: 1,
-        borderRadius: "50%",
-        background: "var(--state-yes)",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: ".7rem",
-        fontWeight: 800
-      }
-    }, "\u2713"), /*#__PURE__*/React.createElement("span", null, b))))), /*#__PURE__*/React.createElement("span", {
+    }, t.benefits.map((b, i) => {
+      const okb = typeof b === "string" ? true : b.ok !== false;
+      const txt = typeof b === "string" ? b : b.text;
+      return /*#__PURE__*/React.createElement("li", {
+        key: i,
+        style: {
+          display: "flex",
+          gap: 8,
+          alignItems: "flex-start",
+          fontSize: ".82rem",
+          color: okb ? "var(--text-body)" : "var(--text-muted)"
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          flex: "0 0 auto",
+          width: 18,
+          height: 18,
+          marginTop: 1,
+          borderRadius: "50%",
+          background: okb ? "var(--state-yes)" : "var(--pwb-gray-300)",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: ".7rem",
+          fontWeight: 800
+        }
+      }, okb ? "✓" : "✕"), /*#__PURE__*/React.createElement("span", {
+        style: {
+          textDecoration: okb ? "none" : "line-through"
+        }
+      }, txt));
+    }))), /*#__PURE__*/React.createElement("span", {
       style: {
         fontFamily: "var(--font-display)",
         fontWeight: 700,
-        fontSize: "1.15rem",
+        fontSize: feat ? "1.25rem" : "1.05rem",
         color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)"
       }
     }, t.price));
-  }))), step === 1 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+  })), /*#__PURE__*/React.createElement("h3", {
     style: {
-      fontSize: "1.5rem",
+      fontSize: "1.15rem",
       fontWeight: 800,
-      margin: "0 0 18px",
+      margin: "28px 0 14px",
       color: "var(--text-heading)"
     }
   }, "Lengkapi data diri"), /*#__PURE__*/React.createElement("div", {
@@ -568,121 +589,7 @@ function App() {
     value: form.wa,
     onChange: e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, "")),
     placeholder: "0812 3456 7890"
-  })), geoError ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Field, {
-    label: "Provinsi *"
-  }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
-    value: form.provinsi,
-    onChange: e => set("provinsi", e.target.value),
-    placeholder: "Provinsi"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "Kota / Kabupaten *"
-  }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
-    value: form.kota,
-    onChange: e => set("kota", e.target.value),
-    placeholder: "Kota / Kabupaten"
-  }))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Field, {
-    label: "Provinsi *"
-  }, /*#__PURE__*/React.createElement("select", {
-    style: {
-      ...inputStyle,
-      cursor: "pointer"
-    },
-    value: provId,
-    onChange: e => onProvince(e.target.value)
-  }, /*#__PURE__*/React.createElement("option", {
-    value: ""
-  }, provinces.length ? "Pilih provinsi…" : "Memuat…"), provinces.map(p => /*#__PURE__*/React.createElement("option", {
-    key: p.id,
-    value: p.id
-  }, p.name)))), /*#__PURE__*/React.createElement(Field, {
-    label: "Kota / Kabupaten *"
-  }, /*#__PURE__*/React.createElement("select", {
-    style: {
-      ...inputStyle,
-      cursor: provId ? "pointer" : "not-allowed"
-    },
-    value: form.kota,
-    disabled: !provId,
-    onChange: e => set("kota", e.target.value)
-  }, /*#__PURE__*/React.createElement("option", {
-    value: ""
-  }, provId ? "Pilih kota/kabupaten…" : "Pilih provinsi dulu"), regencies.map(r => /*#__PURE__*/React.createElement("option", {
-    key: r.id,
-    value: r.name
-  }, r.name))))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      gridColumn: "1 / -1"
-    }
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Bidang Usaha / Profesi"
-  }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
-    value: form.usaha,
-    onChange: e => set("usaha", e.target.value),
-    placeholder: "F&B, Fashion, Mahasiswa\u2026"
-  }))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      gridColumn: "1 / -1"
-    }
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Rencana Tanggal Kedatangan *"
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "date",
-    min: "2026-07-27",
-    max: "2026-08-02",
-    style: {
-      ...inputStyle,
-      cursor: "pointer"
-    },
-    value: form.tanggal,
-    onChange: e => set("tanggal", e.target.value)
-  }), /*#__PURE__*/React.createElement("span", {
-    style: {
-      display: "block",
-      marginTop: 5,
-      fontSize: ".76rem",
-      color: "var(--text-muted)"
-    }
-  }, "Pilih tanggal antara 27 Juli \u2013 2 Agustus 2026 (durasi event).")))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 8
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      display: "block",
-      fontFamily: "var(--font-sans)",
-      fontWeight: 700,
-      fontSize: ".82rem",
-      color: "var(--text-heading)",
-      marginBottom: 10
-    }
-  }, "Sesi yang diminati"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      flexWrap: "wrap",
-      gap: 8
-    }
-  }, SESSIONS.map(s => {
-    const on = sessions.includes(s);
-    return /*#__PURE__*/React.createElement("button", {
-      key: s,
-      onClick: () => toggleSession(s),
-      style: {
-        cursor: "pointer",
-        padding: "8px 14px",
-        borderRadius: "var(--radius-pill)",
-        fontFamily: "var(--font-sans)",
-        fontWeight: 700,
-        fontSize: ".82rem",
-        border: "1.5px solid " + (on ? "var(--pwb-blue-azure)" : "var(--border-strong)"),
-        background: on ? "var(--pwb-blue-azure)" : "#fff",
-        color: on ? "#fff" : "var(--text-body)",
-        transition: "all .15s"
-      }
-    }, on ? "✓ " : "", s);
-  })))), step === 2 && /*#__PURE__*/React.createElement("div", {
+  })))), step === 1 && /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center"
     }
@@ -822,14 +729,7 @@ function App() {
       justifyContent: "space-between",
       marginTop: 30
     }
-  }, step > 0 && step < 2 ? /*#__PURE__*/React.createElement(PWBButton, {
-    variant: "ghost",
-    onClick: () => setStep(step - 1),
-    iconLeft: /*#__PURE__*/React.createElement(PWBIcon, {
-      name: "arrow-left",
-      size: 18
-    })
-  }, "Kembali") : /*#__PURE__*/React.createElement("span", null), step < 2 ? /*#__PURE__*/React.createElement(PWBButton, {
+  }, /*#__PURE__*/React.createElement("span", null), step < 1 ? /*#__PURE__*/React.createElement(PWBButton, {
     variant: "primary",
     disabled: !canNext,
     onClick: handleNext,
@@ -837,7 +737,7 @@ function App() {
       name: "arrow-right",
       size: 18
     })
-  }, step === 1 ? selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket" : "Lanjut") : /*#__PURE__*/React.createElement(PWBButton, {
+  }, selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket") : /*#__PURE__*/React.createElement(PWBButton, {
     variant: "accent",
     onClick: () => {
       setStep(0);
@@ -907,9 +807,6 @@ function App() {
   }), /*#__PURE__*/React.createElement(Row, {
     label: "Lokasi",
     value: "Pakuwon Mall Bekasi"
-  }), /*#__PURE__*/React.createElement(Row, {
-    label: "Sesi dipilih",
-    value: `${sessions.length} sesi`
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       height: 1,

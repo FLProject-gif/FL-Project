@@ -1,6 +1,6 @@
 # Cache static assets so navigating between pages doesn't re-fetch them.
 /assets/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600
 /*.css
   Cache-Control: public, max-age=3600
 /*.js

@@ -46,7 +46,7 @@ function Hero({ onRegister }) {
         <div>
           <span className="pwb-pill-gold" style={{ fontSize: ".95rem" }}><PWBIcon name="calendar-days" size={18} /> 27 Juli – 2 Agustus 2026 · Pakuwon Mall Bekasi</span>
           <h1 style={{ fontFamily: "var(--font-sans)", fontWeight: 800, color: "#fff", fontSize: "clamp(2.4rem,4.6vw,3.7rem)", lineHeight: 1.04, letterSpacing: "-.02em", margin: "22px 0 0" }}>
-            Festival Wirausaha Terbesar di <span style={{ color: "var(--pwb-gold)" }}>Planet Bekasi</span>
+            Festival Wirausaha Terbesar di <span style={{ color: "var(--pwb-gold)" }}>Bekasi</span>
           </h1>
           <p style={{ color: "rgba(255,255,255,.92)", fontSize: "1.15rem", lineHeight: 1.55, maxWidth: 520, margin: "20px 0 28px" }}>
             Tujuh hari perayaan komunitas Tangan Di Atas — titik temu ribuan UMKM, mentor bisnis, dan investor. Bukan sekadar bazar. Mari tumbuh bersama.
@@ -67,7 +67,7 @@ function Hero({ onRegister }) {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-2xl)", padding: "22px 20px 24px", boxShadow: "0 30px 70px rgba(0,40,120,.4)", textAlign: "center", maxWidth: 380, width: "100%" }}>
             <img src="assets/logo-badges-strip-blue.png" alt="TDA Bekasi · To The Next Level · 2 Dekade" style={{ width: "100%", maxWidth: 300, height: "auto", margin: "0 auto 14px", display: "block" }} />
-            <img src="assets/logo-pwb-rocket-blue.png" alt="Pesta Wirausaha Planet Bekasi 2026" style={{ width: "100%", maxWidth: 280, height: "auto", display: "block", margin: "0 auto" }} />
+            <img src="assets/logo-pwb-rocket-blue.png" alt="Pesta Wirausaha Bekasi 2026" style={{ width: "100%", maxWidth: 280, height: "auto", display: "block", margin: "0 auto" }} />
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@ function KenapaHadir() {
     <section style={{ background: "var(--pwb-cloud)" }} className="pwb-topo">
       <div style={LStyles.section}>
         <PWBSectionHeader runhead eyebrow="Why Attend" title="Solusi Ekosistem untuk Pertumbuhan Eksponensial"
-          desc="Kami rancang Pesta Wirausaha Planet Bekasi 2026 sebagai katalis nyata untuk mendorong bisnis Anda melampaui batas." />
+          desc="Kami rancang Pesta Wirausaha Bekasi 2026 sebagai katalis nyata untuk mendorong bisnis Anda melampaui batas." />
         <div style={{ ...LStyles.grid4, marginTop: 44 }}>
           {items.map(([ic, t, d]) => (
             <div key={t} style={{ textAlign: "center" }}>

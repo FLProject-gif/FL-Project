@@ -133,7 +133,7 @@ function SponsorAppMain() {
   const waHref = () => {
     const lines = [
       "Halo TDA Bekasi 👋",
-      "Saya ingin mendaftar sponsor *Pesta Wirausaha Planet Bekasi 2026*.",
+      "Saya ingin mendaftar sponsor *Pesta Wirausaha Bekasi 2026*.",
       "",
       "*Paket:* " + selected.tier + " (" + selected.price + ")",
       "*Perusahaan:* " + (form.perusahaan || "-"),

@@ -133,7 +133,7 @@ function Kolaborasi() {
     <section id="kolaborasi" style={{ background: "var(--pwb-cloud)" }} className="pwb-topo">
       <div style={LBStyles.section}>
         <PWBSectionHeader runhead align="center" eyebrow="Kolaborasi Komunitas" title="Didukung Komunitas &amp; Mitra"
-          desc="Pesta Wirausaha Planet Bekasi 2026 terselenggara bersama jejaring komunitas pengusaha &amp; mitra strategis di Bekasi dan sekitarnya." />
+          desc="Pesta Wirausaha Bekasi 2026 terselenggara bersama jejaring komunitas pengusaha &amp; mitra strategis di Bekasi dan sekitarnya." />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%," + (isMobile ? "130px" : "150px") + "),1fr))", gap: 24, marginTop: 44, justifyItems: "center" }}>
           {partners.map(([name, logo]) => (
             <div key={name} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%", maxWidth: 170 }}>
@@ -231,7 +231,7 @@ function Footer() {
       </div>
       <div style={{ maxWidth: 1280, margin: "32px auto 0", paddingTop: 20, borderTop: "1px solid rgba(255,255,255,.12)", fontSize: ".8rem", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
         <span>© 2026 Komunitas Tangan Di Atas (TDA) Bekasi. All rights reserved.</span>
-        <span>Pesta Wirausaha Planet Bekasi 2026 · Let's Grow Together</span>
+        <span>Pesta Wirausaha Bekasi 2026 · Let's Grow Together</span>
       </div>
     </footer>
   );

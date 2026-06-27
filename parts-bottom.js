@@ -303,7 +303,7 @@ function Kolaborasi() {
     align: "center",
     eyebrow: "Kolaborasi Komunitas",
     title: "Didukung Komunitas & Mitra",
-    desc: "Pesta Wirausaha Planet Bekasi 2026 terselenggara bersama jejaring komunitas pengusaha & mitra strategis di Bekasi dan sekitarnya."
+    desc: "Pesta Wirausaha Bekasi 2026 terselenggara bersama jejaring komunitas pengusaha & mitra strategis di Bekasi dan sekitarnya."
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
@@ -613,7 +613,7 @@ function Footer() {
       flexWrap: "wrap",
       gap: 8
     }
-  }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 Komunitas Tangan Di Atas (TDA) Bekasi. All rights reserved."), /*#__PURE__*/React.createElement("span", null, "Pesta Wirausaha Planet Bekasi 2026 \xB7 Let's Grow Together")));
+  }, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 Komunitas Tangan Di Atas (TDA) Bekasi. All rights reserved."), /*#__PURE__*/React.createElement("span", null, "Pesta Wirausaha Bekasi 2026 \xB7 Let's Grow Together")));
 }
 Object.assign(window, {
   LTemaAcara: TemaAcara,

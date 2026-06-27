@@ -27,13 +27,13 @@ function TemaAcara() {
 }
 
 function Speakers() {
+  // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
   const people = [
-    ["Sandiaga S. Uno", "Tokoh Nasional · Motivasi"],
-    ["M Fajrin Rasyid", "Co-Founder Bukalapak"],
-    ["Kilala Tilaar", "CEO Martha Tilaar Group"],
-    ["Ben Wirawan", "Founder Torch.id"],
-    ["Dian Aryanti", "CEO Ciomy"],
-    ["M. Hadiyatuloh", "Founder Brighty"],
+    ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg"],
+    ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg"],
+    ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg"],
+    ["Dian Aryanti", "CEO Ciomy", "speaker-dian.jpg"],
+    ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg"],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>
@@ -42,8 +42,8 @@ function Speakers() {
         <div className="pwb-eyebrow" style={{ color: "var(--pwb-gold)", marginBottom: 12 }}>Rundown Puncak Acara</div>
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "var(--fs-h1)", letterSpacing: "-.02em", margin: 0, maxWidth: 620 }}>Belajar Langsung dari Para Praktisi & Tokoh</h2>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 28, marginTop: 44, justifyContent: "center" }}>
-          {people.map(([n, r]) => (
-            <PWBSpeakerCard key={n} name={n} role={<span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span>} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={118} />
+          {people.map(([n, r, photo]) => (
+            <PWBSpeakerCard key={n} name={n} role={<span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span>} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={118} />
           ))}
         </div>
         <p style={{ textAlign: "center", color: "rgba(255,255,255,.6)", fontSize: ".82rem", marginTop: 32 }}>*) Sebagian pembicara masih dalam konfirmasi</p>

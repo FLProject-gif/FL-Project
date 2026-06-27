@@ -65,9 +65,9 @@ function Hero({ onRegister }) {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-2xl)", padding: "20px 16px 8px", boxShadow: "0 30px 70px rgba(0,40,120,.4)", textAlign: "center", maxWidth: 440, width: "100%" }}>
-            <img src="assets/logo-badges-strip-blue.png" alt="TDA Bekasi · To The Next Level · 2 Dekade" style={{ width: "100%", maxWidth: 320, height: "auto", marginBottom: 6 }} />
-            <img src="assets/logo-pwb-rocket-blue.png" alt="Pesta Wirausaha Planet Bekasi 2026" style={{ width: "100%", display: "block" }} />
+          <div style={{ background: "var(--pwb-blue-royal)", borderRadius: "var(--radius-2xl)", padding: "22px 20px 24px", boxShadow: "0 30px 70px rgba(0,40,120,.4)", textAlign: "center", maxWidth: 380, width: "100%" }}>
+            <img src="assets/logo-badges-strip-blue.png" alt="TDA Bekasi · To The Next Level · 2 Dekade" style={{ width: "100%", maxWidth: 300, height: "auto", margin: "0 auto 14px", display: "block" }} />
+            <img src="assets/logo-pwb-rocket-blue.png" alt="Pesta Wirausaha Planet Bekasi 2026" style={{ width: "100%", maxWidth: 280, height: "auto", display: "block", margin: "0 auto" }} />
           </div>
         </div>
       </div>

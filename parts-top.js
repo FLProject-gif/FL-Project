@@ -220,10 +220,10 @@ function Hero({
     style: {
       background: "var(--pwb-blue-royal)",
       borderRadius: "var(--radius-2xl)",
-      padding: "20px 16px 8px",
+      padding: "22px 20px 24px",
       boxShadow: "0 30px 70px rgba(0,40,120,.4)",
       textAlign: "center",
-      maxWidth: 440,
+      maxWidth: 380,
       width: "100%"
     }
   }, /*#__PURE__*/React.createElement("img", {
@@ -231,16 +231,20 @@ function Hero({
     alt: "TDA Bekasi \xB7 To The Next Level \xB7 2 Dekade",
     style: {
       width: "100%",
-      maxWidth: 320,
+      maxWidth: 300,
       height: "auto",
-      marginBottom: 6
+      margin: "0 auto 14px",
+      display: "block"
     }
   }), /*#__PURE__*/React.createElement("img", {
     src: "assets/logo-pwb-rocket-blue.png",
     alt: "Pesta Wirausaha Planet Bekasi 2026",
     style: {
       width: "100%",
-      display: "block"
+      maxWidth: 280,
+      height: "auto",
+      display: "block",
+      margin: "0 auto"
     }
   })))));
 }

@@ -4,8 +4,8 @@ const RStyles = {
 };
 
 const TICKETS = [
-  { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event" },
-  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
+  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", featured: true, benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
+  { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event", benefits: [{ text: "Tanpa benefit tambahan", ok: false }] },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 // Isi link grup WhatsApp di sini untuk mengaktifkan tombolnya (kosong = tombol nonaktif).
@@ -203,31 +203,39 @@ function App() {
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {TICKETS.map(t => {
                   const on = ticket === t.id;
+                  const feat = t.featured;
                   return (
                     <button key={t.id} onClick={() => setTicket(t.id)} style={{
-                      display: "flex", alignItems: "flex-start", gap: 16, textAlign: "left", cursor: "pointer",
-                      padding: "16px 18px", borderRadius: "var(--radius-lg)", background: on ? "var(--pwb-blue-50)" : "#fff",
-                      border: on ? "2px solid var(--pwb-blue-azure)" : "1.5px solid var(--border-subtle)", transition: "all .2s",
+                      display: "flex", alignItems: "flex-start", gap: feat ? 16 : 13, textAlign: "left", cursor: "pointer", position: "relative",
+                      padding: feat ? "20px 20px" : "13px 15px", borderRadius: "var(--radius-lg)",
+                      background: feat ? "var(--pwb-blue-50)" : "#fff",
+                      border: on ? "2px solid var(--pwb-blue-azure)" : feat ? "2px solid var(--pwb-blue-200)" : "1.5px solid var(--border-subtle)",
+                      boxShadow: feat ? "var(--shadow-card)" : "none", transition: "all .2s",
                     }}>
-                      <PWBIconCoin tone={on ? "azure" : "soft"} size={48}><PWBIcon name={t.icon} size={24} /></PWBIconCoin>
+                      {feat && <span style={{ position: "absolute", top: -10, left: 18, background: "var(--pwb-gold)", color: "#5A3A00", fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: ".66rem", letterSpacing: ".03em", padding: "3px 10px", borderRadius: "var(--radius-pill)", boxShadow: "var(--shadow-sm)" }}>★ PALING DIREKOMENDASIKAN</span>}
+                      <PWBIconCoin tone={feat || on ? "azure" : "soft"} size={feat ? 52 : 38}><PWBIcon name={t.icon} size={feat ? 26 : 20} /></PWBIconCoin>
                       <div style={{ flex: 1 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                          <strong style={{ fontSize: "1.02rem", color: "var(--text-heading)" }}>{t.name}</strong>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                          <strong style={{ fontSize: feat ? "1.1rem" : ".95rem", color: "var(--text-heading)" }}>{t.name}</strong>
                           <PWBBadge tone="neutral" size="sm">{t.note}</PWBBadge>
                         </div>
-                        <div style={{ fontSize: ".86rem", color: "var(--text-body)", marginTop: 3 }}>{t.desc}</div>
+                        <div style={{ fontSize: feat ? ".88rem" : ".82rem", color: "var(--text-body)", marginTop: 3 }}>{t.desc}</div>
                         {t.benefits && (
-                          <ul style={{ listStyle: "none", margin: "10px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
-                            {t.benefits.map((b, i) => (
-                              <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: ".82rem", color: "var(--text-body)" }}>
-                                <span style={{ flex: "0 0 auto", width: 18, height: 18, marginTop: 1, borderRadius: "50%", background: "var(--state-yes)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".7rem", fontWeight: 800 }}>✓</span>
-                                <span>{b}</span>
-                              </li>
-                            ))}
+                          <ul style={{ listStyle: "none", margin: feat ? "12px 0 0" : "8px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                            {t.benefits.map((b, i) => {
+                              const okb = typeof b === "string" ? true : b.ok !== false;
+                              const txt = typeof b === "string" ? b : b.text;
+                              return (
+                                <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: ".82rem", color: okb ? "var(--text-body)" : "var(--text-muted)" }}>
+                                  <span style={{ flex: "0 0 auto", width: 18, height: 18, marginTop: 1, borderRadius: "50%", background: okb ? "var(--state-yes)" : "var(--pwb-gray-300)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".7rem", fontWeight: 800 }}>{okb ? "✓" : "✕"}</span>
+                                  <span style={{ textDecoration: okb ? "none" : "line-through" }}>{txt}</span>
+                                </li>
+                              );
+                            })}
                           </ul>
                         )}
                       </div>
-                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.15rem", color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)" }}>{t.price}</span>
+                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: feat ? "1.25rem" : "1.05rem", color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)" }}>{t.price}</span>
                     </button>
                   );
                 })}

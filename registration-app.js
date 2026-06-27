@@ -12,13 +12,6 @@ const RStyles = {
   }
 };
 const TICKETS = [{
-  id: "visitor",
-  name: "Visitor Pass",
-  price: "GRATIS",
-  icon: "ticket",
-  desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.",
-  note: "Explore the Event"
-}, {
   id: "growth",
   name: "Growth Pass",
   price: "Rp 50.000",
@@ -26,7 +19,19 @@ const TICKETS = [{
   desc: "Datang untuk belajar & berkembang bersama para praktisi.",
   note: "Accelerate Your Growth",
   href: "https://pwbekasi.com/login",
+  featured: true,
   benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"]
+}, {
+  id: "visitor",
+  name: "Visitor Pass",
+  price: "GRATIS",
+  icon: "ticket",
+  desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.",
+  note: "Explore the Event",
+  benefits: [{
+    text: "Tanpa benefit tambahan",
+    ok: false
+  }]
 }];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 // Isi link grup WhatsApp di sini untuk mengaktifkan tombolnya (kosong = tombol nonaktif).
@@ -418,27 +423,45 @@ function App() {
     }
   }, TICKETS.map(t => {
     const on = ticket === t.id;
+    const feat = t.featured;
     return /*#__PURE__*/React.createElement("button", {
       key: t.id,
       onClick: () => setTicket(t.id),
       style: {
         display: "flex",
         alignItems: "flex-start",
-        gap: 16,
+        gap: feat ? 16 : 13,
         textAlign: "left",
         cursor: "pointer",
-        padding: "16px 18px",
+        position: "relative",
+        padding: feat ? "20px 20px" : "13px 15px",
         borderRadius: "var(--radius-lg)",
-        background: on ? "var(--pwb-blue-50)" : "#fff",
-        border: on ? "2px solid var(--pwb-blue-azure)" : "1.5px solid var(--border-subtle)",
+        background: feat ? "var(--pwb-blue-50)" : "#fff",
+        border: on ? "2px solid var(--pwb-blue-azure)" : feat ? "2px solid var(--pwb-blue-200)" : "1.5px solid var(--border-subtle)",
+        boxShadow: feat ? "var(--shadow-card)" : "none",
         transition: "all .2s"
       }
-    }, /*#__PURE__*/React.createElement(PWBIconCoin, {
-      tone: on ? "azure" : "soft",
-      size: 48
+    }, feat && /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "absolute",
+        top: -10,
+        left: 18,
+        background: "var(--pwb-gold)",
+        color: "#5A3A00",
+        fontFamily: "var(--font-sans)",
+        fontWeight: 800,
+        fontSize: ".66rem",
+        letterSpacing: ".03em",
+        padding: "3px 10px",
+        borderRadius: "var(--radius-pill)",
+        boxShadow: "var(--shadow-sm)"
+      }
+    }, "\u2605 PALING DIREKOMENDASIKAN"), /*#__PURE__*/React.createElement(PWBIconCoin, {
+      tone: feat || on ? "azure" : "soft",
+      size: feat ? 52 : 38
     }, /*#__PURE__*/React.createElement(PWBIcon, {
       name: t.icon,
-      size: 24
+      size: feat ? 26 : 20
     })), /*#__PURE__*/React.createElement("div", {
       style: {
         flex: 1
@@ -447,11 +470,12 @@ function App() {
       style: {
         display: "flex",
         alignItems: "center",
-        gap: 8
+        gap: 8,
+        flexWrap: "wrap"
       }
     }, /*#__PURE__*/React.createElement("strong", {
       style: {
-        fontSize: "1.02rem",
+        fontSize: feat ? "1.1rem" : ".95rem",
         color: "var(--text-heading)"
       }
     }, t.name), /*#__PURE__*/React.createElement(PWBBadge, {
@@ -459,48 +483,56 @@ function App() {
       size: "sm"
     }, t.note)), /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: ".86rem",
+        fontSize: feat ? ".88rem" : ".82rem",
         color: "var(--text-body)",
         marginTop: 3
       }
     }, t.desc), t.benefits && /*#__PURE__*/React.createElement("ul", {
       style: {
         listStyle: "none",
-        margin: "10px 0 0",
+        margin: feat ? "12px 0 0" : "8px 0 0",
         padding: 0,
         display: "flex",
         flexDirection: "column",
         gap: 6
       }
-    }, t.benefits.map((b, i) => /*#__PURE__*/React.createElement("li", {
-      key: i,
-      style: {
-        display: "flex",
-        gap: 8,
-        alignItems: "flex-start",
-        fontSize: ".82rem",
-        color: "var(--text-body)"
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        flex: "0 0 auto",
-        width: 18,
-        height: 18,
-        marginTop: 1,
-        borderRadius: "50%",
-        background: "var(--state-yes)",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: ".7rem",
-        fontWeight: 800
-      }
-    }, "\u2713"), /*#__PURE__*/React.createElement("span", null, b))))), /*#__PURE__*/React.createElement("span", {
+    }, t.benefits.map((b, i) => {
+      const okb = typeof b === "string" ? true : b.ok !== false;
+      const txt = typeof b === "string" ? b : b.text;
+      return /*#__PURE__*/React.createElement("li", {
+        key: i,
+        style: {
+          display: "flex",
+          gap: 8,
+          alignItems: "flex-start",
+          fontSize: ".82rem",
+          color: okb ? "var(--text-body)" : "var(--text-muted)"
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          flex: "0 0 auto",
+          width: 18,
+          height: 18,
+          marginTop: 1,
+          borderRadius: "50%",
+          background: okb ? "var(--state-yes)" : "var(--pwb-gray-300)",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: ".7rem",
+          fontWeight: 800
+        }
+      }, okb ? "✓" : "✕"), /*#__PURE__*/React.createElement("span", {
+        style: {
+          textDecoration: okb ? "none" : "line-through"
+        }
+      }, txt));
+    }))), /*#__PURE__*/React.createElement("span", {
       style: {
         fontFamily: "var(--font-display)",
         fontWeight: 700,
-        fontSize: "1.15rem",
+        fontSize: feat ? "1.25rem" : "1.05rem",
         color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)"
       }
     }, t.price));

@@ -213,7 +213,7 @@ function Hero({
     }
   }, l))))), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "flex",
+      display: isMobile ? "none" : "flex",
       justifyContent: "center"
     }
   }, /*#__PURE__*/React.createElement("div", {

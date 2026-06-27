@@ -159,7 +159,7 @@ function Hero({
     style: {
       color: "var(--pwb-gold)"
     }
-  }, "Planet Bekasi")), /*#__PURE__*/React.createElement("p", {
+  }, "Bekasi")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "rgba(255,255,255,.92)",
       fontSize: "1.15rem",
@@ -238,7 +238,7 @@ function Hero({
     }
   }), /*#__PURE__*/React.createElement("img", {
     src: "assets/logo-pwb-rocket-blue.png",
-    alt: "Pesta Wirausaha Planet Bekasi 2026",
+    alt: "Pesta Wirausaha Bekasi 2026",
     style: {
       width: "100%",
       maxWidth: 280,
@@ -336,7 +336,7 @@ function KenapaHadir() {
     runhead: true,
     eyebrow: "Why Attend",
     title: "Solusi Ekosistem untuk Pertumbuhan Eksponensial",
-    desc: "Kami rancang Pesta Wirausaha Planet Bekasi 2026 sebagai katalis nyata untuk mendorong bisnis Anda melampaui batas."
+    desc: "Kami rancang Pesta Wirausaha Bekasi 2026 sebagai katalis nyata untuk mendorong bisnis Anda melampaui batas."
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       ...LStyles.grid4,

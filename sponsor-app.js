@@ -287,7 +287,7 @@ function SponsorAppMain() {
   const ref = "#SPS26-" + (form.perusahaan || "MITRA").replace(/[^A-Za-z0-9]/g, "").slice(0, 4).toUpperCase() + "07";
   const WA_PANITIA = "6283856665556"; // +62 838 5666 5556
   const waHref = () => {
-    const lines = ["Halo TDA Bekasi 👋", "Saya ingin mendaftar sponsor *Pesta Wirausaha Planet Bekasi 2026*.", "", "*Paket:* " + selected.tier + " (" + selected.price + ")", "*Perusahaan:* " + (form.perusahaan || "-"), "*PIC:* " + (form.pic || "-") + (form.jabatan ? " (" + form.jabatan + ")" : ""), "*Email:* " + (form.email || "-"), "*WhatsApp:* " + (form.wa || "-"), "*Lokasi:* " + [form.kota, form.provinsi].filter(Boolean).join(", "), "*Website/IG:* " + (form.web || "-"), "*Catatan:* " + (form.catatan || "-"), "*Ref:* " + ref];
+    const lines = ["Halo TDA Bekasi 👋", "Saya ingin mendaftar sponsor *Pesta Wirausaha Bekasi 2026*.", "", "*Paket:* " + selected.tier + " (" + selected.price + ")", "*Perusahaan:* " + (form.perusahaan || "-"), "*PIC:* " + (form.pic || "-") + (form.jabatan ? " (" + form.jabatan + ")" : ""), "*Email:* " + (form.email || "-"), "*WhatsApp:* " + (form.wa || "-"), "*Lokasi:* " + [form.kota, form.provinsi].filter(Boolean).join(", "), "*Website/IG:* " + (form.web || "-"), "*Catatan:* " + (form.catatan || "-"), "*Ref:* " + ref];
     return "https://wa.me/" + WA_PANITIA + "?text=" + encodeURIComponent(lines.join("\n"));
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("header", {

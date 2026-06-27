@@ -138,7 +138,7 @@ function App() {
   useLucide();
   const isMobile = useIsMobile();
   const [step, setStep] = React.useState(0);
-  const [ticket, setTicket] = React.useState("visitor");
+  const [ticket, setTicket] = React.useState("growth");
   const [form, setForm] = React.useState({
     nama: "",
     email: "",
@@ -406,7 +406,60 @@ function App() {
     style: {
       fontSize: "1.5rem",
       fontWeight: 800,
-      margin: "0 0 6px",
+      margin: "0 0 16px",
+      color: "var(--text-heading)"
+    }
+  }, "Lengkapi data diri"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: "0 18px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridColumn: "1 / -1"
+    }
+  }, /*#__PURE__*/React.createElement(Field, {
+    label: "Nama Lengkap *"
+  }, /*#__PURE__*/React.createElement("input", {
+    style: inputStyle,
+    value: form.nama,
+    onChange: e => set("nama", e.target.value),
+    placeholder: "Nama Anda"
+  }))), /*#__PURE__*/React.createElement(Field, {
+    label: "Email *",
+    error: emailErr
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "email",
+    style: {
+      ...inputStyle,
+      ...(emailErr ? {
+        border: "1.5px solid var(--pwb-red)"
+      } : {})
+    },
+    value: form.email,
+    onChange: e => set("email", e.target.value),
+    placeholder: "nama@gmail.com"
+  })), /*#__PURE__*/React.createElement(Field, {
+    label: "No. WhatsApp *",
+    error: waErr
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "tel",
+    inputMode: "numeric",
+    style: {
+      ...inputStyle,
+      ...(waErr ? {
+        border: "1.5px solid var(--pwb-red)"
+      } : {})
+    },
+    value: form.wa,
+    onChange: e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, "")),
+    placeholder: "0812 3456 7890"
+  }))), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      fontSize: "1.15rem",
+      fontWeight: 800,
+      margin: "26px 0 6px",
       color: "var(--text-heading)"
     }
   }, "Pilih jenis tiket Anda"), /*#__PURE__*/React.createElement("p", {
@@ -536,60 +589,7 @@ function App() {
         color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)"
       }
     }, t.price));
-  })), /*#__PURE__*/React.createElement("h3", {
-    style: {
-      fontSize: "1.15rem",
-      fontWeight: 800,
-      margin: "28px 0 14px",
-      color: "var(--text-heading)"
-    }
-  }, "Lengkapi data diri"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-      gap: "0 18px"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      gridColumn: "1 / -1"
-    }
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Nama Lengkap *"
-  }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
-    value: form.nama,
-    onChange: e => set("nama", e.target.value),
-    placeholder: "Nama Anda"
-  }))), /*#__PURE__*/React.createElement(Field, {
-    label: "Email *",
-    error: emailErr
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "email",
-    style: {
-      ...inputStyle,
-      ...(emailErr ? {
-        border: "1.5px solid var(--pwb-red)"
-      } : {})
-    },
-    value: form.email,
-    onChange: e => set("email", e.target.value),
-    placeholder: "nama@gmail.com"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "No. WhatsApp *",
-    error: waErr
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "tel",
-    inputMode: "numeric",
-    style: {
-      ...inputStyle,
-      ...(waErr ? {
-        border: "1.5px solid var(--pwb-red)"
-      } : {})
-    },
-    value: form.wa,
-    onChange: e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, "")),
-    placeholder: "0812 3456 7890"
-  })))), step === 1 && /*#__PURE__*/React.createElement("div", {
+  }))), step === 1 && /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center"
     }
@@ -741,6 +741,7 @@ function App() {
     variant: "accent",
     onClick: () => {
       setStep(0);
+      setTicket("growth");
       setForm({
         nama: "",
         email: "",

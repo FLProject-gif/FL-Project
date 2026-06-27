@@ -51,7 +51,7 @@ function App() {
   useLucide();
   const isMobile = useIsMobile();
   const [step, setStep] = React.useState(0);
-  const [ticket, setTicket] = React.useState("visitor");
+  const [ticket, setTicket] = React.useState("growth");
   const [form, setForm] = React.useState({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" });
   const [sessions, setSessions] = React.useState([]);
   const steps = ["Pilih Tiket & Data", "E-Ticket"];
@@ -198,7 +198,13 @@ function App() {
 
           {step === 0 && (
             <div>
-              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 6px", color: "var(--text-heading)" }}>Pilih jenis tiket Anda</h2>
+              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 16px", color: "var(--text-heading)" }}>Lengkapi data diri</h2>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0 18px" }}>
+                <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
+                <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
+                <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
+              </div>
+              <h3 style={{ fontSize: "1.15rem", fontWeight: 800, margin: "26px 0 6px", color: "var(--text-heading)" }}>Pilih jenis tiket Anda</h3>
               <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Pilih tiket sesuai kebutuhan Anda — datang menikmati acara, atau ikut belajar &amp; berkembang.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {TICKETS.map(t => {
@@ -240,13 +246,6 @@ function App() {
                   );
                 })}
               </div>
-
-              <h3 style={{ fontSize: "1.15rem", fontWeight: 800, margin: "28px 0 14px", color: "var(--text-heading)" }}>Lengkapi data diri</h3>
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0 18px" }}>
-                <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
-                <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
-                <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
-              </div>
             </div>
           )}
 
@@ -280,7 +279,7 @@ function App() {
             <span />
             {step < 1
               ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket"}</PWBButton>
-              : <PWBButton variant="accent" onClick={() => { setStep(0); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
+              : <PWBButton variant="accent" onClick={() => { setStep(0); setTicket("growth"); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
           </div>
         </PWBCard>
 

@@ -58,7 +58,8 @@ function TemaAcara() {
   }, d)))));
 }
 function Speakers() {
-  const people = [["Sandiaga S. Uno", "Tokoh Nasional · Motivasi"], ["M Fajrin Rasyid", "Co-Founder Bukalapak"], ["Kilala Tilaar", "CEO Martha Tilaar Group"], ["Ben Wirawan", "Founder Torch.id"], ["Dian Aryanti", "CEO Ciomy"], ["M. Hadiyatuloh", "Founder Brighty"]];
+  // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
+  const people = [["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg"], ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg"], ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg"], ["Dian Aryanti", "CEO Ciomy", "speaker-dian.jpg"], ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg"]];
   return /*#__PURE__*/React.createElement("section", {
     id: "speaker",
     style: {
@@ -103,7 +104,7 @@ function Speakers() {
       marginTop: 44,
       justifyContent: "center"
     }
-  }, people.map(([n, r]) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
+  }, people.map(([n, r, photo]) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
     key: n,
     name: n,
     role: /*#__PURE__*/React.createElement("span", {
@@ -111,6 +112,7 @@ function Speakers() {
         color: "rgba(255,255,255,.78)"
       }
     }, r),
+    src: photo ? "assets/" + photo : undefined,
     initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
     size: 118
   }))), /*#__PURE__*/React.createElement("p", {

@@ -411,14 +411,13 @@ function Avatar({
     role: "img",
     "aria-label": alt || initial,
     style: {
+      position: "relative",
+      overflow: "hidden",
       width: size,
       height: size,
       flex: "0 0 auto",
       borderRadius: "var(--radius-pill)",
-      background: src ? "#fff" : "var(--pwb-blue-50)",
-      backgroundImage: src ? `url(${src})` : undefined,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
+      background: "var(--pwb-blue-50)",
       boxShadow: rings[ring],
       display: "flex",
       alignItems: "center",
@@ -429,7 +428,20 @@ function Avatar({
       fontSize: size * .42,
       ...style
     }
-  }, rest), !src && initial);
+  }, rest), initial, src && /*#__PURE__*/React.createElement("img", {
+    src: src,
+    alt: alt,
+    onError: e => {
+      e.currentTarget.style.display = "none";
+    },
+    style: {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      objectFit: "cover"
+    }
+  }));
 }
 function SpeakerCard({
   name,

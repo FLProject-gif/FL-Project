@@ -231,7 +231,7 @@ function Hero({
     alt: "TDA Bekasi \xB7 To The Next Level \xB7 2 Dekade",
     style: {
       width: "100%",
-      maxWidth: 300,
+      maxWidth: 280,
       height: "auto",
       margin: "0 auto 14px",
       display: "block"

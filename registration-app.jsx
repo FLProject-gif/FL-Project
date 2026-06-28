@@ -5,7 +5,7 @@ const RStyles = {
 
 const TICKETS = [
   { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", featured: true, benefits: ["Akses rekaman seluruh materi, selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
-  { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event", benefits: [{ text: "Tanpa benefit tambahan", ok: false }] },
+  { id: "visitor", name: "Visitor Pass", price: "", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event", benefits: [{ text: "Tanpa benefit tambahan", ok: false }] },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 // Isi link grup WhatsApp di sini untuk mengaktifkan tombolnya (kosong = tombol nonaktif).
@@ -77,7 +77,7 @@ function App() {
   const waValid = /^\d{8,15}$/.test(waDigits);
   const emailErr = form.email && !emailValid ? "Email tidak valid, gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
-  const canNext = step === 0 ? (!!ticket && form.nama && emailValid && waValid) : true;
+  const canNext = step === 0 ? (!!ticket && (ticket !== "visitor" || (form.nama && emailValid && waValid))) : true;
 
   const submitRegistration = () => {
     const payload = {
@@ -103,8 +103,8 @@ function App() {
   };
   const handleNext = () => {
     if (step === 0) {
-      submitRegistration();
       if (selected.href) { window.location.href = selected.href; return; }
+      submitRegistration();
     }
     setStep(step + 1);
   };
@@ -198,13 +198,7 @@ function App() {
 
           {step === 0 && (
             <div>
-              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 16px", color: "var(--text-heading)" }}>Lengkapi data diri</h2>
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0 18px" }}>
-                <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
-                <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
-                <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
-              </div>
-              <h3 style={{ fontSize: "1.15rem", fontWeight: 800, margin: "26px 0 6px", color: "var(--text-heading)" }}>Pilih jenis tiket Anda</h3>
+              <h2 style={{ fontSize: "1.5rem", fontWeight: 800, margin: "0 0 6px", color: "var(--text-heading)" }}>Pilih jenis tiket Anda</h2>
               <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Pilih tiket sesuai kebutuhan Anda, datang menikmati acara, atau ikut belajar &amp; berkembang.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {TICKETS.map(t => {
@@ -241,11 +235,21 @@ function App() {
                           </ul>
                         )}
                       </div>
-                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: feat ? "1.25rem" : "1.05rem", color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)" }}>{t.price}</span>
+                      {t.price && <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: feat ? "1.25rem" : "1.05rem", color: "var(--pwb-blue-royal)" }}>{t.price}</span>}
                     </button>
                   );
                 })}
               </div>
+              {ticket === "visitor" && (
+                <React.Fragment>
+                  <h3 style={{ fontSize: "1.15rem", fontWeight: 800, margin: "28px 0 14px", color: "var(--text-heading)" }}>Lengkapi data diri</h3>
+                  <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0 18px" }}>
+                    <div style={{ gridColumn: "1 / -1" }}><Field label="Nama Lengkap *"><input style={inputStyle} value={form.nama} onChange={e => set("nama", e.target.value)} placeholder="Nama Anda" /></Field></div>
+                    <Field label="Email *" error={emailErr}><input type="email" style={{ ...inputStyle, ...(emailErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.email} onChange={e => set("email", e.target.value)} placeholder="nama@gmail.com" /></Field>
+                    <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
+                  </div>
+                </React.Fragment>
+              )}
             </div>
           )}
 
@@ -295,7 +299,7 @@ function App() {
           <div style={{ height: 1, background: "var(--border-subtle)", margin: "14px 0" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <span style={{ fontWeight: 700, color: "var(--text-heading)" }}>Total</span>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: selected.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)" }}>{selected.price}</span>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: "var(--pwb-blue-royal)" }}>{selected.price || "—"}</span>
           </div>
           <div style={{ marginTop: 16, display: "flex", gap: 8, alignItems: "center", fontSize: ".78rem", color: "var(--text-muted)" }}>
             <PWBIcon name="shield-check" size={16} /> Data Anda aman & hanya untuk keperluan acara.

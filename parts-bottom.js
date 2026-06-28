@@ -1,6 +1,6 @@
 /* AUTO-GENERATED from parts-bottom.jsx — do not edit directly */
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Landing — bottom sections: Tema, Speakers, Sponsors, Galeri, Venue, CTA, Footer */
+/* Landing, bottom sections: Tema, Speakers, Sponsors, Galeri, Venue, CTA, Footer */
 const LBStyles = {
   section: {
     padding: "84px var(--gutter)",
@@ -10,7 +10,7 @@ const LBStyles = {
 };
 function TemaAcara() {
   const isMobile = useIsMobile();
-  const items = [["photo-event-stage.jpg", "Religi & Keluarga", "Bisnis lebih rapi & delegasi tepat — waktu berkualitas untuk keluarga dan warisan (legacy) yang bermakna."], ["photo-event-talkshow.jpg", "Inspirasi Bisnis", "Agar bisnis tidak lagi owner-dependent, melainkan berjalan di atas sistem yang benar dan siap naik kelas (scale up)."], ["photo-event-workshop.jpg", "Keseimbangan Hidup", "Menjaga ritme kerja produktif tanpa mengabaikan kesehatan fisik, ketenangan batin, dan hubungan sosial."]];
+  const items = [["photo-event-stage.jpg", "Religi & Keluarga", "Bisnis lebih rapi & delegasi tepat, waktu berkualitas untuk keluarga dan warisan (legacy) yang bermakna."], ["photo-event-talkshow.jpg", "Inspirasi Bisnis", "Agar bisnis tidak lagi owner-dependent, melainkan berjalan di atas sistem yang benar dan siap naik kelas (scale up)."], ["photo-event-workshop.jpg", "Keseimbangan Hidup", "Menjaga ritme kerja produktif tanpa mengabaikan kesehatan fisik, ketenangan batin, dan hubungan sosial."]];
   return /*#__PURE__*/React.createElement("section", {
     id: "acara",
     style: LBStyles.section
@@ -250,7 +250,7 @@ function Sponsors({
       color: "rgba(255,255,255,.9)",
       maxWidth: 620
     }
-  }, "Tanpa harus ambil paket sponsorship \u2014 sewa booth standar ", /*#__PURE__*/React.createElement("strong", null, "2\xD72 m"), " di lokasi strategis dan berjualan langsung ke ribuan pengunjung. Sudah termasuk meja, kursi, listrik, & nama brand di denah acara.")), /*#__PURE__*/React.createElement("div", {
+  }, "Tanpa harus ambil paket sponsorship, sewa booth standar ", /*#__PURE__*/React.createElement("strong", null, "2\xD72 m"), " di lokasi strategis dan berjualan langsung ke ribuan pengunjung. Sudah termasuk meja, kursi, listrik, & nama brand di denah acara.")), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: "0 0 auto",
       display: "flex",
@@ -429,7 +429,7 @@ function Venue() {
       margin: "8px 0 24px",
       maxWidth: 460
     }
-  }, "Active Atrium Lt.2 \u2014 Jl. Raya Pekayon No.2, Pekayon Jaya, Bekasi Selatan, Jawa Barat 17148. Lokasi paling bergengsi & terbaru di Bekasi."), /*#__PURE__*/React.createElement("div", {
+  }, "Active Atrium Lt.2, Jl. Raya Pekayon No.2, Pekayon Jaya, Bekasi Selatan, Jawa Barat 17148. Lokasi paling bergengsi & terbaru di Bekasi."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       gap: 14,
@@ -516,7 +516,7 @@ function CTA({
       name: "arrow-right",
       size: 20
     })
-  }, "Daftar Sekarang \u2014 Kuota Terbatas")));
+  }, "Daftar Sekarang, Kuota Terbatas")));
 }
 function Footer() {
   const isMobile = useIsMobile();
@@ -547,7 +547,7 @@ function Footer() {
       fontSize: ".9rem",
       maxWidth: 320
     }
-  }, "Event kewirausahaan terbesar di Bekasi \u2014 wadah pengusaha untuk belajar, terhubung, dan tumbuh bersama.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+  }, "Event kewirausahaan terbesar di Bekasi, wadah pengusaha untuk belajar, terhubung, dan tumbuh bersama.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
     style: {
       color: "#fff",
       fontSize: ".95rem",

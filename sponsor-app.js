@@ -1,7 +1,7 @@
 /* AUTO-GENERATED from sponsor-app.jsx — do not edit directly */
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Sponsorship kit — dedicated B2B flow for PWB 2026 sponsor packages */
-// Apps Script web app — data sponsor dicatat ke Google Sheet (tab "Sponsor").
+/* Sponsorship kit, dedicated B2B flow for PWB 2026 sponsor packages */
+// Apps Script web app, data sponsor dicatat ke Google Sheet (tab "Sponsor").
 const SPONSOR_LOG_URL = "https://script.google.com/macros/s/AKfycby3guXKgk5xzvibr_0lPbN3asfFZNjmP2bgh8aW7ftzmvVxHFT4NfUVMxcF8D3c7uu2Cg/exec";
 const SStyles = {
   shell: {
@@ -59,7 +59,7 @@ const SPONSOR_TIERS = [{
   price: "Rp 7 jt",
   priceWords: "Tujuh Juta",
   forWhom: "Tampil & berjualan langsung di area pameran selama acara berlangsung.",
-  benefits: ["Booth standar 2×2 m — lokasi strategis", "Berlaku penuh selama 7 hari acara", "Meja, kursi & sumber listrik tersedia", "Nama brand tercantum di denah acara", {
+  benefits: ["Booth standar 2×2 m, lokasi strategis", "Berlaku penuh selama 7 hari acara", "Meja, kursi & sumber listrik tersedia", "Nama brand tercantum di denah acara", {
     text: "Sesi panggung & iklan videotron",
     ok: false
   }]
@@ -201,7 +201,7 @@ function SponsorAppMain() {
     [k]: v
   }));
 
-  // Wilayah Indonesia (emsifa) — dropdown bertingkat Provinsi → Kota/Kabupaten.
+  // Wilayah Indonesia (emsifa), dropdown bertingkat Provinsi → Kota/Kabupaten.
   const GEO = "https://www.emsifa.com/api-wilayah-indonesia/api";
   const [provinces, setProvinces] = React.useState([]);
   const [regencies, setRegencies] = React.useState([]);
@@ -233,7 +233,7 @@ function SponsorAppMain() {
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
   const waDigits = form.wa.replace(/[\s\-+().]/g, "");
   const waValid = /^\d{8,15}$/.test(waDigits);
-  const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
+  const emailErr = form.email && !emailValid ? "Email tidak valid, gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
   const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && emailValid && waValid && form.provinsi && form.kota : true;
   const submitSponsor = () => {
@@ -258,7 +258,7 @@ function SponsorAppMain() {
       },
       body: new URLSearchParams(payload).toString()
     }).catch(() => {});
-    // Catat juga ke Google Sheet (tab "Sponsor") via Apps Script — fire & forget.
+    // Catat juga ke Google Sheet (tab "Sponsor") via Apps Script, fire & forget.
     try {
       const q = new URLSearchParams({
         mode: "sponsor",
@@ -385,7 +385,7 @@ function SponsorAppMain() {
   }, /*#__PURE__*/React.createElement(PWBBadge, {
     tone: "neutral",
     size: "lg"
-  }, "+ Standar Indoor Booth \u2014 Rp 10 jt / booth (2\xD72 m, 7 hari)"))), step === 1 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+  }, "+ Standar Indoor Booth, Rp 10 jt / booth (2\xD72 m, 7 hari)"))), step === 1 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
     style: {
       fontSize: "1.5rem",
       fontWeight: 800,
@@ -616,7 +616,7 @@ function SponsorAppMain() {
       fontSize: ".78rem",
       color: "var(--text-muted)"
     }
-  }, "Pesan otomatis berisi paket & data Anda \u2014 tinggal kirim ke tim kami.")), /*#__PURE__*/React.createElement("p", {
+  }, "Pesan otomatis berisi paket & data Anda, tinggal kirim ke tim kami.")), /*#__PURE__*/React.createElement("p", {
     style: {
       marginTop: 18,
       fontSize: ".82rem",
@@ -747,7 +747,7 @@ function SponsorAppMain() {
   }, /*#__PURE__*/React.createElement(PWBIcon, {
     name: "shield-check",
     size: 16
-  }), " Tanpa pembayaran online \u2014 invoice resmi via tim kami."))));
+  }), " Tanpa pembayaran online, invoice resmi via tim kami."))));
 }
 function SRow({
   label,

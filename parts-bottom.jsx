@@ -1,4 +1,4 @@
-/* Landing — bottom sections: Tema, Speakers, Sponsors, Galeri, Venue, CTA, Footer */
+/* Landing, bottom sections: Tema, Speakers, Sponsors, Galeri, Venue, CTA, Footer */
 const LBStyles = {
   section: { padding: "84px var(--gutter)", maxWidth: 1280, margin: "0 auto" },
 };
@@ -6,7 +6,7 @@ const LBStyles = {
 function TemaAcara() {
   const isMobile = useIsMobile();
   const items = [
-    ["photo-event-stage.jpg", "Religi & Keluarga", "Bisnis lebih rapi & delegasi tepat — waktu berkualitas untuk keluarga dan warisan (legacy) yang bermakna."],
+    ["photo-event-stage.jpg", "Religi & Keluarga", "Bisnis lebih rapi & delegasi tepat, waktu berkualitas untuk keluarga dan warisan (legacy) yang bermakna."],
     ["photo-event-talkshow.jpg", "Inspirasi Bisnis", "Agar bisnis tidak lagi owner-dependent, melainkan berjalan di atas sistem yang benar dan siap naik kelas (scale up)."],
     ["photo-event-workshop.jpg", "Keseimbangan Hidup", "Menjaga ritme kerja produktif tanpa mengabaikan kesehatan fisik, ketenangan batin, dan hubungan sosial."],
   ];
@@ -95,7 +95,7 @@ function Sponsors({ onRegister }) {
             <PWBBadge tone="gold" size="sm">À La Carte</PWBBadge>
           </div>
           <p style={{ margin: "6px 0 0", fontSize: ".95rem", color: "rgba(255,255,255,.9)", maxWidth: 620 }}>
-            Tanpa harus ambil paket sponsorship — sewa booth standar <strong>2×2 m</strong> di lokasi strategis dan berjualan langsung ke ribuan pengunjung. Sudah termasuk meja, kursi, listrik, &amp; nama brand di denah acara.
+            Tanpa harus ambil paket sponsorship, sewa booth standar <strong>2×2 m</strong> di lokasi strategis dan berjualan langsung ke ribuan pengunjung. Sudah termasuk meja, kursi, listrik, &amp; nama brand di denah acara.
           </p>
         </div>
         <div style={{ flex: "0 0 auto", display: "flex", flexDirection: isMobile ? "row" : "column", alignItems: isMobile ? "center" : "flex-end", justifyContent: "space-between", gap: 14 }}>
@@ -175,7 +175,7 @@ function Venue() {
         <div>
           <PWBSectionHeader eyebrow="The Venue" title="Pakuwon Mall Bekasi" />
           <p style={{ fontSize: "1.05rem", color: "var(--text-body)", margin: "8px 0 24px", maxWidth: 460 }}>
-            Active Atrium Lt.2 — Jl. Raya Pekayon No.2, Pekayon Jaya, Bekasi Selatan, Jawa Barat 17148. Lokasi paling bergengsi & terbaru di Bekasi.
+            Active Atrium Lt.2, Jl. Raya Pekayon No.2, Pekayon Jaya, Bekasi Selatan, Jawa Barat 17148. Lokasi paling bergengsi & terbaru di Bekasi.
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 24 }}>
             {stats.map(([v, l]) => (
@@ -201,7 +201,7 @@ function CTA({ onRegister }) {
         <p style={{ color: "rgba(255,255,255,.92)", fontSize: "1.15rem", margin: "18px 0 30px" }}>
           Tiket FREE namun kuota sangat terbatas demi menjaga kualitas networking B2B. Amankan kursi Anda sekarang.
         </p>
-        <PWBButton variant="accent" size="lg" onClick={onRegister} iconRight={<PWBIcon name="arrow-right" size={20} />}>Daftar Sekarang — Kuota Terbatas</PWBButton>
+        <PWBButton variant="accent" size="lg" onClick={onRegister} iconRight={<PWBIcon name="arrow-right" size={20} />}>Daftar Sekarang, Kuota Terbatas</PWBButton>
       </div>
     </section>
   );
@@ -214,7 +214,7 @@ function Footer() {
       <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr 1fr", gap: 32 }}>
         <div>
           <img src="assets/logo-tda-bekasi.png" alt="TDA Bekasi" style={{ height: 44, filter: "brightness(0) invert(1)", marginBottom: 16 }} />
-          <p style={{ fontSize: ".9rem", maxWidth: 320 }}>Event kewirausahaan terbesar di Bekasi — wadah pengusaha untuk belajar, terhubung, dan tumbuh bersama.</p>
+          <p style={{ fontSize: ".9rem", maxWidth: 320 }}>Event kewirausahaan terbesar di Bekasi, wadah pengusaha untuk belajar, terhubung, dan tumbuh bersama.</p>
         </div>
         <div>
           <h4 style={{ color: "#fff", fontSize: ".95rem", margin: "0 0 14px" }}>Kontak</h4>

@@ -203,36 +203,7 @@ function Booth() {
   const goBooth = () => {
     window.location.href = "sponsor.html?tier=Booth";
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: "var(--pwb-blue-royal)",
-      padding: isMobile ? "16px var(--gutter)" : "22px var(--gutter)"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      maxWidth: 1280,
-      margin: "0 auto",
-      display: "flex",
-      alignItems: "center",
-      gap: isMobile ? 16 : 28
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      flex: 1,
-      height: 2,
-      background: "rgba(255,255,255,.3)",
-      borderRadius: 2
-    }
-  }), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontFamily: "var(--font-display)",
-      fontWeight: 700,
-      fontSize: isMobile ? "1.05rem" : "1.4rem",
-      color: "#fff",
-      whiteSpace: "nowrap",
-      letterSpacing: ".01em"
-    }
-  }, "Let's Grow Together"))), /*#__PURE__*/React.createElement("section", {
+  return /*#__PURE__*/React.createElement("section", {
     id: "booth",
     style: {
       backgroundColor: "var(--pwb-blue-royal)",
@@ -246,6 +217,29 @@ function Booth() {
       color: "#fff"
     }
   }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: isMobile ? 16 : 28,
+      marginBottom: isMobile ? 28 : 40
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: 1,
+      height: 2,
+      background: "rgba(255,255,255,.28)",
+      borderRadius: 2
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontWeight: 700,
+      fontSize: isMobile ? "1.05rem" : "1.4rem",
+      color: "#fff",
+      whiteSpace: "nowrap",
+      letterSpacing: ".01em"
+    }
+  }, "Let's Grow Together")), /*#__PURE__*/React.createElement("div", {
     className: "pwb-eyebrow",
     style: {
       color: "var(--pwb-gold)",
@@ -300,7 +294,7 @@ function Booth() {
       name: "arrow-right",
       size: 18
     })
-  }, "Pilih Booth")))));
+  }, "Pilih Booth"))));
 }
 function Kolaborasi() {
   const isMobile = useIsMobile();

@@ -9,7 +9,7 @@ const TICKETS = [
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
 // Isi link grup WhatsApp di sini untuk mengaktifkan tombolnya (kosong = tombol nonaktif).
-const WA_GROUP_LINK = "";
+const WA_GROUP_LINK = "https://chat.whatsapp.com/IOniM75qCofG5IGQVLaPZP?s=sw&p=a&mlu=4";
 
 function Stepper({ step, steps }) {
   const isMobile = useIsMobile();

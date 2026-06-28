@@ -13,7 +13,7 @@ function Nav({ onRegister }) {
     window.addEventListener("scroll", f); return () => window.removeEventListener("scroll", f);
   }, []);
   React.useEffect(() => { if (!isMobile) setOpen(false); }, [isMobile]);
-  const links = [["#tantangan", "Tantangan"], ["#acara", "Acara"], ["#speaker", "Speaker"], ["#sponsor", "Sponsor"], ["#lokasi", "Lokasi"]];
+  const links = [["#tantangan", "Tantangan"], ["#acara", "Acara"], ["#speaker", "Speaker"], ["#booth", "Booth"], ["#sponsor", "Sponsor"], ["#lokasi", "Lokasi"]];
   const go = (e, h) => { e.preventDefault(); setOpen(false); const el = document.querySelector(h); if (el) el.scrollIntoView({ behavior: "smooth" }); };
   return (
     <header style={{

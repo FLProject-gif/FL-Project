@@ -16,26 +16,41 @@ function Nav({
   onRegister
 }) {
   const [scrolled, setScrolled] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
   React.useEffect(() => {
     const f = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", f);
     return () => window.removeEventListener("scroll", f);
   }, []);
+  React.useEffect(() => {
+    if (!isMobile) setOpen(false);
+  }, [isMobile]);
   const links = [["#tantangan", "Tantangan"], ["#acara", "Acara"], ["#speaker", "Speaker"], ["#sponsor", "Sponsor"], ["#lokasi", "Lokasi"]];
+  const go = (e, h) => {
+    e.preventDefault();
+    setOpen(false);
+    const el = document.querySelector(h);
+    if (el) el.scrollIntoView({
+      behavior: "smooth"
+    });
+  };
   return /*#__PURE__*/React.createElement("header", {
     style: {
       position: "sticky",
       top: 0,
       zIndex: 50,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: "12px var(--gutter)",
       background: "rgba(255,255,255,.92)",
       backdropFilter: "blur(10px)",
       boxShadow: scrolled ? "var(--shadow-sm)" : "none",
       transition: "box-shadow .3s"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "12px var(--gutter)"
     }
   }, /*#__PURE__*/React.createElement("a", {
     href: "#top",
@@ -67,7 +82,13 @@ function Nav({
       fontSize: ".9rem",
       color: "var(--pwb-ink)"
     }
-  }, t))), /*#__PURE__*/React.createElement(PWBButton, {
+  }, t))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(PWBButton, {
     variant: "primary",
     size: "sm",
     onClick: onRegister,
@@ -75,7 +96,53 @@ function Nav({
       name: "arrow-right",
       size: 16
     })
-  }, "Daftar Sekarang"));
+  }, "Daftar Sekarang"), isMobile && /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(o => !o),
+    "aria-label": "Menu",
+    "aria-expanded": open,
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 3,
+      width: 42,
+      height: 42,
+      borderRadius: "var(--radius-md)",
+      border: "1.5px solid var(--border-subtle)",
+      background: open ? "var(--pwb-blue-50)" : "#fff",
+      cursor: "pointer",
+      flex: "0 0 auto"
+    }
+  }, [0, 1, 2].map(i => /*#__PURE__*/React.createElement("span", {
+    key: i,
+    style: {
+      width: 4,
+      height: 4,
+      borderRadius: "50%",
+      background: "var(--pwb-ink)"
+    }
+  }))))), isMobile && open && /*#__PURE__*/React.createElement("nav", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      padding: "4px var(--gutter) 14px",
+      background: "rgba(255,255,255,.98)",
+      borderTop: "1px solid var(--border-subtle)"
+    }
+  }, links.map(([h, t]) => /*#__PURE__*/React.createElement("a", {
+    key: h,
+    href: h,
+    onClick: e => go(e, h),
+    style: {
+      padding: "13px 4px",
+      fontFamily: "var(--font-sans)",
+      fontWeight: 600,
+      fontSize: "1rem",
+      color: "var(--pwb-ink)",
+      borderBottom: "1px solid var(--border-subtle)"
+    }
+  }, t))));
 }
 function Cloud({
   style

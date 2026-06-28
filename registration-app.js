@@ -24,7 +24,7 @@ const TICKETS = [{
 }, {
   id: "visitor",
   name: "Visitor Pass",
-  price: "GRATIS",
+  price: "",
   icon: "ticket",
   desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.",
   note: "Explore the Event",
@@ -179,7 +179,7 @@ function App() {
   const waValid = /^\d{8,15}$/.test(waDigits);
   const emailErr = form.email && !emailValid ? "Email tidak valid, gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
-  const canNext = step === 0 ? !!ticket && form.nama && emailValid && waValid : true;
+  const canNext = step === 0 ? !!ticket && (ticket !== "visitor" || form.nama && emailValid && waValid) : true;
   const submitRegistration = () => {
     const payload = {
       "form-name": "pwb-registration",
@@ -222,11 +222,11 @@ function App() {
   };
   const handleNext = () => {
     if (step === 0) {
-      submitRegistration();
       if (selected.href) {
         window.location.href = selected.href;
         return;
       }
+      submitRegistration();
     }
     setStep(step + 1);
   };
@@ -406,60 +406,7 @@ function App() {
     style: {
       fontSize: "1.5rem",
       fontWeight: 800,
-      margin: "0 0 16px",
-      color: "var(--text-heading)"
-    }
-  }, "Lengkapi data diri"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-      gap: "0 18px"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      gridColumn: "1 / -1"
-    }
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Nama Lengkap *"
-  }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
-    value: form.nama,
-    onChange: e => set("nama", e.target.value),
-    placeholder: "Nama Anda"
-  }))), /*#__PURE__*/React.createElement(Field, {
-    label: "Email *",
-    error: emailErr
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "email",
-    style: {
-      ...inputStyle,
-      ...(emailErr ? {
-        border: "1.5px solid var(--pwb-red)"
-      } : {})
-    },
-    value: form.email,
-    onChange: e => set("email", e.target.value),
-    placeholder: "nama@gmail.com"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "No. WhatsApp *",
-    error: waErr
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "tel",
-    inputMode: "numeric",
-    style: {
-      ...inputStyle,
-      ...(waErr ? {
-        border: "1.5px solid var(--pwb-red)"
-      } : {})
-    },
-    value: form.wa,
-    onChange: e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, "")),
-    placeholder: "0812 3456 7890"
-  }))), /*#__PURE__*/React.createElement("h3", {
-    style: {
-      fontSize: "1.15rem",
-      fontWeight: 800,
-      margin: "26px 0 6px",
+      margin: "0 0 6px",
       color: "var(--text-heading)"
     }
   }, "Pilih jenis tiket Anda"), /*#__PURE__*/React.createElement("p", {
@@ -581,15 +528,68 @@ function App() {
           textDecoration: okb ? "none" : "line-through"
         }
       }, txt));
-    }))), /*#__PURE__*/React.createElement("span", {
+    }))), t.price && /*#__PURE__*/React.createElement("span", {
       style: {
         fontFamily: "var(--font-display)",
         fontWeight: 700,
         fontSize: feat ? "1.25rem" : "1.05rem",
-        color: t.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)"
+        color: "var(--pwb-blue-royal)"
       }
     }, t.price));
-  }))), step === 1 && /*#__PURE__*/React.createElement("div", {
+  })), ticket === "visitor" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      fontSize: "1.15rem",
+      fontWeight: 800,
+      margin: "28px 0 14px",
+      color: "var(--text-heading)"
+    }
+  }, "Lengkapi data diri"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: "0 18px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridColumn: "1 / -1"
+    }
+  }, /*#__PURE__*/React.createElement(Field, {
+    label: "Nama Lengkap *"
+  }, /*#__PURE__*/React.createElement("input", {
+    style: inputStyle,
+    value: form.nama,
+    onChange: e => set("nama", e.target.value),
+    placeholder: "Nama Anda"
+  }))), /*#__PURE__*/React.createElement(Field, {
+    label: "Email *",
+    error: emailErr
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "email",
+    style: {
+      ...inputStyle,
+      ...(emailErr ? {
+        border: "1.5px solid var(--pwb-red)"
+      } : {})
+    },
+    value: form.email,
+    onChange: e => set("email", e.target.value),
+    placeholder: "nama@gmail.com"
+  })), /*#__PURE__*/React.createElement(Field, {
+    label: "No. WhatsApp *",
+    error: waErr
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "tel",
+    inputMode: "numeric",
+    style: {
+      ...inputStyle,
+      ...(waErr ? {
+        border: "1.5px solid var(--pwb-red)"
+      } : {})
+    },
+    value: form.wa,
+    onChange: e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, "")),
+    placeholder: "0812 3456 7890"
+  }))))), step === 1 && /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center"
     }
@@ -830,9 +830,9 @@ function App() {
       fontFamily: "var(--font-display)",
       fontWeight: 700,
       fontSize: "1.4rem",
-      color: selected.price === "GRATIS" ? "var(--state-yes)" : "var(--pwb-blue-royal)"
+      color: "var(--pwb-blue-royal)"
     }
-  }, selected.price)), /*#__PURE__*/React.createElement("div", {
+  }, selected.price || "—")), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16,
       display: "flex",

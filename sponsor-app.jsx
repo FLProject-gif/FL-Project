@@ -1,5 +1,5 @@
-/* Sponsorship kit — dedicated B2B flow for PWB 2026 sponsor packages */
-// Apps Script web app — data sponsor dicatat ke Google Sheet (tab "Sponsor").
+/* Sponsorship kit, dedicated B2B flow for PWB 2026 sponsor packages */
+// Apps Script web app, data sponsor dicatat ke Google Sheet (tab "Sponsor").
 const SPONSOR_LOG_URL = "https://script.google.com/macros/s/AKfycby3guXKgk5xzvibr_0lPbN3asfFZNjmP2bgh8aW7ftzmvVxHFT4NfUVMxcF8D3c7uu2Cg/exec";
 const SStyles = {
   shell: { maxWidth: 1180, margin: "0 auto", padding: "28px var(--gutter) 64px", display: "grid", gridTemplateColumns: "1.6fr .85fr", gap: 28, alignItems: "start" },
@@ -15,7 +15,7 @@ const SPONSOR_TIERS = [
   { tier: "Bronze", price: "Rp 1 jt", priceWords: "Satu Juta", forWhom: "UMKM naik kelas, usaha jasa lokal, start-up baru.",
     benefits: ["5x Post IG Feed + 10x Stories", "Pembagian brosur / sampling", "Logo S di videotron", { text: "Booth pameran", ok: false }, { text: "Data Leads Peserta", ok: false }] },
   { tier: "Booth", price: "Rp 7 jt", priceWords: "Tujuh Juta", forWhom: "Tampil & berjualan langsung di area pameran selama acara berlangsung.",
-    benefits: ["Booth standar 2×2 m — lokasi strategis", "Berlaku penuh selama 7 hari acara", "Meja, kursi & sumber listrik tersedia", "Nama brand tercantum di denah acara", { text: "Sesi panggung & iklan videotron", ok: false }] },
+    benefits: ["Booth standar 2×2 m, lokasi strategis", "Berlaku penuh selama 7 hari acara", "Meja, kursi & sumber listrik tersedia", "Nama brand tercantum di denah acara", { text: "Sesi panggung & iklan videotron", ok: false }] },
 ];
 
 function SStepper({ step, steps }) {
@@ -77,7 +77,7 @@ function SponsorAppMain() {
   const selected = SPONSOR_TIERS.find(t => t.tier === tier);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
-  // Wilayah Indonesia (emsifa) — dropdown bertingkat Provinsi → Kota/Kabupaten.
+  // Wilayah Indonesia (emsifa), dropdown bertingkat Provinsi → Kota/Kabupaten.
   const GEO = "https://www.emsifa.com/api-wilayah-indonesia/api";
   const [provinces, setProvinces] = React.useState([]);
   const [regencies, setRegencies] = React.useState([]);
@@ -99,7 +99,7 @@ function SponsorAppMain() {
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
   const waDigits = form.wa.replace(/[\s\-+().]/g, "");
   const waValid = /^\d{8,15}$/.test(waDigits);
-  const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
+  const emailErr = form.email && !emailValid ? "Email tidak valid, gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
   const canNext = step === 0 ? !!tier : step === 1 ? form.perusahaan && form.pic && emailValid && waValid && form.provinsi && form.kota : true;
 
@@ -116,7 +116,7 @@ function SponsorAppMain() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(payload).toString(),
     }).catch(() => {});
-    // Catat juga ke Google Sheet (tab "Sponsor") via Apps Script — fire & forget.
+    // Catat juga ke Google Sheet (tab "Sponsor") via Apps Script, fire & forget.
     try {
       const q = new URLSearchParams({
         mode: "sponsor", ref: ref, perusahaan: form.perusahaan, pic: form.pic, jabatan: form.jabatan,
@@ -178,7 +178,7 @@ function SponsorAppMain() {
                 })}
               </div>
               <div style={{ marginTop: 22, textAlign: "center" }}>
-                <PWBBadge tone="neutral" size="lg">+ Standar Indoor Booth — Rp 10 jt / booth (2×2 m, 7 hari)</PWBBadge>
+                <PWBBadge tone="neutral" size="lg">+ Standar Indoor Booth, Rp 10 jt / booth (2×2 m, 7 hari)</PWBBadge>
               </div>
             </div>
           )}
@@ -237,7 +237,7 @@ function SponsorAppMain() {
                 <PWBButton size="lg" onClick={() => window.open(waHref(), "_blank", "noopener")}
                   style={{ background: "#25D366", color: "#fff", boxShadow: "var(--shadow-pop)" }}
                   iconLeft={<PWBIcon name="message-circle" size={20} />}>Konfirmasi via WhatsApp</PWBButton>
-                <div style={{ marginTop: 8, fontSize: ".78rem", color: "var(--text-muted)" }}>Pesan otomatis berisi paket &amp; data Anda — tinggal kirim ke tim kami.</div>
+                <div style={{ marginTop: 8, fontSize: ".78rem", color: "var(--text-muted)" }}>Pesan otomatis berisi paket &amp; data Anda, tinggal kirim ke tim kami.</div>
               </div>
               <p style={{ marginTop: 18, fontSize: ".82rem", color: "var(--text-muted)" }}>Atau hubungi langsung: +62 838 5666 5556.</p>
             </div>
@@ -266,7 +266,7 @@ function SponsorAppMain() {
           <SRow label="Lokasi" value="Pakuwon Mall Bekasi" />
           <SRow label="Benefit aktif" value={`${okBenefits} item`} />
           <div style={{ marginTop: 16, display: "flex", gap: 8, alignItems: "center", fontSize: ".78rem", color: "var(--text-muted)" }}>
-            <PWBIcon name="shield-check" size={16} /> Tanpa pembayaran online — invoice resmi via tim kami.
+            <PWBIcon name="shield-check" size={16} /> Tanpa pembayaran online, invoice resmi via tim kami.
           </div>
         </PWBCard>
       </div>

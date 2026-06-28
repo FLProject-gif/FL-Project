@@ -1,10 +1,10 @@
-/* Registration kit — multi-step free-ticket flow for PWB 2026 */
+/* Registration kit, multi-step free-ticket flow for PWB 2026 */
 const RStyles = {
   shell: { maxWidth: 1100, margin: "0 auto", padding: "28px var(--gutter) 64px", display: "grid", gridTemplateColumns: "1.5fr .9fr", gap: 28, alignItems: "start" },
 };
 
 const TICKETS = [
-  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", featured: true, benefits: ["Akses rekaman seluruh materi — selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
+  { id: "growth", name: "Growth Pass", price: "Rp 50.000", icon: "rocket", desc: "Datang untuk belajar & berkembang bersama para praktisi.", note: "Accelerate Your Growth", href: "https://pwbekasi.com/login", featured: true, benefits: ["Akses rekaman seluruh materi, selamanya", "Handbook materi ajar dari seluruh pemateri", "Kesempatan doorprize jutaan rupiah", "Peluang pendapatan tambahan dari affiliator hingga jutaan rupiah"] },
   { id: "visitor", name: "Visitor Pass", price: "GRATIS", icon: "ticket", desc: "Datang, melihat, dan menikmati seluruh rangkaian acara.", note: "Explore the Event", benefits: [{ text: "Tanpa benefit tambahan", ok: false }] },
 ];
 const SESSIONS = ["Inspirasi Bisnis", "Religi & Keluarga", "Keseimbangan Hidup", "Business Matching", "Workshop", "Entertainment"];
@@ -59,7 +59,7 @@ function App() {
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const toggleSession = (s) => setSessions(a => a.includes(s) ? a.filter(x => x !== s) : [...a, s]);
 
-  // Wilayah Indonesia (emsifa) — dropdown bertingkat Provinsi → Kota/Kabupaten.
+  // Wilayah Indonesia (emsifa), dropdown bertingkat Provinsi → Kota/Kabupaten.
   const GEO = "https://www.emsifa.com/api-wilayah-indonesia/api";
   const [provinces, setProvinces] = React.useState([]);
   const [regencies, setRegencies] = React.useState([]);
@@ -75,7 +75,7 @@ function App() {
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
   const waDigits = form.wa.replace(/[\s\-+().]/g, "");
   const waValid = /^\d{8,15}$/.test(waDigits);
-  const emailErr = form.email && !emailValid ? "Email tidak valid — gunakan format nama@domain (mis. nama@gmail.com)." : "";
+  const emailErr = form.email && !emailValid ? "Email tidak valid, gunakan format nama@domain (mis. nama@gmail.com)." : "";
   const waErr = form.wa && !waValid ? "Nomor WhatsApp hanya angka, 8–15 digit (mis. 0812xxxxxxx)." : "";
   const canNext = step === 0 ? (!!ticket && form.nama && emailValid && waValid) : true;
 
@@ -91,7 +91,7 @@ function App() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(payload).toString(),
     }).catch(() => {});
-    // Catat juga ke Google Sheet (tab "Pendaftar") via Apps Script — fire & forget.
+    // Catat juga ke Google Sheet (tab "Pendaftar") via Apps Script, fire & forget.
     try {
       const q = new URLSearchParams({
         mode: "register", id: ticketCode, nama: form.nama, ticket: selected.name,
@@ -113,7 +113,7 @@ function App() {
   const codeHash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) >>> 0; } return ("000" + h.toString(36).toUpperCase()).slice(-4); };
   const ticketCode = "PWB26-" + (form.nama || "PESERTA").slice(0, 3).toUpperCase() + "-" + codeHash((form.email || "") + "|" + (form.wa || "") + "|" + (form.nama || ""));
   const verifyUrl = "https://pwbekasi.com/cek?id=" + ticketCode;
-  // Google Apps Script web app — tiap QR di-scan akan mencatat data peserta ke Google Sheet.
+  // Google Apps Script web app, tiap QR di-scan akan mencatat data peserta ke Google Sheet.
   const SCAN_LOG_URL = "https://script.google.com/macros/s/AKfycby3guXKgk5xzvibr_0lPbN3asfFZNjmP2bgh8aW7ftzmvVxHFT4NfUVMxcF8D3c7uu2Cg/exec";
   const qrPayload = SCAN_LOG_URL
     ? SCAN_LOG_URL + "?" + new URLSearchParams({ id: ticketCode, nama: form.nama || "", ticket: selected.name, tanggal: form.tanggal || "", email: form.email || "", wa: form.wa || "", kota: form.kota || "", provinsi: form.provinsi || "" }).toString()
@@ -205,7 +205,7 @@ function App() {
                 <Field label="No. WhatsApp *" error={waErr}><input type="tel" inputMode="numeric" style={{ ...inputStyle, ...(waErr ? { border: "1.5px solid var(--pwb-red)" } : {}) }} value={form.wa} onChange={e => set("wa", e.target.value.replace(/[^\d+\-\s()]/g, ""))} placeholder="0812 3456 7890" /></Field>
               </div>
               <h3 style={{ fontSize: "1.15rem", fontWeight: 800, margin: "26px 0 6px", color: "var(--text-heading)" }}>Pilih jenis tiket Anda</h3>
-              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Pilih tiket sesuai kebutuhan Anda — datang menikmati acara, atau ikut belajar &amp; berkembang.</p>
+              <p style={{ margin: "0 0 22px", color: "var(--text-body)", fontSize: ".95rem" }}>Pilih tiket sesuai kebutuhan Anda, datang menikmati acara, atau ikut belajar &amp; berkembang.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {TICKETS.map(t => {
                   const on = ticket === t.id;

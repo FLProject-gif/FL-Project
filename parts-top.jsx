@@ -1,4 +1,4 @@
-/* Landing — top sections: Nav, Hero, Stats marquee, Tantangan, Kenapa Hadir */
+/* Landing, top sections: Nav, Hero, Stats marquee, Tantangan, Kenapa Hadir */
 const LStyles = {
   section: { padding: "84px var(--gutter)", maxWidth: 1280, margin: "0 auto" },
   grid4: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 20 },
@@ -49,7 +49,7 @@ function Hero({ onRegister }) {
             Festival Wirausaha Terbesar di <span style={{ color: "var(--pwb-gold)" }}>Bekasi</span>
           </h1>
           <p style={{ color: "rgba(255,255,255,.92)", fontSize: "1.15rem", lineHeight: 1.55, maxWidth: 520, margin: "20px 0 28px" }}>
-            Tujuh hari perayaan komunitas Tangan Di Atas — titik temu ribuan UMKM, mentor bisnis, dan investor. Bukan sekadar bazar. Mari tumbuh bersama.
+            Tujuh hari perayaan komunitas Tangan Di Atas, titik temu ribuan UMKM, mentor bisnis, dan investor. Bukan sekadar bazar. Mari tumbuh bersama.
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <PWBButton variant="accent" size="lg" onClick={onRegister} iconRight={<PWBIcon name="rocket" size={20} />}>Daftar Sekarang</PWBButton>
@@ -119,7 +119,7 @@ function Tantangan() {
 function KenapaHadir() {
   const items = [
     ["gauge", "Maximum Exposure", "Tampil di hadapan ribuan pengusaha, investor, dan profesional bisnis."],
-    ["users", "Targeted Audience", "Komunitas pengusaha yang berkembang pesat — perluas jaringan & temukan partner."],
+    ["users", "Targeted Audience", "Komunitas pengusaha yang berkembang pesat, perluas jaringan & temukan partner."],
     ["camera", "Media Coverage", "Dukungan media partner nasional + videotron indoor & outdoor Pakuwon Mall."],
     ["megaphone", "Experiential Marketing", "Hadirkan produk Anda langsung ke target market lewat booth, demo, & sponsor program."],
   ];

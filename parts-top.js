@@ -1,5 +1,5 @@
 /* AUTO-GENERATED from parts-top.jsx — do not edit directly */
-/* Landing — top sections: Nav, Hero, Stats marquee, Tantangan, Kenapa Hadir */
+/* Landing, top sections: Nav, Hero, Stats marquee, Tantangan, Kenapa Hadir */
 const LStyles = {
   section: {
     padding: "84px var(--gutter)",
@@ -167,7 +167,7 @@ function Hero({
       maxWidth: 520,
       margin: "20px 0 28px"
     }
-  }, "Tujuh hari perayaan komunitas Tangan Di Atas \u2014 titik temu ribuan UMKM, mentor bisnis, dan investor. Bukan sekadar bazar. Mari tumbuh bersama."), /*#__PURE__*/React.createElement("div", {
+  }, "Tujuh hari perayaan komunitas Tangan Di Atas, titik temu ribuan UMKM, mentor bisnis, dan investor. Bukan sekadar bazar. Mari tumbuh bersama."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       gap: 14,
@@ -324,7 +324,7 @@ function Tantangan() {
   }, d)))));
 }
 function KenapaHadir() {
-  const items = [["gauge", "Maximum Exposure", "Tampil di hadapan ribuan pengusaha, investor, dan profesional bisnis."], ["users", "Targeted Audience", "Komunitas pengusaha yang berkembang pesat — perluas jaringan & temukan partner."], ["camera", "Media Coverage", "Dukungan media partner nasional + videotron indoor & outdoor Pakuwon Mall."], ["megaphone", "Experiential Marketing", "Hadirkan produk Anda langsung ke target market lewat booth, demo, & sponsor program."]];
+  const items = [["gauge", "Maximum Exposure", "Tampil di hadapan ribuan pengusaha, investor, dan profesional bisnis."], ["users", "Targeted Audience", "Komunitas pengusaha yang berkembang pesat, perluas jaringan & temukan partner."], ["camera", "Media Coverage", "Dukungan media partner nasional + videotron indoor & outdoor Pakuwon Mall."], ["megaphone", "Experiential Marketing", "Hadirkan produk Anda langsung ke target market lewat booth, demo, & sponsor program."]];
   return /*#__PURE__*/React.createElement("section", {
     style: {
       background: "var(--pwb-cloud)"

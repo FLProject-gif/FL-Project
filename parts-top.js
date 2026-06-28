@@ -26,7 +26,7 @@ function Nav({
   React.useEffect(() => {
     if (!isMobile) setOpen(false);
   }, [isMobile]);
-  const links = [["#tantangan", "Tantangan"], ["#acara", "Acara"], ["#speaker", "Speaker"], ["#sponsor", "Sponsor"], ["#lokasi", "Lokasi"]];
+  const links = [["#tantangan", "Tantangan"], ["#acara", "Acara"], ["#speaker", "Speaker"], ["#booth", "Booth"], ["#sponsor", "Sponsor"], ["#lokasi", "Lokasi"]];
   const go = (e, h) => {
     e.preventDefault();
     setOpen(false);

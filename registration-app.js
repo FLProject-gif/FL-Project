@@ -464,9 +464,18 @@ function App() {
       size: feat ? 26 : 20
     })), /*#__PURE__*/React.createElement("div", {
       style: {
-        flex: 1
+        flex: 1,
+        minWidth: 0
       }
     }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        gap: 8,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
       style: {
         display: "flex",
         alignItems: "center",
@@ -481,7 +490,15 @@ function App() {
     }, t.name), /*#__PURE__*/React.createElement(PWBBadge, {
       tone: "neutral",
       size: "sm"
-    }, t.note)), /*#__PURE__*/React.createElement("div", {
+    }, t.note)), t.price && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontFamily: "var(--font-display)",
+        fontWeight: 700,
+        fontSize: feat ? "1.25rem" : "1.05rem",
+        color: "var(--pwb-blue-royal)",
+        whiteSpace: "nowrap"
+      }
+    }, t.price)), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: feat ? ".88rem" : ".82rem",
         color: "var(--text-body)",
@@ -528,14 +545,7 @@ function App() {
           textDecoration: okb ? "none" : "line-through"
         }
       }, txt));
-    }))), t.price && /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontFamily: "var(--font-display)",
-        fontWeight: 700,
-        fontSize: feat ? "1.25rem" : "1.05rem",
-        color: "var(--pwb-blue-royal)"
-      }
-    }, t.price));
+    }))));
   })), ticket === "visitor" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h3", {
     style: {
       fontSize: "1.15rem",

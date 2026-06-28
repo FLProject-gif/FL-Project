@@ -88,6 +88,13 @@ function Booth() {
   const isMobile = useIsMobile();
   const goBooth = () => { window.location.href = "sponsor.html?tier=Booth"; };
   return (
+    <React.Fragment>
+      <div style={{ background: "var(--pwb-blue-royal)", padding: isMobile ? "16px var(--gutter)" : "22px var(--gutter)" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: isMobile ? 16 : 28 }}>
+          <span style={{ flex: 1, height: 2, background: "rgba(255,255,255,.3)", borderRadius: 2 }} />
+          <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: isMobile ? "1.05rem" : "1.4rem", color: "#fff", whiteSpace: "nowrap", letterSpacing: ".01em" }}>Let's Grow Together</span>
+        </div>
+      </div>
     <section id="booth" style={{
       backgroundColor: "var(--pwb-blue-royal)",
       backgroundImage: "linear-gradient(115deg, rgba(0,28,86,.92) 0%, rgba(0,67,190,.74) 48%, rgba(0,91,252,.42) 100%), url(assets/photo-booth.jpg)",
@@ -95,7 +102,7 @@ function Booth() {
     }}>
       <div style={{ ...LBStyles.section, color: "#fff" }}>
         <div className="pwb-eyebrow" style={{ color: "var(--pwb-gold)", marginBottom: 14 }}>Booth Pameran · À La Carte</div>
-        <h2 style={{ fontSize: "var(--fs-h1)", fontWeight: 800, letterSpacing: "-.02em", margin: 0, maxWidth: 640, lineHeight: 1.1 }}>Buka Booth, Jualan Langsung ke Ribuan Pengunjung</h2>
+        <h2 style={{ fontSize: "var(--fs-h1)", fontWeight: 800, letterSpacing: "-.02em", margin: 0, maxWidth: 640, lineHeight: 1.1, color: "#fff", textShadow: "0 2px 14px rgba(0,16,52,.55)" }}>Buka Booth, Jualan Langsung ke Ribuan Pengunjung</h2>
         <p style={{ fontSize: "1.05rem", lineHeight: 1.6, color: "rgba(255,255,255,.92)", maxWidth: 600, margin: "16px 0 0" }}>
           Tanpa harus ambil paket sponsorship. Sewa booth standar <strong>2×2 m</strong> di lokasi strategis. Sudah termasuk meja, kursi, listrik, &amp; nama brand di denah acara.
         </p>
@@ -108,6 +115,7 @@ function Booth() {
         </div>
       </div>
     </section>
+    </React.Fragment>
   );
 }
 

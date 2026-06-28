@@ -214,10 +214,13 @@ function App() {
                     }}>
                       {feat && <span style={{ position: "absolute", top: -10, left: 18, background: "var(--pwb-gold)", color: "#5A3A00", fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: ".66rem", letterSpacing: ".03em", padding: "3px 10px", borderRadius: "var(--radius-pill)", boxShadow: "var(--shadow-sm)" }}>★ PALING DIREKOMENDASIKAN</span>}
                       <PWBIconCoin tone={feat || on ? "azure" : "soft"} size={feat ? 52 : 38}><PWBIcon name={t.icon} size={feat ? 26 : 20} /></PWBIconCoin>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                          <strong style={{ fontSize: feat ? "1.1rem" : ".95rem", color: "var(--text-heading)" }}>{t.name}</strong>
-                          <PWBBadge tone="neutral" size="sm">{t.note}</PWBBadge>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+                          <span style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                            <strong style={{ fontSize: feat ? "1.1rem" : ".95rem", color: "var(--text-heading)" }}>{t.name}</strong>
+                            <PWBBadge tone="neutral" size="sm">{t.note}</PWBBadge>
+                          </span>
+                          {t.price && <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: feat ? "1.25rem" : "1.05rem", color: "var(--pwb-blue-royal)", whiteSpace: "nowrap" }}>{t.price}</span>}
                         </div>
                         <div style={{ fontSize: feat ? ".88rem" : ".82rem", color: "var(--text-body)", marginTop: 3 }}>{t.desc}</div>
                         {t.benefits && (
@@ -235,7 +238,6 @@ function App() {
                           </ul>
                         )}
                       </div>
-                      {t.price && <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: feat ? "1.25rem" : "1.05rem", color: "var(--pwb-blue-royal)" }}>{t.price}</span>}
                     </button>
                   );
                 })}

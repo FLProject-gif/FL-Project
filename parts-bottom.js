@@ -196,93 +196,78 @@ function Sponsors({
       full: true,
       onClick: () => goSponsor(t.tier)
     }, "Pilih ", t.tier)
-  })))), /*#__PURE__*/React.createElement("div", {
+  })))));
+}
+function Booth() {
+  const isMobile = useIsMobile();
+  const goBooth = () => {
+    window.location.href = "sponsor.html?tier=Booth";
+  };
+  return /*#__PURE__*/React.createElement("section", {
+    id: "booth",
     style: {
+      backgroundColor: "var(--pwb-blue-royal)",
+      backgroundImage: "linear-gradient(115deg, rgba(0,28,86,.92) 0%, rgba(0,67,190,.74) 48%, rgba(0,91,252,.42) 100%), url(assets/photo-booth.jpg)",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      ...LBStyles.section,
+      color: "#fff"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pwb-eyebrow",
+    style: {
+      color: "var(--pwb-gold)",
+      marginBottom: 14
+    }
+  }, "Booth Pameran \xB7 \xC0 La Carte"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      fontSize: "var(--fs-h1)",
+      fontWeight: 800,
+      letterSpacing: "-.02em",
+      margin: 0,
+      maxWidth: 640,
+      lineHeight: 1.1
+    }
+  }, "Buka Booth, Jualan Langsung ke Ribuan Pengunjung"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: "1.05rem",
+      lineHeight: 1.6,
+      color: "rgba(255,255,255,.92)",
+      maxWidth: 600,
+      margin: "16px 0 0"
+    }
+  }, "Tanpa harus ambil paket sponsorship. Sewa booth standar ", /*#__PURE__*/React.createElement("strong", null, "2\xD72 m"), " di lokasi strategis. Sudah termasuk meja, kursi, listrik, & nama brand di denah acara."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 24,
       marginTop: 28,
-      display: "flex",
-      flexDirection: isMobile ? "column" : "row",
-      alignItems: isMobile ? "stretch" : "center",
-      gap: isMobile ? 18 : 28,
-      background: "linear-gradient(135deg, var(--pwb-blue-royal), var(--pwb-blue-azure))",
-      borderRadius: "var(--radius-2xl)",
-      padding: isMobile ? 24 : "28px 36px",
-      color: "#fff",
-      boxShadow: "var(--shadow-card)"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: "0 0 auto",
-      width: 64,
-      height: 64,
-      borderRadius: "var(--radius-lg)",
-      background: "rgba(255,255,255,.16)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    }
-  }, /*#__PURE__*/React.createElement(PWBIcon, {
-    name: "store",
-    size: 32
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 10,
       flexWrap: "wrap"
     }
-  }, /*#__PURE__*/React.createElement("h3", {
-    style: {
-      margin: 0,
-      fontSize: "1.35rem",
-      fontWeight: 800
-    }
-  }, "Booth Pameran"), /*#__PURE__*/React.createElement(PWBBadge, {
-    tone: "gold",
-    size: "sm"
-  }, "\xC0 La Carte")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      margin: "6px 0 0",
-      fontSize: ".95rem",
-      color: "rgba(255,255,255,.9)",
-      maxWidth: 620
-    }
-  }, "Tanpa harus ambil paket sponsorship, sewa booth standar ", /*#__PURE__*/React.createElement("strong", null, "2\xD72 m"), " di lokasi strategis dan berjualan langsung ke ribuan pengunjung. Sudah termasuk meja, kursi, listrik, & nama brand di denah acara.")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: "0 0 auto",
-      display: "flex",
-      flexDirection: isMobile ? "row" : "column",
-      alignItems: isMobile ? "center" : "flex-end",
-      justifyContent: "space-between",
-      gap: 14
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: isMobile ? "left" : "right"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "var(--font-display)",
       fontWeight: 800,
-      fontSize: "2rem",
+      fontSize: "2.6rem",
       lineHeight: 1
     }
   }, "Rp 7 jt"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: ".8rem",
+      fontSize: ".85rem",
       color: "rgba(255,255,255,.85)",
       fontWeight: 600,
       marginTop: 2
     }
   }, "selama acara \xB7 7 hari")), /*#__PURE__*/React.createElement(PWBButton, {
-    variant: "white",
-    onClick: () => goSponsor("Booth"),
+    variant: "accent",
+    size: "lg",
+    onClick: goBooth,
     iconRight: /*#__PURE__*/React.createElement(PWBIcon, {
       name: "arrow-right",
-      size: 16
+      size: 18
     })
   }, "Pilih Booth"))));
 }
@@ -619,6 +604,7 @@ Object.assign(window, {
   LTemaAcara: TemaAcara,
   LSpeakers: Speakers,
   LSponsors: Sponsors,
+  LBooth: Booth,
   LKolaborasi: Kolaborasi,
   LGaleri: Galeri,
   LVenue: Venue,

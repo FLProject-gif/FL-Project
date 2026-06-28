@@ -80,30 +80,31 @@ function Sponsors({ onRegister }) {
           <PWBSponsorTierCard key={t.tier} {...t} cta={<PWBButton variant={t.featured ? "accent" : "secondary"} full onClick={() => goSponsor(t.tier)}>Pilih {t.tier}</PWBButton>} />
         ))}
       </div>
-      <div style={{
-        marginTop: 28, display: "flex", flexDirection: isMobile ? "column" : "row",
-        alignItems: isMobile ? "stretch" : "center", gap: isMobile ? 18 : 28,
-        background: "linear-gradient(135deg, var(--pwb-blue-royal), var(--pwb-blue-azure))",
-        borderRadius: "var(--radius-2xl)", padding: isMobile ? 24 : "28px 36px", color: "#fff", boxShadow: "var(--shadow-card)",
-      }}>
-        <div style={{ flex: "0 0 auto", width: 64, height: 64, borderRadius: "var(--radius-lg)", background: "rgba(255,255,255,.16)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <PWBIcon name="store" size={32} />
-        </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-            <h3 style={{ margin: 0, fontSize: "1.35rem", fontWeight: 800 }}>Booth Pameran</h3>
-            <PWBBadge tone="gold" size="sm">À La Carte</PWBBadge>
+    </section>
+  );
+}
+
+function Booth() {
+  const isMobile = useIsMobile();
+  const goBooth = () => { window.location.href = "sponsor.html?tier=Booth"; };
+  return (
+    <section id="booth" style={{
+      backgroundColor: "var(--pwb-blue-royal)",
+      backgroundImage: "linear-gradient(115deg, rgba(0,28,86,.92) 0%, rgba(0,67,190,.74) 48%, rgba(0,91,252,.42) 100%), url(assets/photo-booth.jpg)",
+      backgroundSize: "cover", backgroundPosition: "center",
+    }}>
+      <div style={{ ...LBStyles.section, color: "#fff" }}>
+        <div className="pwb-eyebrow" style={{ color: "var(--pwb-gold)", marginBottom: 14 }}>Booth Pameran · À La Carte</div>
+        <h2 style={{ fontSize: "var(--fs-h1)", fontWeight: 800, letterSpacing: "-.02em", margin: 0, maxWidth: 640, lineHeight: 1.1 }}>Buka Booth, Jualan Langsung ke Ribuan Pengunjung</h2>
+        <p style={{ fontSize: "1.05rem", lineHeight: 1.6, color: "rgba(255,255,255,.92)", maxWidth: 600, margin: "16px 0 0" }}>
+          Tanpa harus ambil paket sponsorship. Sewa booth standar <strong>2×2 m</strong> di lokasi strategis. Sudah termasuk meja, kursi, listrik, &amp; nama brand di denah acara.
+        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: 24, marginTop: 28, flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "2.6rem", lineHeight: 1 }}>Rp 7 jt</div>
+            <div style={{ fontSize: ".85rem", color: "rgba(255,255,255,.85)", fontWeight: 600, marginTop: 2 }}>selama acara · 7 hari</div>
           </div>
-          <p style={{ margin: "6px 0 0", fontSize: ".95rem", color: "rgba(255,255,255,.9)", maxWidth: 620 }}>
-            Tanpa harus ambil paket sponsorship, sewa booth standar <strong>2×2 m</strong> di lokasi strategis dan berjualan langsung ke ribuan pengunjung. Sudah termasuk meja, kursi, listrik, &amp; nama brand di denah acara.
-          </p>
-        </div>
-        <div style={{ flex: "0 0 auto", display: "flex", flexDirection: isMobile ? "row" : "column", alignItems: isMobile ? "center" : "flex-end", justifyContent: "space-between", gap: 14 }}>
-          <div style={{ textAlign: isMobile ? "left" : "right" }}>
-            <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "2rem", lineHeight: 1 }}>Rp 7 jt</div>
-            <div style={{ fontSize: ".8rem", color: "rgba(255,255,255,.85)", fontWeight: 600, marginTop: 2 }}>selama acara · 7 hari</div>
-          </div>
-          <PWBButton variant="white" onClick={() => goSponsor("Booth")} iconRight={<PWBIcon name="arrow-right" size={16} />}>Pilih Booth</PWBButton>
+          <PWBButton variant="accent" size="lg" onClick={goBooth} iconRight={<PWBIcon name="arrow-right" size={18} />}>Pilih Booth</PWBButton>
         </div>
       </div>
     </section>
@@ -237,4 +238,4 @@ function Footer() {
   );
 }
 
-Object.assign(window, { LTemaAcara: TemaAcara, LSpeakers: Speakers, LSponsors: Sponsors, LKolaborasi: Kolaborasi, LGaleri: Galeri, LVenue: Venue, LCTA: CTA, LFooter: Footer });
+Object.assign(window, { LTemaAcara: TemaAcara, LSpeakers: Speakers, LSponsors: Sponsors, LBooth: Booth, LKolaborasi: Kolaborasi, LGaleri: Galeri, LVenue: Venue, LCTA: CTA, LFooter: Footer });

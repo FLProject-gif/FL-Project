@@ -6,27 +6,50 @@ const LStyles = {
 
 function Nav({ onRegister }) {
   const [scrolled, setScrolled] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
   React.useEffect(() => {
     const f = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", f); return () => window.removeEventListener("scroll", f);
   }, []);
+  React.useEffect(() => { if (!isMobile) setOpen(false); }, [isMobile]);
   const links = [["#tantangan", "Tantangan"], ["#acara", "Acara"], ["#speaker", "Speaker"], ["#sponsor", "Sponsor"], ["#lokasi", "Lokasi"]];
+  const go = (e, h) => { e.preventDefault(); setOpen(false); const el = document.querySelector(h); if (el) el.scrollIntoView({ behavior: "smooth" }); };
   return (
     <header style={{
-      position: "sticky", top: 0, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "space-between",
-      padding: "12px var(--gutter)", background: "rgba(255,255,255,.92)", backdropFilter: "blur(10px)",
+      position: "sticky", top: 0, zIndex: 50,
+      background: "rgba(255,255,255,.92)", backdropFilter: "blur(10px)",
       boxShadow: scrolled ? "var(--shadow-sm)" : "none", transition: "box-shadow .3s",
     }}>
-      <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <img src="assets/logo-tda-bekasi.png" alt="TDA Bekasi" style={{ height: 64, width: "auto", display: "block" }} />
-      </a>
-      <nav style={{ display: isMobile ? "none" : "flex", alignItems: "center", gap: 28 }}>
-        {links.map(([h, t]) => (
-          <a key={h} href={h} style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: ".9rem", color: "var(--pwb-ink)" }}>{t}</a>
-        ))}
-      </nav>
-      <PWBButton variant="primary" size="sm" onClick={onRegister} iconRight={<PWBIcon name="arrow-right" size={16} />}>Daftar Sekarang</PWBButton>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px var(--gutter)" }}>
+        <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <img src="assets/logo-tda-bekasi.png" alt="TDA Bekasi" style={{ height: 64, width: "auto", display: "block" }} />
+        </a>
+        <nav style={{ display: isMobile ? "none" : "flex", alignItems: "center", gap: 28 }}>
+          {links.map(([h, t]) => (
+            <a key={h} href={h} style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: ".9rem", color: "var(--pwb-ink)" }}>{t}</a>
+          ))}
+        </nav>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <PWBButton variant="primary" size="sm" onClick={onRegister} iconRight={<PWBIcon name="arrow-right" size={16} />}>Daftar Sekarang</PWBButton>
+          {isMobile && (
+            <button onClick={() => setOpen(o => !o)} aria-label="Menu" aria-expanded={open} style={{
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
+              width: 42, height: 42, borderRadius: "var(--radius-md)", border: "1.5px solid var(--border-subtle)",
+              background: open ? "var(--pwb-blue-50)" : "#fff", cursor: "pointer", flex: "0 0 auto",
+            }}>
+              {[0, 1, 2].map(i => <span key={i} style={{ width: 4, height: 4, borderRadius: "50%", background: "var(--pwb-ink)" }} />)}
+            </button>
+          )}
+        </div>
+      </div>
+      {isMobile && open && (
+        <nav style={{ display: "flex", flexDirection: "column", padding: "4px var(--gutter) 14px", background: "rgba(255,255,255,.98)", borderTop: "1px solid var(--border-subtle)" }}>
+          {links.map(([h, t]) => (
+            <a key={h} href={h} onClick={(e) => go(e, h)} style={{ padding: "13px 4px", fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "1rem", color: "var(--pwb-ink)", borderBottom: "1px solid var(--border-subtle)" }}>{t}</a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

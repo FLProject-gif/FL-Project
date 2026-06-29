@@ -118,10 +118,15 @@ function StatCard({ value, label, sublabel, tone = "brand", align = "left", styl
 }
 
 function Avatar({ src, alt = "", initial, size = 96, ring = "gold", style = {}, ...rest }) {
-  const rings = { gold: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-gold)", azure: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-blue-azure)", none: "var(--shadow-sm)" };
-  return <div role="img" aria-label={alt || initial} style={{ position: "relative", overflow: "hidden", width: size, height: size, flex: "0 0 auto", borderRadius: "var(--radius-pill)", background: "var(--pwb-blue-50)", boxShadow: rings[ring], display: "flex", alignItems: "center", justifyContent: "center", color: "var(--pwb-blue-azure)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * .42, ...style }} {...rest}>
-    {initial}
-    {src && <img src={src} alt={alt} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}
+  const pill = "var(--radius-pill)";
+  const ringBg = ring === "azure"
+    ? "linear-gradient(135deg, var(--pwb-blue-azure) 0%, #7db0ff 50%, var(--pwb-gold) 100%)"
+    : "linear-gradient(135deg, var(--pwb-gold) 0%, #ffd98a 28%, var(--pwb-blue-azure) 100%)";
+  return <div style={{ position: "relative", flex: "0 0 auto", padding: 4, borderRadius: pill, background: ringBg, boxShadow: "0 14px 30px rgba(0,24,74,.5), 0 0 22px rgba(120,180,255,.28)", ...style }}>
+    <div role="img" aria-label={alt || initial} style={{ position: "relative", overflow: "hidden", width: size, height: size, borderRadius: pill, border: "3px solid #fff", boxSizing: "border-box", background: "linear-gradient(165deg, #ffffff 0%, #eef4ff 52%, #d7e6ff 100%)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--pwb-blue-azure)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * .42 }} {...rest}>
+      {initial}
+      {src && <img src={src} alt={alt} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}
+    </div>
   </div>;
 }
 

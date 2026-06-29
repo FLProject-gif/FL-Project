@@ -61,9 +61,7 @@ function Speakers() {
           ))}
         </div>
       </div>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "30px var(--gutter) 84px" }}>
-        <p style={{ textAlign: "center", color: "rgba(255,255,255,.6)", fontSize: ".82rem", margin: 0 }}>*) Sebagian pembicara masih dalam konfirmasi · arahkan kursor untuk berhenti</p>
-      </div>
+      <div style={{ height: 84 }} />
       <style>{`@keyframes pwbspk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-spk-track:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-spk-viewport{overflow-x:auto}.pwb-spk-track{animation:none}}`}</style>
     </section>
   );

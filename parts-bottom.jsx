@@ -40,7 +40,7 @@ function Speakers() {
     ["Adyhtia Pratama", "", "speaker-adyhtia.jpg"],
     ["Coach Dr Fahmi", "", "speaker-fahmi.jpg"],
     ["M Yusuf Supriadi", "", "speaker-yusuf.jpg"],
-    ["Suhu Wan", "", "speaker-suhu-wan.jpg"],
+    ["Suhu Wan", "", "speaker-suhu-wan.png"],
     ["Azfar Reza", "Founder Jilbrave", "speaker-azfar.png"],
     ["Leo Giovanni", "Content Creator & Founder Clippo.id", "speaker-leo.png"],
     ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.png"],

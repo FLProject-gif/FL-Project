@@ -44,6 +44,7 @@ function Speakers() {
     ["Leo Giovanni", "Content Creator & Founder Clippo.id", "speaker-leo.jpg"],
     ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.jpg"],
     ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.jpg"],
+    ["Surya Paramita", "Produser Film Sore", "speaker-surya.jpg"],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>

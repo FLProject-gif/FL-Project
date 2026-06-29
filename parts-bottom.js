@@ -99,11 +99,22 @@ function Speakers() {
       margin: 0,
       maxWidth: 620
     }
-  }, "Belajar Langsung dari Para Praktisi & Tokoh")), /*#__PURE__*/React.createElement("div", {
+  }, "Belajar Langsung dari Para Praktisi & Tokoh")), [{
+    items: people.slice(0, Math.ceil(people.length / 2)),
+    dur: isMobile ? 44 : 74,
+    rev: false,
+    mt: 48
+  }, {
+    items: people.slice(Math.ceil(people.length / 2)),
+    dur: isMobile ? 38 : 62,
+    rev: true,
+    mt: isMobile ? 16 : 24
+  }].map((row, ri) => /*#__PURE__*/React.createElement("div", {
+    key: ri,
     className: "pwb-spk-viewport",
     style: {
       overflow: "hidden",
-      marginTop: 48,
+      marginTop: row.mt,
       WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)",
       maskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)"
     }
@@ -112,12 +123,12 @@ function Speakers() {
     style: {
       display: "flex",
       alignItems: "flex-start",
-      gap: isMobile ? 24 : 36,
+      gap: isMobile ? 22 : 32,
       width: "max-content",
       padding: "6px 18px",
-      animation: `pwbspk ${isMobile ? 40 : 70}s linear infinite`
+      animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}`
     }
-  }, [...people, ...people].map(([n, r, photo], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
+  }, [...row.items, ...row.items].map(([n, r, photo], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
     key: i,
     name: n,
     role: r ? /*#__PURE__*/React.createElement("span", {
@@ -127,8 +138,8 @@ function Speakers() {
     }, r) : undefined,
     src: photo ? "assets/" + photo : undefined,
     initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
-    size: isMobile ? 134 : 152
-  })))), /*#__PURE__*/React.createElement("div", {
+    size: isMobile ? 118 : 134
+  }))))), /*#__PURE__*/React.createElement("div", {
     style: {
       height: 84
     }

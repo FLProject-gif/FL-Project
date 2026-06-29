@@ -49,24 +49,24 @@ function Speakers() {
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "84px var(--gutter) 0" }}>
-        <div className="pwb-runhead" style={{ marginBottom: 24, color: "#fff" }}><span style={{ color: "#fff" }}>Let's Grow Together</span></div>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: `${isMobile ? 54 : 84}px var(--gutter) 0` }}>
+        <div className="pwb-runhead" style={{ marginBottom: isMobile ? 18 : 24, color: "#fff" }}><span style={{ color: "#fff" }}>Let's Grow Together</span></div>
         <div className="pwb-eyebrow" style={{ color: "var(--pwb-gold)", marginBottom: 12 }}>Rundown Puncak Acara</div>
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "var(--fs-h1)", letterSpacing: "-.02em", margin: 0, maxWidth: 620 }}>Belajar Langsung dari Para Praktisi & Tokoh</h2>
       </div>
       {[
-        { items: people.slice(0, Math.ceil(people.length / 2)), dur: isMobile ? 44 : 74, rev: false, mt: 48 },
-        { items: people.slice(Math.ceil(people.length / 2)), dur: isMobile ? 38 : 62, rev: true, mt: isMobile ? 16 : 24 },
+        { items: people.slice(0, Math.ceil(people.length / 2)), dur: isMobile ? 38 : 74, rev: false, mt: isMobile ? 30 : 48 },
+        { items: people.slice(Math.ceil(people.length / 2)), dur: isMobile ? 32 : 62, rev: true, mt: isMobile ? 12 : 24 },
       ].map((row, ri) => (
-        <div key={ri} className="pwb-spk-viewport" style={{ overflow: "hidden", marginTop: row.mt, WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)", maskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)" }}>
-          <div className="pwb-spk-track" style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? 22 : 32, width: "max-content", padding: "6px 18px", animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}` }}>
+        <div key={ri} className="pwb-spk-viewport" style={{ overflow: "hidden", marginTop: row.mt, WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)", maskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)" }}>
+          <div className="pwb-spk-track" style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? 16 : 32, width: "max-content", padding: isMobile ? "4px 12px" : "6px 18px", animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}` }}>
             {[...row.items, ...row.items].map(([n, r, photo], i) => (
-              <PWBSpeakerCard key={i} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={isMobile ? 118 : 134} />
+              <PWBSpeakerCard key={i} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={isMobile ? 100 : 134} />
             ))}
           </div>
         </div>
       ))}
-      <div style={{ height: 84 }} />
+      <div style={{ height: isMobile ? 54 : 84 }} />
       <style>{`@keyframes pwbspk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-spk-track:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-spk-viewport{overflow-x:auto}.pwb-spk-track{animation:none}}`}</style>
     </section>
   );

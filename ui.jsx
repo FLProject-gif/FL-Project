@@ -121,7 +121,7 @@ function Avatar({ src, alt = "", initial, size = 96, ring = "gold", style = {}, 
   const rings = { gold: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-gold)", azure: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-blue-azure)", none: "var(--shadow-sm)" };
   return <div role="img" aria-label={alt || initial} style={{ position: "relative", overflow: "hidden", width: size, height: size, flex: "0 0 auto", borderRadius: "var(--radius-pill)", background: "var(--pwb-blue-50)", boxShadow: rings[ring], display: "flex", alignItems: "center", justifyContent: "center", color: "var(--pwb-blue-azure)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * .42, ...style }} {...rest}>
     {initial}
-    {src && <img src={src} alt={alt} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}
+    {src && <img src={src} alt={alt} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", background: "#fff" }} />}
   </div>;
 }
 

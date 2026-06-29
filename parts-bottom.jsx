@@ -31,14 +31,14 @@ function Speakers() {
   // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
   // [nama, peran, foto, logo brand (opsional)]
   const people = [
-    ["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.jpg", ""],
-    ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg", "brand-bukalapak.png"],
-    ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg", "brand-martha-tilaar.png"],
-    ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg", "brand-torch.png"],
-    ["Dwi Aryanti", "CEO Ciomy", "speaker-dwi.jpg", "brand-ciomy.png"],
+    ["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.png", ""],
+    ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.png", "brand-bukalapak.png"],
+    ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.png", "brand-martha-tilaar.png"],
+    ["Ben Wirawan", "Founder Torch.id", "speaker-ben.png", "brand-torch.png"],
+    ["Dwi Aryanti", "CEO Ciomy", "speaker-dwi.png", "brand-ciomy.png"],
     ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg", "brand-brighty.png"],
-    ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.jpg", "brand-mbok-darmi.png"],
-    ["Adyhtia Pratama", "", "speaker-adyhtia.jpg", ""],
+    ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.png", "brand-mbok-darmi.png"],
+    ["Adyhtia Pratama", "", "speaker-adyhtia.png", ""],
     ["Coach Dr Fahmi", "", "speaker-fahmi.jpg", ""],
     ["M Yusuf Supriadi", "", "speaker-yusuf.jpg", ""],
     ["Suhu Wan", "", "speaker-suhu-wan.png", ""],

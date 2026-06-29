@@ -41,11 +41,11 @@ function Speakers() {
     ["Coach Dr Fahmi", "", "speaker-fahmi.jpg"],
     ["M Yusuf Supriadi", "", "speaker-yusuf.jpg"],
     ["Suhu Wan", "", "speaker-suhu-wan.jpg"],
-    ["Azfar Reza", "Founder Jilbrave", "speaker-azfar.jpg"],
-    ["Leo Giovanni", "Content Creator & Founder Clippo.id", "speaker-leo.jpg"],
-    ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.jpg"],
-    ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.jpg"],
-    ["Surya Paramita", "Produser Film Sore", "speaker-surya.jpg"],
+    ["Azfar Reza", "Founder Jilbrave", "speaker-azfar.png"],
+    ["Leo Giovanni", "Content Creator & Founder Clippo.id", "speaker-leo.png"],
+    ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.png"],
+    ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.png"],
+    ["Surya Paramita", "Produser Film Sore", "speaker-surya.png"],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>

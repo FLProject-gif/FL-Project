@@ -60,7 +60,8 @@ function TemaAcara() {
 function Speakers() {
   const isMobile = useIsMobile();
   // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
-  const people = [["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.jpg"], ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg"], ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg"], ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg"], ["Dwi Aryanti", "CEO Ciomy", "speaker-dwi.jpg"], ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg"], ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.jpg"], ["Adyhtia Pratama", "", "speaker-adyhtia.jpg"], ["Coach Dr Fahmi", "", "speaker-fahmi.jpg"], ["M Yusuf Supriadi", "", "speaker-yusuf.jpg"], ["Suhu Wan", "", "speaker-suhu-wan.png"], ["Azfar Reza", "Founder Jilbrave", "speaker-azfar.png"], ["Leo Giovanni", "Content Creator & Founder Clippo.id", "speaker-leo.png"], ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.png"], ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.png"], ["Surya Paramita", "Produser Film Sore", "speaker-surya.png"]];
+  // [nama, peran, foto, logo brand (opsional)]
+  const people = [["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.jpg", ""], ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg", "brand-bukalapak.png"], ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg", "brand-martha-tilaar.png"], ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg", "brand-torch.png"], ["Dwi Aryanti", "CEO Ciomy", "speaker-dwi.jpg", "brand-ciomy.png"], ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg", "brand-brighty.png"], ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.jpg", "brand-mbok-darmi.png"], ["Adyhtia Pratama", "", "speaker-adyhtia.jpg", ""], ["Coach Dr Fahmi", "", "speaker-fahmi.jpg", ""], ["M Yusuf Supriadi", "", "speaker-yusuf.jpg", ""], ["Suhu Wan", "", "speaker-suhu-wan.png", ""], ["Azfar Reza", "Founder Jilbrave", "speaker-azfar.png", "brand-jilbrave.png"], ["Leo Giovanni", "Content Creator & Founder Clippo.id", "speaker-leo.png", "brand-clippo.png"], ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.png", "brand-seefluencer.png"], ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.png", ""], ["Surya Paramita", "Produser Film Sore", "speaker-surya.png", "brand-film-sore.png"]];
   return /*#__PURE__*/React.createElement("section", {
     id: "speaker",
     style: {
@@ -131,7 +132,7 @@ function Speakers() {
         padding: isMobile ? "12px 14px" : "12px 18px",
         animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}`
       }
-    }, [...row.items, ...row.items].map(([n, r, photo], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
+    }, [...row.items, ...row.items].map(([n, r, photo, brand], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
       key: i,
       name: n,
       role: r ? /*#__PURE__*/React.createElement("span", {
@@ -140,6 +141,7 @@ function Speakers() {
         }
       }, r) : undefined,
       src: photo ? "assets/" + photo : undefined,
+      brand: brand ? "assets/" + brand : undefined,
       initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
       size: isMobile ? 100 : 134
     }))));

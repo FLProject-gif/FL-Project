@@ -417,7 +417,7 @@ function Avatar({
       height: size,
       flex: "0 0 auto",
       borderRadius: "var(--radius-pill)",
-      background: "var(--pwb-blue-50)",
+      background: "radial-gradient(circle at 50% 24%, #ffe2a0 0%, #fff1cc 46%, #fffaf0 100%)",
       boxShadow: rings[ring],
       display: "flex",
       alignItems: "center",
@@ -428,19 +428,26 @@ function Avatar({
       fontSize: size * .42,
       ...style
     }
-  }, rest), initial, src && /*#__PURE__*/React.createElement("img", {
+  }, rest), /*#__PURE__*/React.createElement("span", {
+    "data-initial": ""
+  }, initial), src && /*#__PURE__*/React.createElement("img", {
     src: src,
     alt: alt,
+    onLoad: e => {
+      const s = e.currentTarget.parentNode.querySelector("[data-initial]");
+      if (s) s.style.display = "none";
+    },
     onError: e => {
       e.currentTarget.style.display = "none";
+      const s = e.currentTarget.parentNode.querySelector("[data-initial]");
+      if (s) s.style.display = "";
     },
     style: {
       position: "absolute",
       inset: 0,
       width: "100%",
       height: "100%",
-      objectFit: "cover",
-      background: "#fff"
+      objectFit: "cover"
     }
   }));
 }
@@ -448,6 +455,7 @@ function SpeakerCard({
   name,
   role,
   src,
+  brand,
   initial,
   time,
   topic,
@@ -464,12 +472,47 @@ function SpeakerCard({
       width: size + 24,
       ...style
     }
-  }, rest), /*#__PURE__*/React.createElement(Avatar, {
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      width: size,
+      height: size,
+      flex: "0 0 auto"
+    }
+  }, /*#__PURE__*/React.createElement(Avatar, {
     src: src,
     initial: initial || (name ? name[0] : "?"),
     alt: name,
     size: size
-  }), /*#__PURE__*/React.createElement("div", {
+  }), brand && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: -size * .03,
+      bottom: size * .03,
+      width: size * .36,
+      height: size * .36,
+      borderRadius: size * .12,
+      background: "#fff",
+      boxShadow: "0 4px 12px rgba(0,24,74,.22)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: size * .05,
+      overflow: "hidden",
+      zIndex: 3
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: brand,
+    alt: "",
+    onError: e => {
+      e.currentTarget.parentNode.style.display = "none";
+    },
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain"
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: -14,
       position: "relative",

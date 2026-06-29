@@ -58,6 +58,7 @@ function TemaAcara() {
   }, d)))));
 }
 function Speakers() {
+  const isMobile = useIsMobile();
   // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
   const people = [["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.jpg"], ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.jpg"], ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.jpg"], ["Ben Wirawan", "Founder Torch.id", "speaker-ben.jpg"], ["Dwi Aryanti", "CEO Ciomy", "speaker-dwi.jpg"], ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg"], ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.jpg"], ["Adyhtia Pratama", "", "speaker-adyhtia.jpg"], ["Coach Dr Fahmi", "", "speaker-fahmi.jpg"], ["M Yusuf Supriadi", "", "speaker-yusuf.jpg"], ["Suhu Wan", "", "speaker-suhu-wan.jpg"], ["Azfar Reza", "Founder Jilbrave", "speaker-azfar.jpg"], ["Leo Giovanni", "Content Creator & Founder Clippo.id", "speaker-leo.jpg"], ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.jpg"], ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.jpg"], ["Surya Paramita", "Produser Film Sore", "speaker-surya.jpg"]];
   return /*#__PURE__*/React.createElement("section", {
@@ -98,11 +99,13 @@ function Speakers() {
     }
   }, "Belajar Langsung dari Para Praktisi & Tokoh"), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "flex",
-      flexWrap: "wrap",
-      gap: 28,
-      marginTop: 44,
-      justifyContent: "center"
+      display: "grid",
+      gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(auto-fit, 142px)",
+      justifyContent: "center",
+      justifyItems: "center",
+      alignItems: "start",
+      gap: isMobile ? "30px 12px" : "38px 26px",
+      marginTop: 44
     }
   }, people.map(([n, r, photo]) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
     key: n,

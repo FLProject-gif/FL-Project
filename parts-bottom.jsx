@@ -27,6 +27,7 @@ function TemaAcara() {
 }
 
 function Speakers() {
+  const isMobile = useIsMobile();
   // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
   const people = [
     ["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.jpg"],
@@ -52,7 +53,7 @@ function Speakers() {
         <div className="pwb-runhead" style={{ marginBottom: 24, color: "#fff" }}><span style={{ color: "#fff" }}>Let's Grow Together</span></div>
         <div className="pwb-eyebrow" style={{ color: "var(--pwb-gold)", marginBottom: 12 }}>Rundown Puncak Acara</div>
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "var(--fs-h1)", letterSpacing: "-.02em", margin: 0, maxWidth: 620 }}>Belajar Langsung dari Para Praktisi & Tokoh</h2>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 28, marginTop: 44, justifyContent: "center" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(auto-fit, 142px)", justifyContent: "center", justifyItems: "center", alignItems: "start", gap: isMobile ? "30px 12px" : "38px 26px", marginTop: 44 }}>
           {people.map(([n, r, photo]) => (
             <PWBSpeakerCard key={n} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={118} />
           ))}

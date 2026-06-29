@@ -109,37 +109,41 @@ function Speakers() {
     dur: isMobile ? 32 : 62,
     rev: true,
     mt: isMobile ? 12 : 24
-  }].map((row, ri) => /*#__PURE__*/React.createElement("div", {
-    key: ri,
-    className: "pwb-spk-viewport",
-    style: {
-      overflow: "hidden",
-      marginTop: row.mt,
-      WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)",
-      maskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "pwb-spk-track",
-    style: {
-      display: "flex",
-      alignItems: "flex-start",
-      gap: isMobile ? 16 : 32,
-      width: "max-content",
-      padding: isMobile ? "4px 12px" : "6px 18px",
-      animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}`
-    }
-  }, [...row.items, ...row.items].map(([n, r, photo], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
-    key: i,
-    name: n,
-    role: r ? /*#__PURE__*/React.createElement("span", {
+  }].map((row, ri) => {
+    const edge = isMobile ? 16 : 8;
+    const mask = `linear-gradient(to right, transparent 0, #000 ${edge}%, #000 ${100 - edge}%, transparent 100%)`;
+    return /*#__PURE__*/React.createElement("div", {
+      key: ri,
+      className: "pwb-spk-viewport",
       style: {
-        color: "rgba(255,255,255,.78)"
+        overflow: "hidden",
+        marginTop: row.mt,
+        WebkitMaskImage: mask,
+        maskImage: mask
       }
-    }, r) : undefined,
-    src: photo ? "assets/" + photo : undefined,
-    initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
-    size: isMobile ? 100 : 134
-  }))))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "pwb-spk-track",
+      style: {
+        display: "flex",
+        alignItems: "flex-start",
+        gap: isMobile ? 16 : 32,
+        width: "max-content",
+        padding: isMobile ? "12px 14px" : "12px 18px",
+        animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}`
+      }
+    }, [...row.items, ...row.items].map(([n, r, photo], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
+      key: i,
+      name: n,
+      role: r ? /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "rgba(255,255,255,.78)"
+        }
+      }, r) : undefined,
+      src: photo ? "assets/" + photo : undefined,
+      initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
+      size: isMobile ? 100 : 134
+    }))));
+  }), /*#__PURE__*/React.createElement("div", {
     style: {
       height: isMobile ? 54 : 84
     }

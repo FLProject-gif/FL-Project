@@ -57,15 +57,19 @@ function Speakers() {
       {[
         { items: people.slice(0, Math.ceil(people.length / 2)), dur: isMobile ? 38 : 74, rev: false, mt: isMobile ? 30 : 48 },
         { items: people.slice(Math.ceil(people.length / 2)), dur: isMobile ? 32 : 62, rev: true, mt: isMobile ? 12 : 24 },
-      ].map((row, ri) => (
-        <div key={ri} className="pwb-spk-viewport" style={{ overflow: "hidden", marginTop: row.mt, WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)", maskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)" }}>
-          <div className="pwb-spk-track" style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? 16 : 32, width: "max-content", padding: isMobile ? "4px 12px" : "6px 18px", animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}` }}>
+      ].map((row, ri) => {
+        const edge = isMobile ? 16 : 8;
+        const mask = `linear-gradient(to right, transparent 0, #000 ${edge}%, #000 ${100 - edge}%, transparent 100%)`;
+        return (
+        <div key={ri} className="pwb-spk-viewport" style={{ overflow: "hidden", marginTop: row.mt, WebkitMaskImage: mask, maskImage: mask }}>
+          <div className="pwb-spk-track" style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? 16 : 32, width: "max-content", padding: isMobile ? "12px 14px" : "12px 18px", animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}` }}>
             {[...row.items, ...row.items].map(([n, r, photo], i) => (
               <PWBSpeakerCard key={i} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={isMobile ? 100 : 134} />
             ))}
           </div>
         </div>
-      ))}
+        );
+      })}
       <div style={{ height: isMobile ? 54 : 84 }} />
       <style>{`@keyframes pwbspk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-spk-track:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-spk-viewport{overflow-x:auto}.pwb-spk-track{animation:none}}`}</style>
     </section>

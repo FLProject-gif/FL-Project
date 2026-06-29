@@ -54,13 +54,18 @@ function Speakers() {
         <div className="pwb-eyebrow" style={{ color: "var(--pwb-gold)", marginBottom: 12 }}>Rundown Puncak Acara</div>
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "var(--fs-h1)", letterSpacing: "-.02em", margin: 0, maxWidth: 620 }}>Belajar Langsung dari Para Praktisi & Tokoh</h2>
       </div>
-      <div className="pwb-spk-viewport" style={{ overflow: "hidden", marginTop: 48, WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)", maskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)" }}>
-        <div className="pwb-spk-track" style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? 24 : 36, width: "max-content", padding: "6px 18px", animation: `pwbspk ${isMobile ? 40 : 70}s linear infinite` }}>
-          {[...people, ...people].map(([n, r, photo], i) => (
-            <PWBSpeakerCard key={i} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={isMobile ? 134 : 152} />
-          ))}
+      {[
+        { items: people.slice(0, Math.ceil(people.length / 2)), dur: isMobile ? 44 : 74, rev: false, mt: 48 },
+        { items: people.slice(Math.ceil(people.length / 2)), dur: isMobile ? 38 : 62, rev: true, mt: isMobile ? 16 : 24 },
+      ].map((row, ri) => (
+        <div key={ri} className="pwb-spk-viewport" style={{ overflow: "hidden", marginTop: row.mt, WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)", maskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)" }}>
+          <div className="pwb-spk-track" style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? 22 : 32, width: "max-content", padding: "6px 18px", animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}` }}>
+            {[...row.items, ...row.items].map(([n, r, photo], i) => (
+              <PWBSpeakerCard key={i} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={isMobile ? 118 : 134} />
+            ))}
+          </div>
         </div>
-      </div>
+      ))}
       <div style={{ height: 84 }} />
       <style>{`@keyframes pwbspk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-spk-track:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-spk-viewport{overflow-x:auto}.pwb-spk-track{animation:none}}`}</style>
     </section>

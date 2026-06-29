@@ -402,19 +402,12 @@ function Avatar({
   style = {},
   ...rest
 }) {
-  const pill = "var(--radius-pill)";
-  const ringBg = ring === "azure" ? "linear-gradient(135deg, var(--pwb-blue-azure) 0%, #7db0ff 50%, var(--pwb-gold) 100%)" : "linear-gradient(135deg, var(--pwb-gold) 0%, #ffd98a 28%, var(--pwb-blue-azure) 100%)";
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "relative",
-      flex: "0 0 auto",
-      padding: 4,
-      borderRadius: pill,
-      background: ringBg,
-      boxShadow: "0 14px 30px rgba(0,24,74,.5), 0 0 22px rgba(120,180,255,.28)",
-      ...style
-    }
-  }, /*#__PURE__*/React.createElement("div", _extends({
+  const rings = {
+    gold: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-gold)",
+    azure: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-blue-azure)",
+    none: "var(--shadow-sm)"
+  };
+  return /*#__PURE__*/React.createElement("div", _extends({
     role: "img",
     "aria-label": alt || initial,
     style: {
@@ -422,17 +415,18 @@ function Avatar({
       overflow: "hidden",
       width: size,
       height: size,
-      borderRadius: pill,
-      border: "3px solid #fff",
-      boxSizing: "border-box",
-      background: "linear-gradient(165deg, #ffffff 0%, #eef4ff 52%, #d7e6ff 100%)",
+      flex: "0 0 auto",
+      borderRadius: "var(--radius-pill)",
+      background: "var(--pwb-blue-50)",
+      boxShadow: rings[ring],
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       color: "var(--pwb-blue-azure)",
       fontFamily: "var(--font-display)",
       fontWeight: 700,
-      fontSize: size * .42
+      fontSize: size * .42,
+      ...style
     }
   }, rest), initial, src && /*#__PURE__*/React.createElement("img", {
     src: src,
@@ -447,7 +441,7 @@ function Avatar({
       height: "100%",
       objectFit: "cover"
     }
-  })));
+  }));
 }
 function SpeakerCard({
   name,

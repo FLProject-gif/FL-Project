@@ -70,7 +70,9 @@ function Speakers() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      ...LBStyles.section
+      maxWidth: 1280,
+      margin: "0 auto",
+      padding: "84px var(--gutter) 0"
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "pwb-runhead",
@@ -97,18 +99,26 @@ function Speakers() {
       margin: 0,
       maxWidth: 620
     }
-  }, "Belajar Langsung dari Para Praktisi & Tokoh"), /*#__PURE__*/React.createElement("div", {
+  }, "Belajar Langsung dari Para Praktisi & Tokoh")), /*#__PURE__*/React.createElement("div", {
+    className: "pwb-spk-viewport",
     style: {
-      display: "grid",
-      gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(auto-fit, 142px)",
-      justifyContent: "center",
-      justifyItems: "center",
-      alignItems: "start",
-      gap: isMobile ? "30px 12px" : "38px 26px",
-      marginTop: 44
+      overflow: "hidden",
+      marginTop: 48,
+      WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)",
+      maskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)"
     }
-  }, people.map(([n, r, photo]) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
-    key: n,
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "pwb-spk-track",
+    style: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: isMobile ? 24 : 36,
+      width: "max-content",
+      padding: "6px 18px",
+      animation: `pwbspk ${isMobile ? 40 : 70}s linear infinite`
+    }
+  }, [...people, ...people].map(([n, r, photo], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
+    key: i,
     name: n,
     role: r ? /*#__PURE__*/React.createElement("span", {
       style: {
@@ -117,15 +127,21 @@ function Speakers() {
     }, r) : undefined,
     src: photo ? "assets/" + photo : undefined,
     initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
-    size: 118
-  }))), /*#__PURE__*/React.createElement("p", {
+    size: isMobile ? 134 : 152
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 1280,
+      margin: "0 auto",
+      padding: "30px var(--gutter) 84px"
+    }
+  }, /*#__PURE__*/React.createElement("p", {
     style: {
       textAlign: "center",
       color: "rgba(255,255,255,.6)",
       fontSize: ".82rem",
-      marginTop: 32
+      margin: 0
     }
-  }, "*) Sebagian pembicara masih dalam konfirmasi")));
+  }, "*) Sebagian pembicara masih dalam konfirmasi \xB7 arahkan kursor untuk berhenti")), /*#__PURE__*/React.createElement("style", null, `@keyframes pwbspk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-spk-track:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-spk-viewport{overflow-x:auto}.pwb-spk-track{animation:none}}`));
 }
 function Sponsors({
   onRegister

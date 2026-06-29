@@ -49,17 +49,22 @@ function Speakers() {
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>
-      <div style={{ ...LBStyles.section }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "84px var(--gutter) 0" }}>
         <div className="pwb-runhead" style={{ marginBottom: 24, color: "#fff" }}><span style={{ color: "#fff" }}>Let's Grow Together</span></div>
         <div className="pwb-eyebrow" style={{ color: "var(--pwb-gold)", marginBottom: 12 }}>Rundown Puncak Acara</div>
         <h2 style={{ color: "#fff", fontWeight: 800, fontSize: "var(--fs-h1)", letterSpacing: "-.02em", margin: 0, maxWidth: 620 }}>Belajar Langsung dari Para Praktisi & Tokoh</h2>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(auto-fit, 142px)", justifyContent: "center", justifyItems: "center", alignItems: "start", gap: isMobile ? "30px 12px" : "38px 26px", marginTop: 44 }}>
-          {people.map(([n, r, photo]) => (
-            <PWBSpeakerCard key={n} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={118} />
+      </div>
+      <div className="pwb-spk-viewport" style={{ overflow: "hidden", marginTop: 48, WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)", maskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)" }}>
+        <div className="pwb-spk-track" style={{ display: "flex", alignItems: "flex-start", gap: isMobile ? 24 : 36, width: "max-content", padding: "6px 18px", animation: `pwbspk ${isMobile ? 40 : 70}s linear infinite` }}>
+          {[...people, ...people].map(([n, r, photo], i) => (
+            <PWBSpeakerCard key={i} name={n} role={r ? <span style={{ color: "rgba(255,255,255,.78)" }}>{r}</span> : undefined} src={photo ? "assets/" + photo : undefined} initial={n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0]} size={isMobile ? 134 : 152} />
           ))}
         </div>
-        <p style={{ textAlign: "center", color: "rgba(255,255,255,.6)", fontSize: ".82rem", marginTop: 32 }}>*) Sebagian pembicara masih dalam konfirmasi</p>
       </div>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "30px var(--gutter) 84px" }}>
+        <p style={{ textAlign: "center", color: "rgba(255,255,255,.6)", fontSize: ".82rem", margin: 0 }}>*) Sebagian pembicara masih dalam konfirmasi · arahkan kursor untuk berhenti</p>
+      </div>
+      <style>{`@keyframes pwbspk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-spk-track:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-spk-viewport{overflow-x:auto}.pwb-spk-track{animation:none}}`}</style>
     </section>
   );
 }

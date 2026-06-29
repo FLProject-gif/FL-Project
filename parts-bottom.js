@@ -72,12 +72,12 @@ function Speakers() {
     style: {
       maxWidth: 1280,
       margin: "0 auto",
-      padding: "84px var(--gutter) 0"
+      padding: `${isMobile ? 54 : 84}px var(--gutter) 0`
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "pwb-runhead",
     style: {
-      marginBottom: 24,
+      marginBottom: isMobile ? 18 : 24,
       color: "#fff"
     }
   }, /*#__PURE__*/React.createElement("span", {
@@ -101,31 +101,31 @@ function Speakers() {
     }
   }, "Belajar Langsung dari Para Praktisi & Tokoh")), [{
     items: people.slice(0, Math.ceil(people.length / 2)),
-    dur: isMobile ? 44 : 74,
+    dur: isMobile ? 38 : 74,
     rev: false,
-    mt: 48
+    mt: isMobile ? 30 : 48
   }, {
     items: people.slice(Math.ceil(people.length / 2)),
-    dur: isMobile ? 38 : 62,
+    dur: isMobile ? 32 : 62,
     rev: true,
-    mt: isMobile ? 16 : 24
+    mt: isMobile ? 12 : 24
   }].map((row, ri) => /*#__PURE__*/React.createElement("div", {
     key: ri,
     className: "pwb-spk-viewport",
     style: {
       overflow: "hidden",
       marginTop: row.mt,
-      WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)",
-      maskImage: "linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%)"
+      WebkitMaskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)",
+      maskImage: "linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%)"
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "pwb-spk-track",
     style: {
       display: "flex",
       alignItems: "flex-start",
-      gap: isMobile ? 22 : 32,
+      gap: isMobile ? 16 : 32,
       width: "max-content",
-      padding: "6px 18px",
+      padding: isMobile ? "4px 12px" : "6px 18px",
       animation: `pwbspk ${row.dur}s linear infinite${row.rev ? " reverse" : ""}`
     }
   }, [...row.items, ...row.items].map(([n, r, photo], i) => /*#__PURE__*/React.createElement(PWBSpeakerCard, {
@@ -138,10 +138,10 @@ function Speakers() {
     }, r) : undefined,
     src: photo ? "assets/" + photo : undefined,
     initial: n.replace(/^(Ust\.|Dr\.|M\.?)\s*/, "")[0],
-    size: isMobile ? 118 : 134
+    size: isMobile ? 100 : 134
   }))))), /*#__PURE__*/React.createElement("div", {
     style: {
-      height: 84
+      height: isMobile ? 54 : 84
     }
   }), /*#__PURE__*/React.createElement("style", null, `@keyframes pwbspk{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-spk-track:hover{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-spk-viewport{overflow-x:auto}.pwb-spk-track{animation:none}}`));
 }

@@ -417,7 +417,7 @@ function Avatar({
       height: size,
       flex: "0 0 auto",
       borderRadius: "var(--radius-pill)",
-      background: "radial-gradient(circle at 50% 24%, #ffe2a0 0%, #fff1cc 46%, #fffaf0 100%)",
+      background: "#fff",
       boxShadow: rings[ring],
       display: "flex",
       alignItems: "center",

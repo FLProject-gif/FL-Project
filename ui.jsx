@@ -119,7 +119,7 @@ function StatCard({ value, label, sublabel, tone = "brand", align = "left", styl
 
 function Avatar({ src, alt = "", initial, size = 96, ring = "gold", style = {}, ...rest }) {
   const rings = { gold: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-gold)", azure: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-blue-azure)", none: "var(--shadow-sm)" };
-  return <div role="img" aria-label={alt || initial} style={{ position: "relative", overflow: "hidden", width: size, height: size, flex: "0 0 auto", borderRadius: "var(--radius-pill)", background: "radial-gradient(circle at 50% 24%, #ffe2a0 0%, #fff1cc 46%, #fffaf0 100%)", boxShadow: rings[ring], display: "flex", alignItems: "center", justifyContent: "center", color: "var(--pwb-blue-azure)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * .42, ...style }} {...rest}>
+  return <div role="img" aria-label={alt || initial} style={{ position: "relative", overflow: "hidden", width: size, height: size, flex: "0 0 auto", borderRadius: "var(--radius-pill)", background: "#fff", boxShadow: rings[ring], display: "flex", alignItems: "center", justifyContent: "center", color: "var(--pwb-blue-azure)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * .42, ...style }} {...rest}>
     <span data-initial="">{initial}</span>
     {src && <img src={src} alt={alt}
       onLoad={(e) => { const s = e.currentTarget.parentNode.querySelector("[data-initial]"); if (s) s.style.display = "none"; }}

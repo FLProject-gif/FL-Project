@@ -154,22 +154,33 @@ function Kolaborasi() {
     ["RECOOK.ID", "partner-recook.png"],
   ];
   return (
-    <section id="kolaborasi" style={{ background: "var(--pwb-cloud)" }} className="pwb-topo">
-      <div style={LBStyles.section}>
+    <section id="kolaborasi" style={{ background: "var(--pwb-cloud)", overflow: "hidden" }} className="pwb-topo">
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: `${isMobile ? 54 : 84}px var(--gutter) 0` }}>
         <PWBSectionHeader runhead align="center" eyebrow="Kolaborasi Komunitas" title="Didukung Komunitas &amp; Mitra"
           desc="Pesta Wirausaha Bekasi 2026 terselenggara bersama jejaring komunitas pengusaha &amp; mitra strategis di Bekasi dan sekitarnya." />
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%," + (isMobile ? "130px" : "150px") + "),1fr))", gap: 24, marginTop: 44, justifyItems: "center" }}>
-          {partners.map(([name, logo]) => (
-            <div key={name} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%", maxWidth: 170 }}>
-              <div style={{ position: "relative", width: 116, height: 116, borderRadius: "50%", background: "#fff", boxShadow: "var(--shadow-card)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flex: "0 0 auto", border: "1px solid var(--border-subtle)" }}>
-                <PWBIcon name="users-round" size={40} style={{ color: "var(--pwb-blue-azure)" }} />
-                <img src={"assets/" + logo} alt={name} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 16, background: "#fff" }} />
-              </div>
-              <span style={{ background: "var(--pwb-blue-azure)", color: "#fff", borderRadius: "var(--radius-pill)", padding: "6px 14px", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".76rem", textAlign: "center", lineHeight: 1.2 }}>{name}</span>
-            </div>
-          ))}
-        </div>
       </div>
+      {[
+        { items: partners.slice(0, Math.ceil(partners.length / 2)), dur: isMobile ? 36 : 66, rev: false, mt: isMobile ? 30 : 44 },
+        { items: partners.slice(Math.ceil(partners.length / 2)), dur: isMobile ? 30 : 56, rev: true, mt: isMobile ? 14 : 20 },
+      ].map((row, ri) => {
+        const edge = isMobile ? 14 : 7;
+        const mask = `linear-gradient(to right, transparent 0, #000 ${edge}%, #000 ${100 - edge}%, transparent 100%)`;
+        const tile = isMobile ? 112 : 140;
+        return (
+        <div key={ri} className="pwb-klab-viewport" style={{ overflow: "hidden", marginTop: row.mt, WebkitMaskImage: mask, maskImage: mask }}>
+          <div className="pwb-klab-track" style={{ display: "flex", alignItems: "center", gap: isMobile ? 14 : 20, width: "max-content", padding: "8px 12px", animation: `pwbklab ${row.dur}s linear infinite${row.rev ? " reverse" : ""}` }}>
+            {[...row.items, ...row.items].map(([name, logo], i) => (
+              <div key={i} title={name} style={{ position: "relative", width: tile, height: tile, flex: "0 0 auto", borderRadius: 22, background: "#fff", boxShadow: "var(--shadow-card)", border: "1px solid var(--border-subtle)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                <span style={{ padding: 10, fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".68rem", color: "var(--text-muted)", textAlign: "center", lineHeight: 1.2 }}>{name}</span>
+                <img src={"assets/" + logo} alt={name} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: isMobile ? 16 : 20, background: "#fff" }} />
+              </div>
+            ))}
+          </div>
+        </div>
+        );
+      })}
+      <div style={{ height: isMobile ? 54 : 84 }} />
+      <style>{`@keyframes pwbklab{from{transform:translateX(0)}to{transform:translateX(-50%)}}.pwb-klab-track:hover,.pwb-klab-track:active{animation-play-state:paused}@media (prefers-reduced-motion:reduce){.pwb-klab-viewport{overflow-x:auto}.pwb-klab-track{animation:none}}`}</style>
     </section>
   );
 }

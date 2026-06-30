@@ -409,6 +409,8 @@ function Kolaborasi() {
     }, name), /*#__PURE__*/React.createElement("img", {
       src: "assets/" + logo,
       alt: name,
+      loading: "lazy",
+      decoding: "async",
       onError: e => {
         e.currentTarget.style.display = "none";
       },

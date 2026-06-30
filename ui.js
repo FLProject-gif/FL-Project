@@ -433,6 +433,8 @@ function Avatar({
   }, initial), src && /*#__PURE__*/React.createElement("img", {
     src: src,
     alt: alt,
+    loading: "lazy",
+    decoding: "async",
     onLoad: e => {
       const s = e.currentTarget.parentNode.querySelector("[data-initial]");
       if (s) s.style.display = "none";
@@ -504,6 +506,8 @@ function SpeakerCard({
   }, /*#__PURE__*/React.createElement("img", {
     src: brand,
     alt: "",
+    loading: "lazy",
+    decoding: "async",
     onError: e => {
       e.currentTarget.parentNode.style.display = "none";
     },

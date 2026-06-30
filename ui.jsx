@@ -121,7 +121,7 @@ function Avatar({ src, alt = "", initial, size = 96, ring = "gold", style = {}, 
   const rings = { gold: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-gold)", azure: "0 0 0 4px #fff, 0 0 0 7px var(--pwb-blue-azure)", none: "var(--shadow-sm)" };
   return <div role="img" aria-label={alt || initial} style={{ position: "relative", overflow: "hidden", width: size, height: size, flex: "0 0 auto", borderRadius: "var(--radius-pill)", background: "#fff", boxShadow: rings[ring], display: "flex", alignItems: "center", justifyContent: "center", color: "var(--pwb-blue-azure)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * .42, ...style }} {...rest}>
     <span data-initial="">{initial}</span>
-    {src && <img src={src} alt={alt}
+    {src && <img src={src} alt={alt} loading="lazy" decoding="async"
       onLoad={(e) => { const s = e.currentTarget.parentNode.querySelector("[data-initial]"); if (s) s.style.display = "none"; }}
       onError={(e) => { e.currentTarget.style.display = "none"; const s = e.currentTarget.parentNode.querySelector("[data-initial]"); if (s) s.style.display = ""; }}
       style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}
@@ -133,7 +133,7 @@ function SpeakerCard({ name, role, src, brand, initial, time, topic, size = 120,
     <div style={{ position: "relative", width: size, height: size, flex: "0 0 auto" }}>
       <Avatar src={src} initial={initial || (name ? name[0] : "?")} alt={name} size={size} />
       {brand && <div style={{ position: "absolute", left: -size * .03, bottom: size * .03, width: size * .36, height: size * .36, borderRadius: size * .12, background: "#fff", boxShadow: "0 4px 12px rgba(0,24,74,.22)", display: "flex", alignItems: "center", justifyContent: "center", padding: size * .05, overflow: "hidden", zIndex: 3 }}>
-        <img src={brand} alt="" onError={(e) => { e.currentTarget.parentNode.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        <img src={brand} alt="" loading="lazy" decoding="async" onError={(e) => { e.currentTarget.parentNode.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
       </div>}
     </div>
     <div style={{ marginTop: -14, position: "relative", zIndex: 2, background: "var(--pwb-blue-azure)", color: "#fff", borderRadius: "var(--radius-pill)", padding: "6px 14px", fontFamily: PWB_FONT_SANS, fontWeight: 700, fontSize: ".8125rem", boxShadow: "var(--shadow-sm)", maxWidth: size + 24 }}>{name}</div>

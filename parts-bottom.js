@@ -326,7 +326,7 @@ function Booth() {
 function Kolaborasi() {
   const isMobile = useIsMobile();
   // [nama, file logo di assets/]. Tile menampilkan ikon placeholder sampai file logo tersedia.
-  const partners = [["GENPRO Kota Bekasi", "partner-genpro.png"], ["KPMI Kota Bekasi", "partner-kpmi.png"], ["Jaringan Pengusaha Bekasi", "partner-jpn-bekasi.png"], ["BBPVP CEVEST Bekasi", "partner-bbpvp-cevest.png"], ["HIPMI Kota Bekasi", "partner-hipmi.png"], ["APKULINDO", "partner-apkulindo.png"], ["Teman Trader", "partner-teman-trader.png"], ["IKABOGA Bekasi", "partner-ikaboga.png"], ["Hijabersmom Community Bekasi", "partner-hijabersmom.png"], ["The Unlimited Space", "partner-unlimited-space.png"], ["Gemantara Indonesia", "partner-gemantara.png"], ["Genggam Tangan Indonesia", "partner-genggam-tangan.png"], ["Jawara Muda Bekasi", "partner-jawara-muda.png"], ["RECOOK.ID", "partner-recook.png"]];
+  const partners = [["PEXITA", "30.png"], ["Jawara Muda Bekasi", "31.png"], ["HijabiE Community", "32.png"], ["BETACICI", "33.png"], ["Sahabat GTI", "34.png"], ["GENPRO", "35.png"], ["POUNDtastic", "36.png"], ["Hijabersmom Community Bekasi", "37.png"], ["IKABOGA Bekasi", "38.png"], ["Gemantara Indonesia", "39.png"], ["The Unlimited Space", "40.png"], ["Teman Trader", "41.png"], ["KPMI Wilayah Bekasi", "42.png"], ["Jaringan Pengusaha Nasional Bekasi", "43.png"], ["Risepack", "44.png"], ["Babydiii", "45.png"], ["Bang Renov", "49.png"], ["attin", "51.png"]];
   return /*#__PURE__*/React.createElement("section", {
     id: "kolaborasi",
     style: {

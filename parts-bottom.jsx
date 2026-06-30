@@ -176,7 +176,7 @@ function Kolaborasi() {
             {[...row.items, ...row.items].map(([name, logo], i) => (
               <div key={i} title={name} style={{ position: "relative", width: tile, height: tile, flex: "0 0 auto", borderRadius: 22, background: "#fff", boxShadow: "var(--shadow-card)", border: "1px solid var(--border-subtle)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                 <span style={{ padding: 10, fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: ".68rem", color: "var(--text-muted)", textAlign: "center", lineHeight: 1.2 }}>{name}</span>
-                <img src={"assets/" + logo} alt={name} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 0, background: "#fff" }} />
+                <img src={"assets/" + logo} alt={name} loading="lazy" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 0, background: "#fff" }} />
               </div>
             ))}
           </div>

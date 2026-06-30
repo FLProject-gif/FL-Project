@@ -418,7 +418,7 @@ function Kolaborasi() {
         width: "100%",
         height: "100%",
         objectFit: "contain",
-        padding: isMobile ? 16 : 20,
+        padding: 0,
         background: "#fff"
       }
     })))));

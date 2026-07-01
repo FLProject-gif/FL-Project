@@ -1574,13 +1574,82 @@ a { color: var(--text-link); text-decoration: none; }
     <!-- narasumber wall -->
     <div style="font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-navy);font-weight:700;text-align:center;margin:46px auto 18px;">Dibawakan langsung oleh para narasumber</div>
     <div style="max-width:920px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(92px,100%),1fr));gap:22px 8px;">
-      <sc-for list="{{ narasumber }}" as="s" hint-placeholder-count="17">
         <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
-          <div style="width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;">{{ s.i }}</div>
-          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">{{ s.n }}</div>
-          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">{{ s.r }}</div>
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>NM</span><img src="assets/speaker-nur-maulana.png" alt="Ustad Nur Maulana" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Ustad Nur Maulana</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Penceramah</div>
         </div>
-      </sc-for>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>FR</span><img src="assets/speaker-fajrin.png" alt="M Fajrin Rasyid" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">M Fajrin Rasyid</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Co-Founder Bukalapak</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>KT</span><img src="assets/speaker-kilala.png" alt="Kilala Tilaar" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Kilala Tilaar</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">CEO Martha Tilaar Group</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>BW</span><img src="assets/speaker-ben.png" alt="Ben Wirawan" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Ben Wirawan</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Founder Torch.id</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>DA</span><img src="assets/speaker-dwi.png" alt="Dwi Aryanti" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Dwi Aryanti</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">CEO Ciomy</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>MH</span><img src="assets/speaker-hadiyatuloh.jpg" alt="M. Hadiyatuloh" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">M. Hadiyatuloh</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Founder Brighty</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>DP</span><img src="assets/speaker-dhony.png" alt="Dhony Pratama" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Dhony Pratama</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Founder Susu Mbok Darmi</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>AP</span><img src="assets/speaker-adyhtia.png" alt="Adyhtia Pratama" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Adyhtia Pratama</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>CF</span><img src="assets/speaker-fahmi.jpg" alt="Coach Dr Fahmi" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Coach Dr Fahmi</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>YS</span><img src="assets/speaker-yusuf.jpg" alt="M Yusuf Supriadi" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">M Yusuf Supriadi</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>SW</span><img src="assets/speaker-suhu-wan.png" alt="Suhu Wan" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Suhu Wan</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>AR</span><img src="assets/speaker-azfar.png" alt="Azfar Reza" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Azfar Reza</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Founder Jilbrave</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>LG</span><img src="assets/speaker-leo.png" alt="Leo Giovanni" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Leo Giovanni</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Content Creator &amp; Founder Clippo.id</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>SC</span><img src="assets/speaker-samuel.png" alt="Samuel Christ" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Samuel Christ</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Content Creator &amp; Founder Seefluencer</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>AV</span><img src="assets/speaker-aviwkila.png" alt="Aviwkila" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Aviwkila</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Bintang Tamu · Penyanyi</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="position:relative;width:64px;height:64px;border-radius:999px;background:var(--pwb-blue-50);box-shadow:0 0 0 3px var(--pwb-gold);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--pwb-blue-azure);font-family:var(--font-display);font-weight:700;font-size:1.25rem;"><span>SP</span><img src="assets/speaker-surya.png" alt="Surya Paramita" loading="lazy" decoding="async" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff;"></div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:var(--pwb-ink);line-height:1.2;">Surya Paramita</div>
+          <div style="margin-top:2px;font-size:.68rem;color:var(--pwb-gray-500);line-height:1.2;">Produser Film Sore</div>
+        </div>
     </div>
   </div>
 

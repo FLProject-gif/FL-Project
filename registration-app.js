@@ -842,7 +842,7 @@ function App() {
       fontSize: "1.4rem",
       color: "var(--pwb-blue-royal)"
     }
-  }, selected.price || "—")), /*#__PURE__*/React.createElement("div", {
+  }, selected.price || "-")), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16,
       display: "flex",

@@ -301,7 +301,7 @@ function App() {
           <div style={{ height: 1, background: "var(--border-subtle)", margin: "14px 0" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <span style={{ fontWeight: 700, color: "var(--text-heading)" }}>Total</span>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: "var(--pwb-blue-royal)" }}>{selected.price || "—"}</span>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: "var(--pwb-blue-royal)" }}>{selected.price || "-"}</span>
           </div>
           <div style={{ marginTop: 16, display: "flex", gap: 8, alignItems: "center", fontSize: ".78rem", color: "var(--text-muted)" }}>
             <PWBIcon name="shield-check" size={16} /> Data Anda aman & hanya untuk keperluan acara.

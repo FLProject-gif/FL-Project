@@ -581,7 +581,7 @@ function SponsorAppMain() {
       fontSize: ".8rem",
       color: "var(--text-muted)"
     }
-  }, "PIC: ", form.pic || "—", form.jabatan ? " · " + form.jabatan : ""), /*#__PURE__*/React.createElement("div", {
+  }, "PIC: ", form.pic || "-", form.jabatan ? " · " + form.jabatan : ""), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: ".8rem",
       color: "var(--text-muted)"

@@ -1764,4 +1764,17 @@ class Component extends DCLogic {
 </script>
 
 
+<style id="pwb-mobile-fix">
+@media (max-width:860px){
+  [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important;}
+  [style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  [style*="repeat(6,1fr)"]{grid-template-columns:repeat(3,1fr)!important;gap:16px 8px!important;}
+  [style*="2fr 1fr 1fr"]{grid-template-columns:1fr!important;}
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+  html,body{overflow-x:hidden!important;}
+}
+@media (max-width:480px){
+  [style*="repeat(6,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+}
+</style>
 </body></html>

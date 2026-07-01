@@ -750,7 +750,7 @@ function App() {
   }, selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket") : /*#__PURE__*/React.createElement(PWBButton, {
     variant: "accent",
     onClick: () => {
-      window.location.href = "/home";
+      window.location.href = "/home#booth";
     },
     iconLeft: /*#__PURE__*/React.createElement(PWBIcon, {
       name: "home",

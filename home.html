@@ -45,6 +45,25 @@ function App() {
   }), /*#__PURE__*/React.createElement(LFooter, null));
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
+// Scroll ke section sesuai hash (mis. /home#booth) setelah konten React ter-render.
+(function () {
+  var id = location.hash && location.hash.slice(1);
+  if (!id) return;
+  var tries = 0;
+  var scroll = function (smooth) {
+    var el = document.getElementById(id);
+    if (!el) return false;
+    el.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    return true;
+  };
+  var tick = function () {
+    if (scroll(true)) return;
+    if (tries++ < 40) setTimeout(tick, 100);
+  };
+  setTimeout(tick, 100);
+  // Koreksi posisi sekali setelah semua gambar (lazy) selesai memuat.
+  window.addEventListener("load", function () { setTimeout(function () { scroll(false); }, 250); });
+})();
 const draw = () => window.lucide && window.lucide.createIcons();
 setTimeout(draw, 120);
 setTimeout(draw, 400);

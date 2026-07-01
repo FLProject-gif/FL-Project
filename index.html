@@ -1,54 +1,1660 @@
-<!-- @dsCard group="Landing Page" viewport="1280x860" name="PWB 2026 — Marketing Site" subtitle="Full festival landing page (hero → sponsors → venue)" -->
-<!doctype html>
-<html lang="id">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="assets/lp/18e38a35-f9e8-46fb-912b-c6fa0e564c2f.js"></script>
 <title>Pesta Wirausaha Bekasi 2026 — Let's Grow Together</title>
 <link rel="icon" type="image/png" href="assets/logo-tda-bekasi.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" />
-<link rel="stylesheet" href="styles.css" />
-<link rel="prefetch" href="daftar.html" />
-<link rel="prefetch" href="registration-app.js" />
-<link rel="prefetch" href="sponsor.html" />
-<link rel="prefetch" href="sponsor-app.js" />
-<style>
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--pwb-cloud); }
-  a { color: inherit; }
-</style>
 </head>
 <body>
-<div id="root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.js"></script>
-<script src="ui.js"></script>
-<script src="parts-top.js"></script>
-<script src="parts-bottom.js"></script>
-<script>
-function App() {
-  useLucide();
-  const onRegister = () => {
-    window.location.href = "daftar.html";
-  };
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(LNav, {
-    onRegister: onRegister
-  }), /*#__PURE__*/React.createElement(LHero, {
-    onRegister: onRegister
-  }), /*#__PURE__*/React.createElement(LMarquee, null), /*#__PURE__*/React.createElement(LTantangan, null), /*#__PURE__*/React.createElement(LKenapaHadir, null), /*#__PURE__*/React.createElement(LBooth, null), /*#__PURE__*/React.createElement(LTemaAcara, null), /*#__PURE__*/React.createElement(LSpeakers, null), /*#__PURE__*/React.createElement(LSponsors, {
-    onRegister: onRegister
-  }), /*#__PURE__*/React.createElement(LKolaborasi, null), /*#__PURE__*/React.createElement(LGaleri, null), /*#__PURE__*/React.createElement(LVenue, null), /*#__PURE__*/React.createElement(LCTA, {
-    onRegister: onRegister
-  }), /*#__PURE__*/React.createElement(LFooter, null));
+<x-dc>
+<helmet>
+<style>/* FONTS — Pesta Wirausaha Bekasi
+   Fredoka  → playful, rounded display (echoes the rocket wordmark's bubble lettering)
+   Plus Jakarta Sans → clean UI + body (Indonesian-made grotesque; stands in for the deck's SF-Pro-like headings)
+   NOTE: these are Google Fonts substitutes — the event's logo wordmark is a bespoke comic face.
+   See readme.md → VISUAL FOUNDATIONS for the substitution flag. */
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
 }
-ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
-const draw = () => window.lucide && window.lucide.createIcons();
-setTimeout(draw, 120);
-setTimeout(draw, 400);
-setTimeout(draw, 900);
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/36574ce9-3da3-4d4e-87a2-1ebdf0b02ccd.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/a16ff624-aec7-457a-bb0e-bd4bf9da047d.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/f0c6eeab-b7ff-4592-9af0-e252f42b5ad3.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/73e6521a-6980-4b74-a6b8-652eb8eb307e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/36574ce9-3da3-4d4e-87a2-1ebdf0b02ccd.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/a16ff624-aec7-457a-bb0e-bd4bf9da047d.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/f0c6eeab-b7ff-4592-9af0-e252f42b5ad3.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/73e6521a-6980-4b74-a6b8-652eb8eb307e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+:root {
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: var(--font-sans);
+}
+</style>
+<style>/* COLORS — Pesta Wirausaha Bekasi
+   Sampled from the official PWB 2026 proposal deck + rocket logo.
+   Base ramp first, semantic aliases below. */
+:root {
+  /* ---- Brand base ---- */
+  --pwb-blue-royal: #005BFC;   /* deep cobalt — logo field, dark sections */
+  --pwb-blue-azure: #0097FE;   /* bright action blue — cards, buttons, icon coins */
+  --pwb-blue-sky:   #0E84DC;   /* hero sky gradient */
+  --pwb-orange:     #FD6212;   /* "PESTA" orange — energy, warm accent */
+  --pwb-red:        #C80807;   /* "WIRAUSAHA" red — emphasis, alerts */
+  --pwb-gold:       #FFB11D;   /* sun + "Let's Grow Together" pill */
+  --pwb-navy:       #122547;   /* eyebrow / running header on light */
+  --pwb-ink:        #0F1419;   /* near-black headings */
+  --pwb-slate:      #334155;   /* body copy on light */
+  --pwb-cloud:      #F4F9FF;   /* page background, cool near-white */
+  --pwb-white:      #FFFFFF;
+
+  /* ---- Blue tints ---- */
+  --pwb-blue-50:  #EAF4FF;
+  --pwb-blue-100: #CFE7FF;
+  --pwb-blue-200: #A6D2FF;
+  --pwb-blue-700: #0061C4;
+  --pwb-blue-900: #062B66;
+
+  /* ---- Warm tints ---- */
+  --pwb-orange-50: #FFF0E6;
+  --pwb-gold-50:   #FFF4DC;
+  --pwb-gold-soft: #FFE08A;   /* sticky-note yellow (gamification cards) */
+  --pwb-red-50:    #FDEBEA;
+
+  /* ---- Neutrals ---- */
+  --pwb-gray-50:  #F6F8FB;
+  --pwb-gray-100: #EEF2F7;
+  --pwb-gray-200: #E2ECF7;   /* hairline borders */
+  --pwb-gray-300: #CBD6E4;
+  --pwb-gray-500: #6B7A90;
+  --pwb-gray-700: #3A4860;
+
+  /* ---- Topographic line texture color ---- */
+  --pwb-line: #C9DEF3;
+
+  /* ===== Semantic aliases ===== */
+  --color-bg: var(--pwb-cloud);
+  --color-bg-deep: var(--pwb-blue-royal);
+  --surface-card: var(--pwb-white);
+  --surface-muted: var(--pwb-gray-50);
+  --surface-brand: var(--pwb-blue-azure);
+  --surface-brand-deep: var(--pwb-blue-royal);
+  --surface-gold: var(--pwb-gold);
+
+  --text-heading: var(--pwb-ink);
+  --text-body: var(--pwb-slate);
+  --text-muted: var(--pwb-gray-500);
+  --text-eyebrow: var(--pwb-navy);
+  --text-on-brand: var(--pwb-white);
+  --text-link: var(--pwb-blue-azure);
+
+  --accent-primary: var(--pwb-blue-azure);
+  --accent-deep: var(--pwb-blue-royal);
+  --accent-warm: var(--pwb-orange);
+  --accent-danger: var(--pwb-red);
+  --accent-gold: var(--pwb-gold);
+
+  --border-subtle: var(--pwb-gray-200);
+  --border-strong: var(--pwb-gray-300);
+  --ring-focus: rgba(0, 151, 254, 0.40);
+
+  /* state success/danger for table ticks etc. */
+  --state-yes: #2BB24C;
+  --state-no:  var(--pwb-red);
+}
+</style>
+<style>/* TYPOGRAPHY — Pesta Wirausaha Bekasi
+   Two registers:
+   • Display (Fredoka)  → festival/hero headlines, mascot energy, big numbers
+   • Sans (Plus Jakarta Sans) → document headings, UI, body, captions  */
+:root {
+  /* families (also defined in fonts.css) */
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* weights */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+  --fw-extra: 800; /* @kind font */
+
+  /* type scale (rem, 16px base) */
+  --fs-display-2xl: 4.5rem;   /* 72 — hero wordmark scale */
+  --fs-display-xl: 3.5rem;    /* 56 */
+  --fs-display-lg: 2.75rem;   /* 44 — slide titles ("Profil TDA") */
+  --fs-h1: 2.25rem;           /* 36 */
+  --fs-h2: 1.75rem;           /* 28 */
+  --fs-h3: 1.375rem;          /* 22 */
+  --fs-h4: 1.125rem;          /* 18 */
+  --fs-body-lg: 1.125rem;     /* 18 */
+  --fs-body: 1rem;            /* 16 */
+  --fs-sm: 0.875rem;          /* 14 */
+  --fs-xs: 0.75rem;           /* 12 */
+
+  /* line-heights */
+  --lh-tight: 1.04; /* @kind font */
+  --lh-snug: 1.18; /* @kind font */
+  --lh-heading: 1.12; /* @kind font */
+  --lh-body: 1.6; /* @kind font */
+
+  /* letter-spacing */
+  --ls-tight: -0.02em; /* @kind font */
+  --ls-display: -0.01em; /* @kind font */
+  --ls-eyebrow: 0.14em;   /* @kind font */
+  --ls-normal: 0; /* @kind font */
+}
+</style>
+<style>/* SPACING · RADII · SHADOWS · MOTION — Pesta Wirausaha Bekasi */
+:root {
+  /* spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* radii — the deck leans round: cards 20-28px, pills full */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-2xl: 40px;
+  --radius-pill: 999px;
+
+  /* shadows — soft, cool, blue-tinted */
+  --shadow-xs: 0 1px 2px rgba(15, 31, 64, 0.06);
+  --shadow-sm: 0 4px 12px rgba(15, 41, 90, 0.08);
+  --shadow-card: 0 12px 30px rgba(8, 43, 102, 0.10);
+  --shadow-pop: 0 20px 50px rgba(0, 91, 252, 0.18);
+  --shadow-gold: 0 14px 32px rgba(255, 177, 29, 0.35);
+
+  /* layout */
+  --container-max: 1200px; /* @kind spacing */
+  --container-narrow: 820px; /* @kind spacing */
+  --gutter: clamp(20px, 5vw, 64px); /* @kind spacing */
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);   /* @kind other */
+  --dur-fast: 0.14s; /* @kind other */
+  --dur-base: 0.24s; /* @kind other */
+  --dur-slow: 0.5s; /* @kind other */
+}
+</style>
+<style>/* BASE — resets, helpers, signature surfaces — Pesta Wirausaha Bekasi */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  color: var(--text-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  font-weight: var(--fw-extra);
+  margin: 0 0 0.4em;
+  text-wrap: balance;
+}
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+a { color: var(--text-link); text-decoration: none; }
+
+/* ---- Eyebrow / running header ---- */
+.pwb-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-eyebrow);
+}
+
+/* "Let's Grow Together" running header rule used across slides/sections */
+.pwb-runhead {
+  display: flex; align-items: center; gap: var(--space-4);
+  color: var(--pwb-navy);
+}
+.pwb-runhead::before {
+  content: ""; flex: 1 1 auto; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--pwb-navy));
+  opacity: 0.5;
+}
+.pwb-runhead > span {
+  font-weight: var(--fw-bold); font-size: var(--fs-h4);
+  letter-spacing: var(--ls-tight); white-space: nowrap;
+}
+
+/* ---- Display headline (playful Fredoka) ---- */
+.pwb-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+}
+
+/* ---- Signature surfaces ---- */
+.pwb-sky {
+  background:
+    radial-gradient(120% 80% at 80% -10%, var(--pwb-blue-sky), transparent 60%),
+    linear-gradient(160deg, #1AA0EC 0%, var(--pwb-blue-royal) 90%);
+  color: var(--text-on-brand);
+}
+.pwb-surface-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Topographic line texture (echoes deck backgrounds) ----
+   Drop onto any container; lines hug the lower-right like the proposal slides. */
+.pwb-topo { position: relative; isolation: isolate; }
+.pwb-topo::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    repeating-radial-gradient(circle at 118% 122%,
+      transparent 0 22px, var(--pwb-line) 22px 23.6px);
+  -webkit-mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+  opacity: 1;
+}
+
+/* gold "Let's Grow Together" pill */
+.pwb-pill-gold {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--pwb-gold); color: #5A3A00;
+  font-family: var(--font-display); font-weight: var(--fw-semibold);
+  padding: 0.5em 1.2em; border-radius: var(--radius-pill);
+  white-space: nowrap;
+  box-shadow: var(--shadow-gold);
+}
+
+.pwb-container { max-width: var(--container-max); margin-inline: auto; padding-inline: var(--gutter); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+</style>
+<style>/* Pesta Wirausaha Bekasi — Design System
+   Global stylesheet entry. Consumers link THIS file.
+   Keep this as @import lines only. */
+/* FONTS — Pesta Wirausaha Bekasi
+   Fredoka  → playful, rounded display (echoes the rocket wordmark's bubble lettering)
+   Plus Jakarta Sans → clean UI + body (Indonesian-made grotesque; stands in for the deck's SF-Pro-like headings)
+   NOTE: these are Google Fonts substitutes — the event's logo wordmark is a bespoke comic face.
+   See readme.md → VISUAL FOUNDATIONS for the substitution flag. */
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* hebrew */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/6550c5cb-3e32-4b24-8146-05f4a7c3eb10.woff2") format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/3fd13675-66a7-4f91-b0b9-47348dc31e56.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/lp/70b586f2-4574-4040-b5c9-6af159ec2226.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/36574ce9-3da3-4d4e-87a2-1ebdf0b02ccd.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/a16ff624-aec7-457a-bb0e-bd4bf9da047d.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/f0c6eeab-b7ff-4592-9af0-e252f42b5ad3.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/73e6521a-6980-4b74-a6b8-652eb8eb307e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/36574ce9-3da3-4d4e-87a2-1ebdf0b02ccd.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/a16ff624-aec7-457a-bb0e-bd4bf9da047d.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/f0c6eeab-b7ff-4592-9af0-e252f42b5ad3.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/73e6521a-6980-4b74-a6b8-652eb8eb307e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/817c716e-ccd5-4ffc-9cc2-f902ae83d290.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/bda70f28-408d-4ac7-96a1-279826a96bb5.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/535ab32e-c2fb-49e6-8bd6-5c4a63d5c27b.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("assets/lp/10be33d2-4256-4860-946f-c319bed05360.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+:root {
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: var(--font-sans);
+}
+
+/* COLORS — Pesta Wirausaha Bekasi
+   Sampled from the official PWB 2026 proposal deck + rocket logo.
+   Base ramp first, semantic aliases below. */
+:root {
+  /* ---- Brand base ---- */
+  --pwb-blue-royal: #005BFC;   /* deep cobalt — logo field, dark sections */
+  --pwb-blue-azure: #0097FE;   /* bright action blue — cards, buttons, icon coins */
+  --pwb-blue-sky:   #0E84DC;   /* hero sky gradient */
+  --pwb-orange:     #FD6212;   /* "PESTA" orange — energy, warm accent */
+  --pwb-red:        #C80807;   /* "WIRAUSAHA" red — emphasis, alerts */
+  --pwb-gold:       #FFB11D;   /* sun + "Let's Grow Together" pill */
+  --pwb-navy:       #122547;   /* eyebrow / running header on light */
+  --pwb-ink:        #0F1419;   /* near-black headings */
+  --pwb-slate:      #334155;   /* body copy on light */
+  --pwb-cloud:      #F4F9FF;   /* page background, cool near-white */
+  --pwb-white:      #FFFFFF;
+
+  /* ---- Blue tints ---- */
+  --pwb-blue-50:  #EAF4FF;
+  --pwb-blue-100: #CFE7FF;
+  --pwb-blue-200: #A6D2FF;
+  --pwb-blue-700: #0061C4;
+  --pwb-blue-900: #062B66;
+
+  /* ---- Warm tints ---- */
+  --pwb-orange-50: #FFF0E6;
+  --pwb-gold-50:   #FFF4DC;
+  --pwb-gold-soft: #FFE08A;   /* sticky-note yellow (gamification cards) */
+  --pwb-red-50:    #FDEBEA;
+
+  /* ---- Neutrals ---- */
+  --pwb-gray-50:  #F6F8FB;
+  --pwb-gray-100: #EEF2F7;
+  --pwb-gray-200: #E2ECF7;   /* hairline borders */
+  --pwb-gray-300: #CBD6E4;
+  --pwb-gray-500: #6B7A90;
+  --pwb-gray-700: #3A4860;
+
+  /* ---- Topographic line texture color ---- */
+  --pwb-line: #C9DEF3;
+
+  /* ===== Semantic aliases ===== */
+  --color-bg: var(--pwb-cloud);
+  --color-bg-deep: var(--pwb-blue-royal);
+  --surface-card: var(--pwb-white);
+  --surface-muted: var(--pwb-gray-50);
+  --surface-brand: var(--pwb-blue-azure);
+  --surface-brand-deep: var(--pwb-blue-royal);
+  --surface-gold: var(--pwb-gold);
+
+  --text-heading: var(--pwb-ink);
+  --text-body: var(--pwb-slate);
+  --text-muted: var(--pwb-gray-500);
+  --text-eyebrow: var(--pwb-navy);
+  --text-on-brand: var(--pwb-white);
+  --text-link: var(--pwb-blue-azure);
+
+  --accent-primary: var(--pwb-blue-azure);
+  --accent-deep: var(--pwb-blue-royal);
+  --accent-warm: var(--pwb-orange);
+  --accent-danger: var(--pwb-red);
+  --accent-gold: var(--pwb-gold);
+
+  --border-subtle: var(--pwb-gray-200);
+  --border-strong: var(--pwb-gray-300);
+  --ring-focus: rgba(0, 151, 254, 0.40);
+
+  /* state success/danger for table ticks etc. */
+  --state-yes: #2BB24C;
+  --state-no:  var(--pwb-red);
+}
+
+/* TYPOGRAPHY — Pesta Wirausaha Bekasi
+   Two registers:
+   • Display (Fredoka)  → festival/hero headlines, mascot energy, big numbers
+   • Sans (Plus Jakarta Sans) → document headings, UI, body, captions  */
+:root {
+  /* families (also defined in fonts.css) */
+  --font-display: "Fredoka", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* weights */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+  --fw-extra: 800; /* @kind font */
+
+  /* type scale (rem, 16px base) */
+  --fs-display-2xl: 4.5rem;   /* 72 — hero wordmark scale */
+  --fs-display-xl: 3.5rem;    /* 56 */
+  --fs-display-lg: 2.75rem;   /* 44 — slide titles ("Profil TDA") */
+  --fs-h1: 2.25rem;           /* 36 */
+  --fs-h2: 1.75rem;           /* 28 */
+  --fs-h3: 1.375rem;          /* 22 */
+  --fs-h4: 1.125rem;          /* 18 */
+  --fs-body-lg: 1.125rem;     /* 18 */
+  --fs-body: 1rem;            /* 16 */
+  --fs-sm: 0.875rem;          /* 14 */
+  --fs-xs: 0.75rem;           /* 12 */
+
+  /* line-heights */
+  --lh-tight: 1.04; /* @kind font */
+  --lh-snug: 1.18; /* @kind font */
+  --lh-heading: 1.12; /* @kind font */
+  --lh-body: 1.6; /* @kind font */
+
+  /* letter-spacing */
+  --ls-tight: -0.02em; /* @kind font */
+  --ls-display: -0.01em; /* @kind font */
+  --ls-eyebrow: 0.14em;   /* @kind font */
+  --ls-normal: 0; /* @kind font */
+}
+
+/* SPACING · RADII · SHADOWS · MOTION — Pesta Wirausaha Bekasi */
+:root {
+  /* spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* radii — the deck leans round: cards 20-28px, pills full */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-2xl: 40px;
+  --radius-pill: 999px;
+
+  /* shadows — soft, cool, blue-tinted */
+  --shadow-xs: 0 1px 2px rgba(15, 31, 64, 0.06);
+  --shadow-sm: 0 4px 12px rgba(15, 41, 90, 0.08);
+  --shadow-card: 0 12px 30px rgba(8, 43, 102, 0.10);
+  --shadow-pop: 0 20px 50px rgba(0, 91, 252, 0.18);
+  --shadow-gold: 0 14px 32px rgba(255, 177, 29, 0.35);
+
+  /* layout */
+  --container-max: 1200px; /* @kind spacing */
+  --container-narrow: 820px; /* @kind spacing */
+  --gutter: clamp(20px, 5vw, 64px); /* @kind spacing */
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);   /* @kind other */
+  --dur-fast: 0.14s; /* @kind other */
+  --dur-base: 0.24s; /* @kind other */
+  --dur-slow: 0.5s; /* @kind other */
+}
+
+/* BASE — resets, helpers, signature surfaces — Pesta Wirausaha Bekasi */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  color: var(--text-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-tight);
+  font-weight: var(--fw-extra);
+  margin: 0 0 0.4em;
+  text-wrap: balance;
+}
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+a { color: var(--text-link); text-decoration: none; }
+
+/* ---- Eyebrow / running header ---- */
+.pwb-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-eyebrow);
+}
+
+/* "Let's Grow Together" running header rule used across slides/sections */
+.pwb-runhead {
+  display: flex; align-items: center; gap: var(--space-4);
+  color: var(--pwb-navy);
+}
+.pwb-runhead::before {
+  content: ""; flex: 1 1 auto; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--pwb-navy));
+  opacity: 0.5;
+}
+.pwb-runhead > span {
+  font-weight: var(--fw-bold); font-size: var(--fs-h4);
+  letter-spacing: var(--ls-tight); white-space: nowrap;
+}
+
+/* ---- Display headline (playful Fredoka) ---- */
+.pwb-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-tight);
+}
+
+/* ---- Signature surfaces ---- */
+.pwb-sky {
+  background:
+    radial-gradient(120% 80% at 80% -10%, var(--pwb-blue-sky), transparent 60%),
+    linear-gradient(160deg, #1AA0EC 0%, var(--pwb-blue-royal) 90%);
+  color: var(--text-on-brand);
+}
+.pwb-surface-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Topographic line texture (echoes deck backgrounds) ----
+   Drop onto any container; lines hug the lower-right like the proposal slides. */
+.pwb-topo { position: relative; isolation: isolate; }
+.pwb-topo::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    repeating-radial-gradient(circle at 118% 122%,
+      transparent 0 22px, var(--pwb-line) 22px 23.6px);
+  -webkit-mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+          mask-image: radial-gradient(135% 130% at 118% 122%, #000 0%, transparent 70%);
+  opacity: 1;
+}
+
+/* gold "Let's Grow Together" pill */
+.pwb-pill-gold {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--pwb-gold); color: #5A3A00;
+  font-family: var(--font-display); font-weight: var(--fw-semibold);
+  padding: 0.5em 1.2em; border-radius: var(--radius-pill);
+  white-space: nowrap;
+  box-shadow: var(--shadow-gold);
+}
+
+.pwb-container { max-width: var(--container-max); margin-inline: auto; padding-inline: var(--gutter); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+</style>
+<script src="assets/lp/be0ee3d5-0fc6-4030-9239-9448760cba44.js"></script>
+<style>
+  body{margin:0;background:#0A1730;}
+  .lp-link{transition:filter .2s,transform .14s cubic-bezier(.34,1.56,.64,1)}
+  .lp-link:hover{filter:brightness(.94)}
+  .lp-link:active{transform:scale(.97)}
+</style>
+
+</helmet>
+
+<div style="background:#0A1730;font-family:var(--font-sans);color:rgba(255,255,255,.84);" data-screen-label="Landing 3A">
+
+  <!-- top bar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid rgba(255,255,255,.1);">
+    <div style="display:flex;align-items:center;gap:11px;">
+      <img src="assets/lp/0e47eb71-d162-4809-857d-1e97ad047103.png" alt="TDA Bekasi" style="height:30px;filter:brightness(0) invert(1);">
+      <div style="line-height:1.05;">
+        <div style="font-weight:800;font-size:.86rem;color:#fff;">Pesta Wirausaha</div>
+        <div style="font-weight:700;font-size:.62rem;letter-spacing:.2em;color:var(--pwb-gold);">BEKASI 2026</div>
+      </div>
+    </div>
+    <a href="daftar.html" class="lp-link" style="background:var(--pwb-gold);color:#4A2F00;font-weight:800;font-size:.82rem;padding:10px 20px;border-radius:999px;text-decoration:none;box-shadow:var(--shadow-gold);">Daftar Sekarang</a>
+  </div>
+
+  <!-- ===== 1 · HERO ===== -->
+  <div style="position:relative;overflow:hidden;background:radial-gradient(90% 70% at 50% -8%, #16346B 0%, transparent 60%), linear-gradient(180deg,#0A1730 0%,#0C1E42 100%);padding:54px 40px 58px;text-align:center;">
+    <span style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,177,29,.12);border:1px solid rgba(255,177,29,.4);color:var(--pwb-gold);font-weight:700;font-size:.75rem;letter-spacing:.05em;padding:8px 16px;border-radius:999px;">7 HARI · 27 JUL – 2 AGU 2026 · PAKUWON MALL BEKASI</span>
+    <h1 style="font-weight:800;font-size:3rem;line-height:1.1;letter-spacing:-.02em;color:#fff;margin:22px auto 0;max-width:840px;text-wrap:balance;">Bisnis makin sulit bertumbuh? Saatnya belajar langsung dari <span style="color:var(--pwb-gold);">founder, CEO, praktisi AI, investor</span> yang sudah membuktikannya.</h1>
+    <p style="font-size:1.15rem;line-height:1.6;color:rgba(255,255,255,.76);max-width:600px;margin:20px auto 0;">Bukan seminar motivasi biasa. Ini 7 hari untuk membawa bisnismu naik kelas — dari mereka yang sudah lebih dulu sampai.</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:28px;">
+      <a href="daftar.html" class="lp-link" style="display:inline-flex;align-items:center;gap:10px;background:var(--pwb-gold);color:#4A2F00;font-weight:800;font-size:1.12rem;padding:17px 40px;border-radius:999px;box-shadow:var(--shadow-gold);text-decoration:none;">Daftar Sekarang →</a>
+      <span style="font-size:.85rem;color:rgba(255,255,255,.6);">⏳ Presale mulai Rp50.000 · ditutup 27 Juli · sisa <b style="color:var(--pwb-gold);">{{ daysLeft }} hari</b></span>
+    </div>
+
+  </div>
+
+  <!-- ===== 2 · MASALAH ===== -->
+  <div style="background:#0C1E42;padding:60px 40px;">
+    <div style="max-width:700px;margin:0 auto;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">Berhenti sejenak</div>
+      <h2 style="font-weight:800;font-size:2.1rem;letter-spacing:-.02em;color:#fff;margin:0;line-height:1.14;">Apakah ini yang sedang Anda alami?</h2>
+    </div>
+    <div style="max-width:760px;margin:36px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <sc-for list="{{ pains }}" as="p" hint-placeholder-count="8">
+        <div style="display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px 18px;">
+          <span style="width:26px;height:26px;flex:0 0 auto;border-radius:999px;background:rgba(200,8,7,.18);color:#FF6B6A;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;">✕</span>
+          <span style="font-size:.98rem;font-weight:600;color:rgba(255,255,255,.9);">{{ p }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="text-align:center;font-size:1.12rem;color:rgba(255,255,255,.72);max-width:580px;margin:32px auto 0;line-height:1.5;">Kalau Anda mengangguk pada beberapa poin di atas — berarti bisnis Anda sedang membutuhkan <span style="color:#fff;font-weight:700;">langkah berikutnya.</span></p>
+  </div>
+
+  <!-- ===== 3 · MOMENTUM ===== -->
+  <div style="background:#0A1730;padding:60px 40px;">
+    <div style="max-width:720px;margin:0 auto;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">Kenapa harus sekarang?</div>
+      <h2 style="font-weight:800;font-size:2.05rem;letter-spacing:-.02em;color:#fff;margin:0 0 8px;line-height:1.14;">Dunia bisnis berubah lebih cepat dari sebelumnya.</h2>
+    </div>
+    <div style="max-width:840px;margin:36px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px 22px;text-align:center;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:1.9rem;color:var(--pwb-gold);">AI</div>
+        <p style="font-size:.95rem;line-height:1.5;color:rgba(255,255,255,.78);margin:10px 0 0;">mengubah cara orang bekerja.</p>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px 22px;text-align:center;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:1.9rem;color:var(--pwb-gold);">Marketplace</div>
+        <p style="font-size:.95rem;line-height:1.5;color:rgba(255,255,255,.78);margin:10px 0 0;">semakin kompetitif.</p>
+      </div>
+      <div style="background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px 22px;text-align:center;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:1.9rem;color:var(--pwb-gold);">Customer</div>
+        <p style="font-size:.95rem;line-height:1.5;color:rgba(255,255,255,.78);margin:10px 0 0;">semakin selektif.</p>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:1.05rem;color:rgba(255,255,255,.7);max-width:620px;margin:26px auto 0;line-height:1.55;">Persaingan tidak lagi hanya dengan toko sebelah — tapi dengan <span style="color:#fff;font-weight:600;">seluruh Indonesia.</span></p>
+    <p style="text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:#fff;max-width:660px;margin:24px auto 0;line-height:1.25;">Yang bertahan bukan bisnis yang paling besar — <span style="color:var(--pwb-gold);">tapi yang paling cepat belajar dan beradaptasi.</span></p>
+  </div>
+
+  <!-- ===== 4 · SOLUSI ===== -->
+  <div style="position:relative;overflow:hidden;background:radial-gradient(80% 130% at 50% 0%, #1E4FA8 0%, #12356E 38%, #0A1730 78%);padding:64px 40px;text-align:center;border-top:1px solid rgba(255,255,255,.08);">
+    <div style="position:absolute;inset:0;background:radial-gradient(60% 80% at 50% -6%, rgba(0,151,254,.45), transparent 60%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:2;max-width:720px;margin:0 auto;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">Karena itulah</div>
+      <h2 style="font-family:var(--font-display);font-weight:700;font-size:2.4rem;letter-spacing:-.01em;color:#fff;margin:0;line-height:1.1;">Pesta Wirausaha Bekasi hadir.</h2>
+      <p style="font-size:1.15rem;line-height:1.6;color:rgba(255,255,255,.82);margin:18px auto 0;max-width:620px;">Kami tidak hanya mengadakan seminar. Kami mempertemukan Anda dengan founder, praktisi, investor, mentor, dan komunitas yang setiap hari membangun bisnis nyata.</p>
+      <p style="font-weight:700;font-size:1.15rem;color:#fff;margin:16px auto 0;">Bukan teori — tapi pengalaman yang sudah terbukti.</p>
+    </div>
+  </div>
+
+  <!-- ===== 5 · SESI (track) ===== -->
+  <div style="background:#0A1730;padding:62px 40px;">
+    <div style="max-width:720px;margin:0 auto 40px;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">Belajar sesuai kebutuhanmu</div>
+      <h2 style="font-weight:800;font-size:2.05rem;letter-spacing:-.02em;color:#fff;margin:0;line-height:1.14;">Pilih sesi sesuai kebutuhan bisnis Anda.</h2>
+    </div>
+    <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <sc-for list="{{ tracks }}" as="t" hint-placeholder-count="7">
+        <div style="display:flex;gap:16px;align-items:flex-start;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px 22px;">
+          <div style="width:46px;height:46px;flex:0 0 auto;border-radius:999px;background:rgba(255,177,29,.16);border:1px solid rgba(255,177,29,.4);color:var(--pwb-gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:1.15rem;">{{ t.k }}</div>
+          <div>
+            <div style="font-weight:800;font-size:1.05rem;color:#fff;margin-bottom:5px;">{{ t.q }}</div>
+            <div style="font-size:.94rem;line-height:1.45;color:var(--pwb-gold);font-weight:600;">→ {{ t.a }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <!-- stat checklist strip -->
+    <div style="max-width:820px;margin:48px auto 0;padding-top:30px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;justify-content:center;gap:12px 22px;">
+      <sc-for list="{{ heroChecklist }}" as="c" hint-placeholder-count="5">
+        <div style="display:flex;align-items:center;gap:9px;font-size:.92rem;font-weight:600;color:rgba(255,255,255,.9);">
+          <span style="width:22px;height:22px;flex:0 0 auto;border-radius:999px;background:var(--pwb-gold);color:#4A2F00;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;">✓</span>{{ c }}
+        </div>
+      </sc-for>
+    </div>
+    <!-- narasumber wall -->
+    <div style="font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);font-weight:700;text-align:center;margin:38px auto 14px;">Dibawakan langsung oleh para narasumber</div>
+    <div style="max-width:920px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:22px 8px;">
+      <sc-for list="{{ narasumber }}" as="s" hint-placeholder-count="17">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+          <div style="width:66px;height:66px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:0 0 0 2px #0A1730,0 0 0 4px var(--pwb-gold);display:flex;align-items:center;justify-content:center;color:var(--pwb-gold);font-family:var(--font-display);font-weight:700;font-size:1.3rem;">{{ s.i }}</div>
+          <div style="margin-top:9px;font-weight:700;font-size:.78rem;color:#fff;line-height:1.2;">{{ s.n }}</div>
+          <div style="margin-top:2px;font-size:.68rem;color:rgba(255,255,255,.55);line-height:1.2;">{{ s.r }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ===== 6 · PERJALANAN (Connect→Scale) ===== -->
+  <div style="background:#0C1E42;padding:62px 40px;">
+    <div style="max-width:720px;margin:0 auto 40px;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">7 hari · satu perjalanan · satu tujuan</div>
+      <h2 style="font-weight:800;font-size:2.05rem;letter-spacing:-.02em;color:#fff;margin:0;line-height:1.14;">Dari bertemu, sampai naik kelas.</h2>
+    </div>
+    <div style="max-width:940px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      <sc-for list="{{ journey }}" as="j" hint-placeholder-count="4">
+        <div style="position:relative;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px 20px;text-align:center;">
+          <div style="font-family:var(--font-display);font-weight:700;font-size:.8rem;letter-spacing:.06em;color:#0A1730;background:var(--pwb-gold);display:inline-block;padding:5px 14px;border-radius:999px;">{{ j.k }}</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px;">
+            <sc-for list="{{ j.lines }}" as="ln" hint-placeholder-count="3">
+              <div style="font-size:.95rem;font-weight:600;color:rgba(255,255,255,.86);line-height:1.35;">{{ ln }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ===== 7 · HASIL ===== -->
+  <div style="background:#0A1730;padding:62px 40px;">
+    <div style="max-width:720px;margin:0 auto 12px;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">Apa yang Anda bawa pulang?</div>
+      <h2 style="font-weight:800;font-size:2.05rem;letter-spacing:-.02em;color:#fff;margin:0;line-height:1.14;">Bukan hanya foto bersama narasumber.</h2>
+    </div>
+    <p style="text-align:center;font-size:1.05rem;color:rgba(255,255,255,.7);margin:0 auto 34px;">Tapi juga…</p>
+    <div style="max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <sc-for list="{{ outcomes }}" as="o" hint-placeholder-count="8">
+        <div style="display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:16px 18px;">
+          <span style="width:26px;height:26px;flex:0 0 auto;border-radius:999px;background:var(--pwb-gold);color:#4A2F00;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;">✓</span>
+          <span style="font-size:.98rem;font-weight:600;color:#fff;">{{ o }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ===== 8 · SOCIAL PROOF ===== -->
+  <div style="background:#0C1E42;padding:62px 40px;">
+    <div style="max-width:820px;margin:0 auto;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:22px;">Mengapa Pesta Wirausaha?</div>
+      <div style="display:flex;justify-content:center;gap:16px 34px;flex-wrap:wrap;">
+        <div><div style="font-family:var(--font-display);font-weight:700;font-size:2.2rem;color:#fff;line-height:1;">45.000+</div><div style="font-size:.8rem;color:rgba(255,255,255,.6);margin-top:4px;">pengusaha ekosistem TDA</div></div>
+        <div><div style="font-family:var(--font-display);font-weight:700;font-size:2.2rem;color:#fff;line-height:1;">110+</div><div style="font-size:.8rem;color:rgba(255,255,255,.6);margin-top:4px;">kota di Indonesia</div></div>
+        <div><div style="font-family:var(--font-display);font-weight:700;font-size:2.2rem;color:var(--pwb-gold);line-height:1;">300+</div><div style="font-size:.8rem;color:rgba(255,255,255,.6);margin-top:4px;">UMKM &amp; komunitas</div></div>
+        <div><div style="font-family:var(--font-display);font-weight:700;font-size:2.2rem;color:#fff;line-height:1;">5.000+</div><div style="font-size:.8rem;color:rgba(255,255,255,.6);margin-top:4px;">peserta setiap tahun</div></div>
+      </div>
+    </div>
+    <div style="max-width:900px;margin:44px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+      <sc-for list="{{ testis }}" as="ti" hint-placeholder-count="3">
+        <div style="background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+          <div style="color:var(--pwb-gold);font-size:1.4rem;line-height:1;">★★★★★</div>
+          <p style="font-size:.95rem;line-height:1.55;color:rgba(255,255,255,.9);margin:0;flex:1;">“{{ ti.q }}”</p>
+          <div style="display:flex;align-items:center;gap:11px;">
+            <div style="width:38px;height:38px;border-radius:999px;background:var(--pwb-blue-azure);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;">{{ ti.in }}</div>
+            <div style="line-height:1.2;"><div style="font-weight:700;font-size:.9rem;color:#fff;">{{ ti.n }}</div><div style="font-size:.76rem;color:rgba(255,255,255,.6);">{{ ti.r }}</div></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="max-width:900px;margin:16px auto 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;">
+      <img src="assets/lp/943d4259-1599-47a1-a4a1-e20759d81f40.png" alt="Expo UMKM 2022" style="grid-row:span 2;width:100%;height:100%;object-fit:cover;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.1);">
+      <img src="assets/lp/71ad6a61-189d-4e55-b77a-a40c58520be6.png" alt="Workshop" style="width:100%;height:96px;object-fit:cover;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.1);">
+      <img src="assets/lp/3b042a30-ec7c-4fd2-ae3f-ac194b4c95cd.jpg" alt="Suasana mall" style="width:100%;height:96px;object-fit:cover;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.1);">
+      <img src="assets/lp/8988f9b8-3dd2-4c4b-97b2-42c90ccd18f3.jpg" alt="Pakuwon Mall Bekasi" style="width:100%;height:96px;object-fit:cover;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.1);">
+      <img src="assets/lp/e92400b7-ceb3-467d-b648-d49663ae0a1d.png" alt="Talkshow" style="width:100%;height:96px;object-fit:cover;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.1);">
+    </div>
+  </div>
+
+  <!-- ===== 9 · PASS ===== -->
+  <div style="background:#0A1730;padding:62px 40px;">
+    <div style="max-width:720px;margin:0 auto 38px;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">Yang Anda dapatkan</div>
+      <h2 style="font-weight:800;font-size:2.05rem;letter-spacing:-.02em;color:#fff;margin:0;line-height:1.14;">Satu tiket, akses penuh selama 7 hari.</h2>
+    </div>
+    <div style="max-width:560px;margin:0 auto;">
+      <div style="position:relative;background:linear-gradient(180deg,rgba(255,177,29,.16),rgba(255,177,29,.04));border:1.5px solid var(--pwb-gold);border-radius:22px;padding:36px 32px;display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(255,177,29,.14);">
+        <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--pwb-gold);color:#4A2F00;font-weight:800;font-size:.72rem;letter-spacing:.05em;padding:5px 14px;border-radius:999px;white-space:nowrap;">PALING DIREKOMENDASIKAN</span>
+        <div style="font-weight:800;font-size:1.4rem;color:#fff;margin-top:4px;">Growth Pass</div>
+        <div style="font-size:.9rem;color:rgba(255,255,255,.72);margin:6px 0 22px;">Untuk yang serius membawa bisnis naik kelas.</div>
+        <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:13px 20px;">
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Akses 7 hari penuh</li>
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Semua talkshow &amp; seminar</li>
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Expo 300+ UMKM &amp; entertainment</li>
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Workshop eksklusif (kuota terbatas)</li>
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Priority seating puncak acara</li>
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Rekaman materi &amp; e-sertifikat</li>
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Prioritas slot business matching</li>
+          <li style="display:flex;gap:10px;font-size:.95rem;color:#fff;font-weight:600;"><span style="color:var(--pwb-gold);font-weight:800;">✓</span>Undian doorprize Rp25 jt+</li>
+        </ul>
+        <a href="daftar.html" class="lp-link" style="margin-top:28px;text-align:center;background:var(--pwb-gold);color:#4A2F00;font-weight:800;font-size:1rem;padding:15px;border-radius:999px;text-decoration:none;box-shadow:var(--shadow-gold);">Amankan Growth Pass →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 10 · FAQ ===== -->
+  <div style="background:#0C1E42;padding:62px 40px;">
+    <div style="max-width:680px;margin:0 auto 34px;text-align:center;">
+      <div style="font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pwb-gold);margin-bottom:12px;">Masih ragu?</div>
+      <h2 style="font-weight:800;font-size:2.05rem;letter-spacing:-.02em;color:#fff;margin:0;line-height:1.14;">Pertanyaan yang sering muncul</h2>
+    </div>
+    <div style="max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:10px;">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <details style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:4px 20px;">
+          <summary style="cursor:pointer;list-style:none;padding:16px 0;font-weight:700;font-size:1rem;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:12px;">{{ f.q }}<span style="color:var(--pwb-gold);font-size:1.3rem;line-height:1;">+</span></summary>
+          <p style="font-size:.95rem;line-height:1.55;color:rgba(255,255,255,.74);margin:0 0 16px;">{{ f.a }}</p>
+        </details>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ===== 11 · CTA ===== -->
+  <div id="daftar-3a" style="scroll-margin-top:24px;position:relative;overflow:hidden;background:radial-gradient(90% 80% at 50% 0%, #16346B 0%, transparent 60%), linear-gradient(180deg,#0C1E42,#0A1730);padding:64px 40px 70px;text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+      <h2 style="font-family:var(--font-display);font-weight:700;font-size:2.35rem;line-height:1.14;color:#fff;margin:0 0 16px;text-wrap:balance;">Mungkin bisnis Anda tidak membutuhkan lebih banyak motivasi.</h2>
+      <p style="font-size:1.1rem;line-height:1.6;color:rgba(255,255,255,.8);margin:0 0 26px;">Mungkin bisnis Anda hanya membutuhkan satu strategi, satu mentor, satu relasi — dan satu keputusan untuk hadir.</p>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:26px;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:1.35rem;color:#fff;">Pesta Wirausaha Bekasi 2026</div>
+        <div style="font-weight:700;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pwb-gold);">Let's Grow Together</div>
+        <div style="font-size:.9rem;color:rgba(255,255,255,.7);margin-top:6px;">27 Juli – 2 Agustus 2026 · Pakuwon Mall Bekasi</div>
+      </div>
+
+      <div style="max-width:460px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;">
+        <a href="daftar.html" class="lp-link" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;background:var(--pwb-gold);color:#4A2F00;font-weight:800;font-size:1.15rem;padding:18px 40px;border-radius:999px;box-shadow:var(--shadow-gold);text-decoration:none;">Daftar Sekarang →</a>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.6);">⏳ Presale tutup 27 Juli · sisa {{ daysLeft }} hari · E-tiket dikirim ke WhatsApp.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div style="background:#050E20;color:rgba(255,255,255,.6);padding:26px 40px;text-align:center;font-size:.84rem;">
+    Pesta Wirausaha Bekasi 2026 · TDA Bekasi · WA +62 838 5666 5556 · IG @tdabekasi
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+class Component extends DCLogic {
+  renderVals(){
+    const deadline = new Date('2026-07-27T23:59:59+07:00');
+    const now = new Date();
+    const daysLeft = Math.max(0, Math.ceil((deadline - now) / 86400000));
+    return {
+      daysLeft,
+      heroChecklist: [
+        '10+ Narasumber',
+        '300+ UMKM & Komunitas',
+        '5.000+ Entrepreneur',
+        '27 Juli – 2 Agustus 2026',
+        'Pakuwon Mall Bekasi',
+      ],
+      narasumber: [
+        { n: 'Sandiaga S. Uno', r: 'Motivasi Bisnis', i: 'SU' },
+        { n: 'M. Fajrin Rasyid', r: 'Co-Founder Bukalapak', i: 'FR' },
+        { n: 'Kilala Tilaar', r: 'Martha Tilaar Group', i: 'KT' },
+        { n: 'Ben Wirawan', r: 'Founder Torch', i: 'BW' },
+        { n: 'M. Reza', r: 'Founder Jilbrave', i: 'MR' },
+        { n: 'Dr. H. Tri Adhianto', r: 'Walikota Bekasi', i: 'TA' },
+        { n: 'Ust. M. Nur Maulana', r: 'Religi & Keluarga', i: 'NM' },
+        { n: 'Suhu Wan', r: 'Idolmart', i: 'SW' },
+        { n: 'M. Rizky Ramadhan', r: 'Roscik', i: 'RR' },
+        { n: 'Dian Aryanti', r: 'Founder Ciomy', i: 'DA' },
+        { n: 'Dhony Pratama', r: 'Susu Mbok Darmi', i: 'DP' },
+        { n: 'Suryana Paramita', r: 'Film Sore', i: 'SP' },
+        { n: 'M. B. Junerosano', r: 'Waste4Change', i: 'BJ' },
+        { n: 'Dimas Seto & Dhini', r: 'Couplepreneur', i: 'DS' },
+        { n: 'Ratansa Setiawan', r: 'Stand-up Comedy', i: 'RS' },
+        { n: 'Avwikila', r: 'Music', i: 'AV' },
+        { n: 'Tries Band', r: 'Music', i: 'TB' },
+      ],
+      pains: [
+        'Omzet mulai stagnan.',
+        'Persaingan semakin ketat.',
+        'AI berkembang cepat, belum tahu cara memanfaatkannya.',
+        'Marketing belum konsisten.',
+        'Brand belum dikenal.',
+        'Bisnis masih bergantung pada owner.',
+        'Belum punya mentor.',
+        'Belum punya komunitas bisnis.',
+      ],
+      tracks: [
+        { k: '01', q: 'Ingin membangun brand?', a: 'Belajar dari Founder Torch & Jilbrave.' },
+        { k: '02', q: 'Ingin membangun startup?', a: 'Belajar dari Co-Founder Bukalapak.' },
+        { k: '03', q: 'Ingin meningkatkan penjualan?', a: 'Guerilla Marketing, Affiliate Marketing & Winning Content.' },
+        { k: '04', q: 'Ingin memanfaatkan AI?', a: 'AI siap pakai untuk marketing, operasional & produktivitas.' },
+        { k: '05', q: 'Ingin mengembangkan bisnis F&B?', a: 'Belajar dari Founder Ciomy & Susu Mbok Darmi.' },
+        { k: '06', q: 'Ingin menjadi content creator?', a: 'Belajar dari creator & praktisi industri kreatif.' },
+        { k: '07', q: 'Ingin hidup yang seimbang?', a: 'Religi, keluarga, leadership, kesehatan & inspirasi hidup.' },
+      ],
+      journey: [
+        { k: 'CONNECT', lines: ['Temukan mentor.', 'Temukan partner.', 'Temukan komunitas.'] },
+        { k: 'CREATE', lines: ['Temukan ide.', 'Temukan strategi.', 'Temukan inovasi.'] },
+        { k: 'GROW', lines: ['Bangun marketing.', 'Bangun brand.', 'Bangun sistem bisnis.'] },
+        { k: 'SCALE', lines: ['Siapkan bisnis menuju', 'level berikutnya.'] },
+      ],
+      outcomes: [
+        'Strategi yang bisa langsung diterapkan',
+        'Mentor',
+        'Partner bisnis',
+        'Komunitas',
+        'Peluang kolaborasi',
+        'Inspirasi baru',
+        'Cara berpikir baru',
+        'Keberanian membawa bisnis naik kelas',
+      ],
+      testis: [
+        { q: 'Dari sekadar jualan online, saya pulang bawa framework konten yang bikin omzet naik 3x dalam 2 bulan.', n: 'Rani W.', r: 'Owner brand skincare lokal', in: 'RW' },
+        { q: 'Business matching-nya menyambungkan saya ke supplier & investor. Satu event, koneksi setahun.', n: 'Adit P.', r: 'Founder F&B, Bekasi', in: 'AP' },
+        { q: 'Materinya bukan teori. Study-case asli dari founder yang benar-benar sudah scale up.', n: 'Nadia S.', r: 'UMKM fashion muslim', in: 'NS' },
+      ],
+      faqs: [
+        { q: 'Saya masih pemula, apakah cocok?', a: 'Sangat cocok. Materi dirancang bertingkat — dari yang baru mulai sampai yang ingin scale up. Anda bisa memilih sesi sesuai tahap bisnis Anda.' },
+        { q: 'Harus punya bisnis?', a: 'Tidak harus. Banyak peserta datang dengan ide atau baru merintis. Justru di sinilah tempat terbaik memvalidasi ide sebelum mulai.' },
+        { q: 'Kalau hanya hadir satu hari?', a: 'Tidak masalah. Tiket berlaku 7 hari, tapi Anda bebas datang di hari yang paling relevan dengan kebutuhan Anda. Cek jadwal puncak acara 31 Jul–2 Agu.' },
+        { q: 'Apa saja benefit Growth Pass?', a: 'Semua akses Visitor Pass, plus Seminar Premium, Workshop, Priority Seating, Rekaman Materi, Business Matching, dan E-Certificate.' },
+        { q: 'Bagaimana cara pembayaran?', a: 'Isi formulir pendaftaran, lalu tim kami mengirim konfirmasi & instruksi pembayaran langsung ke WhatsApp Anda. E-tiket dikirim setelah pembayaran.' },
+      ],
+    };
+  }
+}
 </script>
-</body>
-</html>
+
+
+</body></html>

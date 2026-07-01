@@ -285,7 +285,7 @@ function App() {
             <span />
             {step < 1
               ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket"}</PWBButton>
-              : <PWBButton variant="accent" onClick={() => { window.location.href = "/home"; }} iconLeft={<PWBIcon name="home" size={18} />}>Home Page</PWBButton>}
+              : <PWBButton variant="accent" onClick={() => { window.location.href = "/home#booth"; }} iconLeft={<PWBIcon name="home" size={18} />}>Home Page</PWBButton>}
           </div>
         </PWBCard>
 

@@ -47,6 +47,9 @@ function Speakers() {
     ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.png", "brand-seefluencer.png"],
     ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.png", ""],
     ["Surya Paramita", "Produser Film Sore", "speaker-surya.png", "brand-film-sore.png"],
+    ["Ade Rai", "Penggiat Gaya Hidup Sehat & Bugar", "speaker-ade-rai.png", ""],
+    ["Dr. H. Tri Adhianto", "Walikota Bekasi", "speaker-tri-adhianto.png", ""],
+    ["Ratanca Setiawan", "Juara 3 SUCI 12 Kompas TV", "speaker-ratanca.png", ""],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>
@@ -156,6 +159,8 @@ function Kolaborasi() {
     ["Babydiii", "45.png"],
     ["Bang Renov", "49.png"],
     ["attin", "51.png"],
+    ["Sekolah Lansia Bekasi", "logo-sekolah-lansia.png"],
+    ["Pound Power", "logo-pound-power.png"],
   ];
   return (
     <section id="kolaborasi" style={{ background: "var(--pwb-cloud)", overflow: "hidden" }} className="pwb-topo">

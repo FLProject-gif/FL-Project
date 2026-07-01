@@ -38,7 +38,7 @@ function Speakers() {
     ["Dwi Aryanti", "CEO Ciomy", "speaker-dwi.png", "brand-ciomy.png"],
     ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg", "brand-brighty.png"],
     ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.png", "brand-mbok-darmi.png"],
-    ["Adyhtia Pratama", "", "speaker-adyhtia.png", ""],
+    ["Adythia Pratama", "Content Creator & Founder f15library.com", "speaker-adyhtia.png", ""],
     ["Coach DR Fahmi", "Grand Master Grounded Business Coach", "speaker-fahmi.jpg", ""],
     ["Taufiq Yusuf", "Survival Architecture Indonesia", "speaker-yusuf.jpg", ""],
     ["Suhu Wan", "Founder Idolmart", "speaker-suhu-wan.png", ""],

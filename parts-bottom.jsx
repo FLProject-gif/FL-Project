@@ -159,6 +159,8 @@ function Kolaborasi() {
     ["Babydiii", "45.png"],
     ["Bang Renov", "49.png"],
     ["attin", "51.png"],
+    ["Sekolah Lansia Bekasi", "logo-sekolah-lansia.png"],
+    ["Pound Power", "logo-pound-power.png"],
   ];
   return (
     <section id="kolaborasi" style={{ background: "var(--pwb-cloud)", overflow: "hidden" }} className="pwb-topo">

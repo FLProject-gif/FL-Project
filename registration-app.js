@@ -750,25 +750,13 @@ function App() {
   }, selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket") : /*#__PURE__*/React.createElement(PWBButton, {
     variant: "accent",
     onClick: () => {
-      setStep(0);
-      setTicket("growth");
-      setForm({
-        nama: "",
-        email: "",
-        wa: "",
-        usaha: "",
-        provinsi: "",
-        kota: "",
-        tanggal: ""
-      });
-      setProvId("");
-      setRegencies([]);
+      window.location.href = "/home";
     },
     iconLeft: /*#__PURE__*/React.createElement(PWBIcon, {
-      name: "download",
+      name: "home",
       size: 18
     })
-  }, "Selesai \xB7 Daftar Lagi"))), /*#__PURE__*/React.createElement(PWBCard, {
+  }, "Home Page"))), /*#__PURE__*/React.createElement(PWBCard, {
     variant: "white",
     pad: "lg",
     style: {
@@ -842,7 +830,7 @@ function App() {
       fontSize: "1.4rem",
       color: "var(--pwb-blue-royal)"
     }
-  }, selected.price || "—")), /*#__PURE__*/React.createElement("div", {
+  }, selected.price || "-")), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16,
       display: "flex",

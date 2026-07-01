@@ -228,7 +228,7 @@ function SponsorAppMain() {
                 <div style={{ background: "#fff", borderRadius: "calc(var(--radius-xl) - 4px)", padding: "22px 24px", textAlign: "left" }}>
                   <div className="pwb-eyebrow" style={{ color: "var(--pwb-blue-azure)" }}>Paket {selected.tier}</div>
                   <div style={{ fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: "1.15rem", color: "var(--text-heading)", margin: "2px 0" }}>{form.perusahaan || "Perusahaan Anda"}</div>
-                  <div style={{ fontSize: ".8rem", color: "var(--text-muted)" }}>PIC: {form.pic || "—"}{form.jabatan ? " · " + form.jabatan : ""}</div>
+                  <div style={{ fontSize: ".8rem", color: "var(--text-muted)" }}>PIC: {form.pic || "-"}{form.jabatan ? " · " + form.jabatan : ""}</div>
                   <div style={{ fontSize: ".8rem", color: "var(--text-muted)" }}>Nilai paket: {selected.price}</div>
                   <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, marginTop: 6, color: "var(--pwb-blue-royal)", letterSpacing: ".05em" }}>{ref}</div>
                 </div>

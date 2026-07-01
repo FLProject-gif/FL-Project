@@ -285,7 +285,7 @@ function App() {
             <span />
             {step < 1
               ? <PWBButton variant="primary" disabled={!canNext} onClick={handleNext} iconRight={<PWBIcon name="arrow-right" size={18} />}>{selected.href ? "Lanjut ke Pembayaran" : "Terbitkan E-Ticket"}</PWBButton>
-              : <PWBButton variant="accent" onClick={() => { setStep(0); setTicket("growth"); setForm({ nama: "", email: "", wa: "", usaha: "", provinsi: "", kota: "", tanggal: "" }); setProvId(""); setRegencies([]); }} iconLeft={<PWBIcon name="download" size={18} />}>Selesai · Daftar Lagi</PWBButton>}
+              : <PWBButton variant="accent" onClick={() => { window.location.href = "/home"; }} iconLeft={<PWBIcon name="home" size={18} />}>Home Page</PWBButton>}
           </div>
         </PWBCard>
 
@@ -301,7 +301,7 @@ function App() {
           <div style={{ height: 1, background: "var(--border-subtle)", margin: "14px 0" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <span style={{ fontWeight: 700, color: "var(--text-heading)" }}>Total</span>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: "var(--pwb-blue-royal)" }}>{selected.price || "—"}</span>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: "var(--pwb-blue-royal)" }}>{selected.price || "-"}</span>
           </div>
           <div style={{ marginTop: 16, display: "flex", gap: 8, alignItems: "center", fontSize: ".78rem", color: "var(--text-muted)" }}>
             <PWBIcon name="shield-check" size={16} /> Data Anda aman & hanya untuk keperluan acara.

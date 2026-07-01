@@ -38,10 +38,10 @@ fs.writeFileSync(path.join(ROOT, 'styles.css'), css);
 console.log('bundled -> styles.css');
 
 // 2) Rewrite the HTML files
-const htmlFiles = ['index.html', 'daftar.html', 'sponsor.html'];
+const htmlFiles = ['home.html', 'daftar.html', 'sponsor.html'];
 // Prefetch the other pages + their app bundles so navigation feels instant.
 const PREFETCH = {
-  'index.html': ['daftar.html', 'registration-app.js', 'sponsor.html', 'sponsor-app.js'],
+  'home.html': ['daftar.html', 'registration-app.js', 'sponsor.html', 'sponsor-app.js'],
   'daftar.html': ['sponsor.html', 'sponsor-app.js'],
   'sponsor.html': ['daftar.html', 'registration-app.js'],
 };

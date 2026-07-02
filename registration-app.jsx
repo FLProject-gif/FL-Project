@@ -150,7 +150,7 @@ function App() {
       ctx.fillStyle = "#fff"; rr(36, 36, W - 72, H - 72, 32); ctx.fill();
 
       ctx.fillStyle = royal; ctx.font = "700 24px sans-serif";
-      ctx.fillText("PESTA WIRAUSAHA PLANET BEKASI 2026", 72, 70);
+      ctx.fillText("PESTA WIRAUSAHA BEKASI 2026", 72, 70);
       ctx.fillStyle = hair; ctx.fillRect(72, 108, W - 144, 2);
 
       const qrSize = 300, qx = 80, qy = 158;

@@ -186,7 +186,7 @@ function App() {
   return (
     <div>
       <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px var(--gutter)", background: "#fff", boxShadow: "var(--shadow-sm)", position: "sticky", top: 0, zIndex: 10 }}>
-        <a href="index.html" style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--text-heading)", fontWeight: 700, fontSize: ".9rem" }}>
+        <a href="/home" style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--text-heading)", fontWeight: 700, fontSize: ".9rem" }}>
           <PWBIcon name="arrow-left" size={18} /> <img src="assets/logo-tda-bekasi.png" style={{ height: 32 }} alt="TDA Bekasi" />
         </a>
         <PWBBadge tone="brand">Pendaftaran PWB 2026</PWBBadge>

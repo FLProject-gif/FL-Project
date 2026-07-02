@@ -368,7 +368,7 @@ function App() {
       zIndex: 10
     }
   }, /*#__PURE__*/React.createElement("a", {
-    href: "index.html",
+    href: "/home",
     style: {
       display: "flex",
       alignItems: "center",

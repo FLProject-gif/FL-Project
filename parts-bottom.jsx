@@ -35,7 +35,7 @@ function Speakers() {
     ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.png", "brand-bukalapak.png"],
     ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.png", "brand-martha-tilaar.png"],
     ["Ben Wirawan", "Founder Torch.id", "speaker-ben.png", "brand-torch.png"],
-    ["Dwi Aryanti", "CEO Ciomy", "speaker-dwi.png", "brand-ciomy.png"],
+    ["Dian Aryanti", "CEO Ciomy", "speaker-dwi.png", "brand-ciomy.png"],
     ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg", "brand-brighty.png"],
     ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.png", "brand-mbok-darmi.png"],
     ["Adythia Pratama", "Content Creator & Founder f15library.com", "speaker-adyhtia.png", ""],

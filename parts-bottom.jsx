@@ -49,6 +49,7 @@ function Speakers() {
     ["Suryana Paramita", "Produser Film Sore", "speaker-surya.png", "brand-film-sore.png"],
     ["Dr. H. Tri Adhianto", "Walikota Bekasi", "speaker-tri-adhianto.png", ""],
     ["Ratanca Setiawan", "Juara 3 SUCI 12 Kompas TV", "speaker-ratanca.png", ""],
+    ["Yohannes Auri Husen", "CEO @idenyaflux", "speaker-yohannes.png", ""],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>

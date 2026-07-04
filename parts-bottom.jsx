@@ -39,7 +39,6 @@ function Speakers() {
     ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg", "brand-brighty.png"],
     ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.png", "brand-mbok-darmi.png"],
     ["Adythia Pratama", "Content Creator & Founder f15library.com", "speaker-adyhtia.png", ""],
-    ["Coach DR Fahmi", "Grand Master Grounded Business Coach", "speaker-fahmi.jpg", ""],
     ["Taufiq Yusuf", "Survival Architecture Indonesia", "speaker-yusuf.jpg", ""],
     ["Suhu Wan", "Founder Idolmart", "speaker-suhu-wan.png", ""],
     ["M Rizky Ramadhan", "Founder Roscik", "speaker-rizky.png", ""],
@@ -48,7 +47,6 @@ function Speakers() {
     ["Samuel Christ", "Content Creator & Founder Seefluencer", "speaker-samuel.png", "brand-seefluencer.png"],
     ["Aviwkila", "Bintang Tamu · Penyanyi", "speaker-aviwkila.png", ""],
     ["Suryana Paramita", "Produser Film Sore", "speaker-surya.png", "brand-film-sore.png"],
-    ["Ade Rai", "Penggiat Gaya Hidup Sehat & Bugar", "speaker-ade-rai.png", ""],
     ["Dr. H. Tri Adhianto", "Walikota Bekasi", "speaker-tri-adhianto.png", ""],
     ["Ratanca Setiawan", "Juara 3 SUCI 12 Kompas TV", "speaker-ratanca.png", ""],
   ];

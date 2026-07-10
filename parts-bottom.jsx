@@ -50,6 +50,7 @@ function Speakers() {
     ["Dr. H. Tri Adhianto", "Walikota Bekasi", "speaker-tri-adhianto.png", ""],
     ["Ratanca Setiawan", "Juara 3 SUCI 12 Kompas TV", "speaker-ratanca.png", ""],
     ["Yohannes Auri Husen", "CEO @idenyaflux", "speaker-yohannes.png", ""],
+    ["Syammas P. Syarbini", "Canva Verified Expert", "speaker-syammas.png", ""],
   ];
   return (
     <section id="speaker" style={{ background: "var(--pwb-blue-royal)", position: "relative", overflow: "hidden" }}>

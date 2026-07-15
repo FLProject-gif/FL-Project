@@ -31,7 +31,6 @@ function Speakers() {
   // [nama, peran, file foto di assets/]. Foto tampil otomatis saat file tersedia; jika belum, tampil inisial.
   // [nama, peran, foto, logo brand (opsional)]
   const people = [
-    ["Ustad Nur Maulana", "Penceramah", "speaker-nur-maulana.png", ""],
     ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.png", "brand-bukalapak.png"],
     ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.png", "brand-martha-tilaar.png"],
     ["Ben Wirawan", "Founder Torch.id", "speaker-ben.png", "brand-torch.png"],
@@ -49,7 +48,6 @@ function Speakers() {
     ["Suryana Paramita", "Produser Film Sore", "speaker-surya.png", "brand-film-sore.png"],
     ["Dr. H. Tri Adhianto", "Walikota Bekasi", "speaker-tri-adhianto.png", ""],
     ["Ratanca Setiawan", "Juara 3 SUCI 12 Kompas TV", "speaker-ratanca.png", ""],
-    ["Yohannes Auri Husen", "CEO @idenyaflux", "speaker-yohannes.png", ""],
     ["Syammas P. Syarbini", "Canva Verified Expert", "speaker-syammas.png", ""],
   ];
   return (

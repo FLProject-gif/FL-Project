@@ -32,12 +32,11 @@ function Speakers() {
   // [nama, peran, foto, logo brand (opsional)]
   const people = [
     ["M Fajrin Rasyid", "Co-Founder Bukalapak", "speaker-fajrin.png", "brand-bukalapak.png"],
-    ["Kilala Tilaar", "CEO Martha Tilaar Group", "speaker-kilala.png", "brand-martha-tilaar.png"],
+    ["Coach Dr Fahmi", "Grand Master Grounded Business Coach", "speaker-fahmi.png", ""],
     ["Ben Wirawan", "Founder Torch.id", "speaker-ben.png", "brand-torch.png"],
     ["Dian Aryanti", "CEO Ciomy", "speaker-dwi.png", "brand-ciomy.png"],
     ["M. Hadiyatuloh", "Founder Brighty", "speaker-hadiyatuloh.jpg", "brand-brighty.png"],
     ["Dhony Pratama", "Founder Susu Mbok Darmi", "speaker-dhony.png", "brand-mbok-darmi.png"],
-    ["Adythia Pratama", "Content Creator & Founder f15library.com", "speaker-adyhtia.png", ""],
     ["Taufiq Yusuf", "Survival Architecture Indonesia", "speaker-yusuf.jpg", ""],
     ["Suhu Wan", "Founder Idolmart", "speaker-suhu-wan.png", ""],
     ["M Rizky Ramadhan", "Founder Roscik", "speaker-rizky.png", ""],

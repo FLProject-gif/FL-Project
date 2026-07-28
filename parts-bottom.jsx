@@ -159,7 +159,7 @@ function Kolaborasi() {
     ["attin", "51.png"],
     ["Sekolah Lansia Bekasi", "logo-sekolah-lansia.png"],
     ["Pound Power", "logo-pound-power.png"],
-    ["Ranami", "logo-ranami.png"],
+    ["Ranami", "sahabat-ranami.png"],
     ["Duit Tracker", "logo-duittracker.png"],
   ];
   return (

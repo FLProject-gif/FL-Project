@@ -160,7 +160,7 @@ function Kolaborasi() {
     ["Sekolah Lansia Bekasi", "logo-sekolah-lansia.png"],
     ["Pound Power", "logo-pound-power.png"],
     ["Ranami", "sahabat-ranami.png"],
-    ["Duit Tracker", "logo-duittracker.png?v=2"],
+    ["Duit Tracker", "logo-duittracker.png?v=3"],
   ];
   return (
     <section id="kolaborasi" style={{ background: "var(--pwb-cloud)", overflow: "hidden" }} className="pwb-topo">
